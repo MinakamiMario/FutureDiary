@@ -1,0 +1,20 @@
+{
+  "name": "minakamiapp-strava-oauth",
+  "version": "1.0.0",
+  "description": "OAuth callback server for MinakamiApp Strava integration",
+  "main": "strava-oauth-server.js",
+  "scripts": {
+    "start": "node strava-oauth-server.js",
+    "dev": "node strava-oauth-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": ["strava", "oauth", "minakamiapp", "callback"],
+  "author": "MinakamiApp",
+  "license": "MIT"
+}

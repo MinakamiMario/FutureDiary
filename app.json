@@ -1,0 +1,9 @@
+{
+  "name": "MinakamiAppFinal",
+  "displayName": "MinakamiAppFinal",
+  "extra": {
+    "eas": {
+      "projectId": "771728ca-f930-48c1-a658-78ab4681d611"
+    }
+  }
+}

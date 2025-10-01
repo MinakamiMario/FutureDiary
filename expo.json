@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "MinakamiApp",
+    "slug": "minakami-app",
+    "version": "1.0.0",
+    "platforms": ["android", "ios"],
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#4a90e2"
+    },
+    "android": {
+      "package": "com.minakamiappfinal",
+      "versionCode": 1,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "READ_CALL_LOG",
+        "CAMERA",
+        "RECORD_AUDIO",
+        "ACCESS_BACKGROUND_LOCATION",
+        "ACTIVITY_RECOGNITION"
+      ]
+    },
+    "plugins": [
+      "expo-location",
+      "expo-sensors", 
+      "expo-contacts",
+      "expo-notifications",
+      "expo-task-manager"
+    ]
+  }
+}
