@@ -5,7 +5,7 @@ import databaseService from '../services/database';
 import activityService from '../services/activityService';
 import locationService from '../services/locationService';
 import callLogService from '../services/callLogService';
-import samsungHealthService from '../services/samsungHealthService';
+// import samsungHealthService from '../services/samsungHealthService'; // REMOVED - Only using Health Connect
 import healthDataService from '../services/healthDataService';
 import { generateDailySummary } from '../services/summaryService';
 import errorHandler from '../services/errorLogger';
@@ -39,12 +39,10 @@ export const AppProvider = ({ children }) => {
       encryptCallData: true,
       retentionPeriod: 90
     },
-    samsungHealthEnabled: false,
-    samsungHealthAutoSync: true,
-    samsungHealthPermissions: [],
+    // Samsung Health settings removed - only using Health Connect
     healthConnectEnabled: true,
     healthConnectAutoSync: true,
-    preferredHealthSource: 'health_connect' // 'health_connect', 'samsung_health', 'google_fit'
+    preferredHealthSource: 'health_connect' // Only Health Connect supported
   });
   
   const [activityStats, setActivityStats] = useState({
@@ -109,19 +107,7 @@ export const AppProvider = ({ children }) => {
             }
           }
           
-          // Initialize Samsung Health if enabled
-          if (savedSettings.samsungHealthEnabled && savedSettings.preferredHealthSource === 'samsung_health') {
-            console.log('Initializing Samsung Health...');
-            try {
-              const initResult = await samsungHealthService.initialize();
-              if (initResult.success && savedSettings.samsungHealthAutoSync) {
-                console.log('Starting Samsung Health auto-sync...');
-                samsungHealthService.syncAllHealthData();
-              }
-            } catch (error) {
-              console.log('Samsung Health initialization failed:', error);
-            }
-          }
+          // Samsung Health initialization removed - only using Health Connect
         }
       } catch (error) {
         errorHandler.error('Fout bij laden instellingen', error, 'AppContext');

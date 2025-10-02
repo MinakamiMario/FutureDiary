@@ -49,7 +49,7 @@ function DashboardWrapper() {
       });
     } catch (error) {
       console.log('Error loading health stats:', error);
-      // Keep default demo stats on error
+      // Keep default zero stats on error
     }
   };
 
@@ -85,7 +85,7 @@ function StatsWrapper() {
       });
     } catch (error) {
       console.log('Error loading health stats:', error);
-      // Keep default demo stats on error
+      // Keep default zero stats on error
     }
   };
 

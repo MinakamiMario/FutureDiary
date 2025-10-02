@@ -88,17 +88,8 @@ class RealAccelerometer {
 const Accelerometer = new RealAccelerometer();
 // Assume Android mobile app
 import databaseService from './database';
-// Safe import of permissions with fallback
-let permissions;
-try {
-  require.resolve('react-native-permissions');
-  permissions = require('react-native-permissions');
-} catch (error) {
-  if (__DEV__) console.info('ActivityService: Using compatibility mode with demo permissions');
-  permissions = require('../utils/mockPermissions');
-}
-
-const { request, PERMISSIONS, RESULTS } = permissions;
+// Import real permissions - no fallback to mock/demo
+import { request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 
 const ACTIVITY_DETECTION = 'activity-detection';
 const SAMPLE_RATE = 5; // 5 samples per seconde (200ms)

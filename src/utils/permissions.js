@@ -1,6 +1,5 @@
 import { request, check, PERMISSIONS, RESULTS, requestMultiple } from 'react-native-permissions';
 import { Alert, Platform, Linking } from 'react-native';
-// import { request, check, PERMISSIONS, RESULTS } from './mockPermissions';
 
 /**
  * Complete permissions manager for MinakamiApp

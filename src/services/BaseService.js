@@ -1,5 +1,5 @@
 import errorLogger from './errorLogger';
-import { request, RESULTS } from '../utils/mockPermissions';
+import { request, RESULTS } from 'react-native-permissions';
 
 /**
  * Base service class providing common functionality for all services
