@@ -111,7 +111,7 @@ const ENHANCED_INTROS = {
     ]
   },
   
-  [NARRATIVE_STYLES.STANDARD]: {
+  [NARRATIVE_STYLES.STANDAARD]: {
     high_activity: [
       "Vandaag was een bijzonder actieve dag voor je.",
       "Je hebt een drukke en productieve dag achter de rug.",
@@ -171,12 +171,12 @@ const categorizeActivityLevel = (steps, locations, calls, appUsage) => {
 };
 
 // Enhanced introduction generator
-export const generateEnhancedIntroduction = (date, activityGroups, locations, calls, appUsage, narrativeStyle = NARRATIVE_STYLES.STANDARD) => {
+export const generateEnhancedIntroduction = (date, activityGroups, locations, calls, appUsage, narrativeStyle = NARRATIVE_STYLES.STANDAARD) => {
   const timeContext = getTimeContext(date);
   const steps = activityGroups?.totalSteps || 0;
   const activityLevel = categorizeActivityLevel(steps, locations, calls, appUsage);
   
-  const styleIntros = ENHANCED_INTROS[narrativeStyle] || ENHANCED_INTROS[NARRATIVE_STYLES.STANDARD];
+  const styleIntros = ENHANCED_INTROS[narrativeStyle] || ENHANCED_INTROS[NARRATIVE_STYLES.STANDAARD];
   const levelIntros = styleIntros[activityLevel] || styleIntros.medium_activity;
   
   // Random selectie voor variatie
@@ -270,15 +270,15 @@ const getStepAssessment = (steps, narrativeStyle) => {
   };
   
   const level = steps > 10000 ? 'high' : steps > 5000 ? 'medium' : 'low';
-  return assessments[level][narrativeStyle] || assessments[level][NARRATIVE_STYLES.STANDARD];
+  return assessments[level][narrativeStyle] || assessments[level][NARRATIVE_STYLES.STANDAARD];
 };
 
 // Enhanced activity narrative generator - updated to handle activityGroups
-export const generateEnhancedActivityNarrative = (activityGroupsOrSteps, narrativeStyle = NARRATIVE_STYLES.STANDARD) => {
+export const generateEnhancedActivityNarrative = (activityGroupsOrSteps, narrativeStyle = NARRATIVE_STYLES.STANDAARD) => {
   // Handle backward compatibility: if it's a number, treat as legacy steps parameter
   const steps = typeof activityGroupsOrSteps === 'number' ? activityGroupsOrSteps : (activityGroupsOrSteps?.totalSteps || 0);
   
-  const templates = ENHANCED_ACTIVITY_TEMPLATES[narrativeStyle] || ENHANCED_ACTIVITY_TEMPLATES[NARRATIVE_STYLES.STANDARD];
+  const templates = ENHANCED_ACTIVITY_TEMPLATES[narrativeStyle] || ENHANCED_ACTIVITY_TEMPLATES[NARRATIVE_STYLES.STANDAARD];
   
   let selectedTemplate;
   if (narrativeStyle === NARRATIVE_STYLES.CASUAL) {
@@ -324,7 +324,7 @@ const ENHANCED_LOCATION_TEMPLATES = {
     many: ["Zoals de wind die door vele landen waait, zo droegen je voeten je naar {count} verschillende plekken: {locations}."]
   },
   
-  [NARRATIVE_STYLES.STANDARD]: {
+  [NARRATIVE_STYLES.STANDAARD]: {
     single: ["Je bezocht {location} vandaag."],
     multiple: ["Je bent naar {count} verschillende locaties geweest: {locations}."],
     many: ["Je hebt {count} verschillende plekken bezocht: {locations}."]
@@ -357,7 +357,7 @@ const ENHANCED_CALLS_TEMPLATES = {
     many: ["Je dag gonste van {count} stemmen, een symfonie van menselijke verbinding."]
   },
   
-  [NARRATIVE_STYLES.STANDARD]: {
+  [NARRATIVE_STYLES.STANDAARD]: {
     few: ["Je voerde {count} gesprekken vandaag."],
     some: ["Je had {count} telefonische contacten."],
     many: ["Met {count} gesprekken was het een sociale dag."]
@@ -365,13 +365,13 @@ const ENHANCED_CALLS_TEMPLATES = {
 };
 
 // Enhanced location narrative generator
-export const generateEnhancedLocationNarrative = (locations, narrativeStyle = NARRATIVE_STYLES.STANDARD) => {
+export const generateEnhancedLocationNarrative = (locations, narrativeStyle = NARRATIVE_STYLES.STANDAARD) => {
   if (!locations || locations.length === 0) return null;
   
   const count = locations.length;
   const locationNames = locations.map(loc => loc.name || loc.label || 'onbekende locatie').join(', ');
   
-  const templates = ENHANCED_LOCATION_TEMPLATES[narrativeStyle] || ENHANCED_LOCATION_TEMPLATES[NARRATIVE_STYLES.STANDARD];
+  const templates = ENHANCED_LOCATION_TEMPLATES[narrativeStyle] || ENHANCED_LOCATION_TEMPLATES[NARRATIVE_STYLES.STANDAARD];
   
   let selectedTemplate;
   if (count === 1) {
@@ -389,10 +389,10 @@ export const generateEnhancedLocationNarrative = (locations, narrativeStyle = NA
 };
 
 // Enhanced calls narrative generator  
-export const generateEnhancedCallsNarrative = (totalCalls, narrativeStyle = NARRATIVE_STYLES.STANDARD) => {
+export const generateEnhancedCallsNarrative = (totalCalls, narrativeStyle = NARRATIVE_STYLES.STANDAARD) => {
   if (!totalCalls || totalCalls === 0) return null;
   
-  const templates = ENHANCED_CALLS_TEMPLATES[narrativeStyle] || ENHANCED_CALLS_TEMPLATES[NARRATIVE_STYLES.STANDARD];
+  const templates = ENHANCED_CALLS_TEMPLATES[narrativeStyle] || ENHANCED_CALLS_TEMPLATES[NARRATIVE_STYLES.STANDAARD];
   
   let selectedTemplate;
   if (totalCalls <= 2) {
@@ -445,8 +445,8 @@ const ENHANCED_CONCLUSIONS = {
 };
 
 // Enhanced conclusion generator
-export const generateEnhancedConclusion = (narrativeStyle = NARRATIVE_STYLES.STANDARD) => {
-  const conclusions = ENHANCED_CONCLUSIONS[narrativeStyle] || ENHANCED_CONCLUSIONS[NARRATIVE_STYLES.STANDARD];
+export const generateEnhancedConclusion = (narrativeStyle = NARRATIVE_STYLES.STANDAARD) => {
+  const conclusions = ENHANCED_CONCLUSIONS[narrativeStyle] || ENHANCED_CONCLUSIONS[NARRATIVE_STYLES.STANDAARD];
   return conclusions[Math.floor(Math.random() * conclusions.length)];
 };
 

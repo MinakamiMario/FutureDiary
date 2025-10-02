@@ -1,5 +1,5 @@
 import { request, check, PERMISSIONS, RESULTS, requestMultiple } from 'react-native-permissions';
-import { Alert, Platform } from 'react-native';
+import { Alert, Platform, Linking } from 'react-native';
 // import { request, check, PERMISSIONS, RESULTS } from './mockPermissions';
 
 /**
@@ -29,34 +29,91 @@ export const requestCameraPermission = async () => {
   }
 };
 
-// Location permissions (fine and coarse)
+// Helper functie om gebruiker naar exacte locatie instellingen te sturen
+const requestPreciseLocationSettings = async () => {
+  return new Promise((resolve) => {
+    Alert.alert(
+      'Exacte Locatie Vereist',
+      'Voor nauwkeurige locatie tracking moet je "Exacte locatie" inschakelen in de instellingen.\n\n' +
+      '1. Tik op "Naar Instellingen"\n' +
+      '2. Tik op "Locatie"\n' +
+      '3. Schakel "Gebruik exacte locatie" in\n' +
+      '4. Keer terug naar de app',
+      [
+        { 
+          text: 'Naar Instellingen', 
+          onPress: async () => {
+            try {
+              // Open de app-specifieke instellingen
+              await Linking.openSettings();
+              resolve(true);
+            } catch (error) {
+              console.error('Error opening settings:', error);
+              resolve(false);
+            }
+          }
+        },
+        { 
+          text: 'Overslaan', 
+          style: 'cancel',
+          onPress: () => resolve(false)
+        }
+      ],
+      { cancelable: false }
+    );
+  });
+};
+
+// Location permissions (fine and coarse) - met exacte locatie ondersteuning
 export const requestLocationPermissions = async () => {
   try {
+    console.log('📍 Requesting location permissions...');
+    
     const permissions = [
       PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
       PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION
     ];
 
-    // Check current status
+    // Vraag eerst de basis locatie permissies
     const statuses = await requestMultiple(permissions);
+    console.log('📍 Basis locatie permissies:', statuses);
     
-    // Check if background location is needed (Android 10+)
-    if (Platform.Version >= 29) {
-      const backgroundResult = await check(PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION);
-      if (backgroundResult === RESULTS.DENIED) {
-        Alert.alert(
-          'Background Location',
-          'Voor continue locatie tracking, geef toestemming voor "Altijd toestaan" in de volgende dialoog.',
-          [{ text: 'OK', onPress: async () => {
-            await request(PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION);
-          }}]
-        );
+    // Controleer of fine location is toegestaan
+    const fineLocationStatus = statuses[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION];
+    
+    if (fineLocationStatus === RESULTS.GRANTED) {
+      // Voor Android 12+ (API 31+), controleer of exacte locatie is ingeschakeld
+      if (Platform.Version >= 31) {
+        // Wacht even zodat de gebruiker de eerste prompt kan verwerken
+        setTimeout(async () => {
+          const shouldShowPreciseLocationPrompt = await requestPreciseLocationSettings();
+          console.log('📍 Exacte locatie prompt resultaat:', shouldShowPreciseLocationPrompt);
+        }, 2000);
+      }
+      
+      // Vraag om achtergrond locatie (Android 10+)
+      if (Platform.Version >= 29) {
+        setTimeout(async () => {
+          const backgroundResult = await check(PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION);
+          console.log('📍 Achtergrond locatie status:', backgroundResult);
+          
+          if (backgroundResult === RESULTS.DENIED) {
+            Alert.alert(
+              'Achtergrond Locatie',
+              'Voor continue locatie tracking, geef toestemming voor "Altijd toestaan" in de volgende dialoog.',
+              [{ text: 'OK', onPress: async () => {
+                const bgResult = await request(PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION);
+                console.log('📍 Achtergrond locatie resultaat:', bgResult);
+              }}]
+            );
+          }
+        }, 3000);
       }
     }
     
     return statuses;
   } catch (error) {
-    console.error('Error requesting location permissions:', error);
+    console.error('📍 Error requesting location permissions:', error);
     return { error: error.message };
   }
 };

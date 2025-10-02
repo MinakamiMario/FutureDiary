@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
-// Color Palette
+// Safe Colors that can be used immediately
 export const Colors = {
   primary: {
     50: '#E8F2FF',
@@ -91,7 +91,27 @@ export const Colors = {
   },
   white: '#FFFFFF',
   black: '#000000',
+  // Accent colors for highlights and special elements
+  accent: {
+    50: '#F3E5F5',
+    100: '#E1BEE7',
+    200: '#CE93D8',
+    300: '#BA68C8',
+    400: '#AB47BC',
+    500: '#9C27B0',
+    600: '#8E24AA',
+    700: '#7B1FA2',
+    800: '#6A1B9A',
+    900: '#4A148C',
+  },
+  // Background colors for consistent app theming
+  background: {
+    primary: '#FAFAFA',   // Gray-50 for main backgrounds
+    secondary: '#FFFFFF', // White for cards and surfaces
+    tertiary: '#F5F5F5',  // Gray-100 for subtle backgrounds
+  },
 };
+
 
 // Enhanced Typography with dark mode optimizations
 export const Typography = {
@@ -420,3 +440,4 @@ export const Theme = {
     info: '#66B7FF',
   },
 };
+

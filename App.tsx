@@ -14,32 +14,12 @@ import {ThemeProvider} from './src/utils/themeContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import './src/utils/onboardingTestUtils'; // Load test utils in development
 
-// 🚨 FIX: Font fallback voor Chinese tekens - PLAATS DIT BOVEN ALLE COMPONENTS
-if (!__DEV__) {
-  // Alleen in productie - forceer veilige font family
-  const OriginalText = Text;
-  
-  // Override Text component met veilige font family
-  Object.defineProperty(Text, 'render', {
-    value: function TextWithSafeFont(props) {
-      const safeStyle = [
-        { fontFamily: Platform.select({
-          ios: 'System',
-          android: 'sans-serif-medium',
-          default: 'System'
-        })},
-        props.style
-      ];
-      
-      return OriginalText.render.call(this, {
-        ...props,
-        style: safeStyle
-      });
-    }
-  });
-  
-  console.log('🔧 Font fallback patch actief - Chinese tekens zouden moeten verdwijnen');
-}
+// Font configuration for better text rendering
+const defaultFontFamily = Platform.select({
+  ios: 'System',
+  android: 'sans-serif',
+  default: 'System'
+});
 
 // OpenAI API Key Setup - COMPLETED
 

@@ -1,6 +1,9 @@
 package com.minakamiappfinal;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -58,5 +61,41 @@ public class MainApplication extends Application implements ReactApplication {
       DefaultNewArchitectureEntryPoint.load();
     }
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+    
+    // Create notification channels for Android O+
+    createNotificationChannels();
+  }
+  
+  private void createNotificationChannels() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      NotificationManager notificationManager = getSystemService(NotificationManager.class);
+      
+      // Daily summary channel
+      NotificationChannel dailyChannel = new NotificationChannel(
+        "daily_summary",
+        "Dagelijkse Samenvattingen",
+        NotificationManager.IMPORTANCE_DEFAULT
+      );
+      dailyChannel.setDescription("Ontvang dagelijkse samenvattingen van je activiteiten");
+      notificationManager.createNotificationChannel(dailyChannel);
+      
+      // Reminder channel
+      NotificationChannel reminderChannel = new NotificationChannel(
+        "reminders",
+        "Herinneringen",
+        NotificationManager.IMPORTANCE_HIGH
+      );
+      reminderChannel.setDescription("Herinneringen voor het bijhouden van je dag");
+      notificationManager.createNotificationChannel(reminderChannel);
+      
+      // Activity alerts channel
+      NotificationChannel activityChannel = new NotificationChannel(
+        "activity_alerts",
+        "Activiteit Waarschuwingen",
+        NotificationManager.IMPORTANCE_DEFAULT
+      );
+      activityChannel.setDescription("Notificaties bij activiteit detectie");
+      notificationManager.createNotificationChannel(activityChannel);
+    }
   }
 }

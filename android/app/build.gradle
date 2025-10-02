@@ -79,8 +79,8 @@ android {
         applicationId "com.minakamiappfinal"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
-        versionName "1.0.1"
+        versionCode 6
+        versionName "1.0.2"
         multiDexEnabled true
     }
     signingConfigs {

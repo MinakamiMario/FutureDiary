@@ -68,14 +68,14 @@ export const ThemeProvider = ({ children }) => {
         secondary: currentTheme.surface,
         card: currentTheme.surface,
       },
-      // Border colors
+      // Border colors with safe fallbacks
       border: {
-        primary: darkMode ? Colors.gray[700] : Colors.gray[200],
-        secondary: darkMode ? Colors.gray[600] : Colors.gray[300],
+        primary: darkMode ? '#757575' : '#E8E8E8',
+        secondary: darkMode ? '#8C8C8C' : '#D1D1D1',
       }
     },
     // Helper function to get color by path
-    getColor: (colorPath, fallback = Colors.gray[500]) => {
+    getColor: (colorPath, fallback = '#A3A3A3') => {
       const paths = colorPath.split('.');
       let color = theme;
       

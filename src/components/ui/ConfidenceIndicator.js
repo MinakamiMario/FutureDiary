@@ -4,7 +4,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Colors, Spacing, Typography as DesignTypography, BorderRadius } from '../../styles/designSystem';
+import { Spacing, Typography as DesignTypography, BorderRadius } from '../../styles/designSystem';
+import { getSafeColor, SafeColors } from '../../utils/safeColors';
 
 const ConfidenceIndicator = ({ 
   confidence, 
@@ -20,8 +21,8 @@ const ConfidenceIndicator = ({
     if (confidence >= 0.9) {
       return {
         level: 'high',
-        color: Colors.success[500],
-        backgroundColor: Colors.success[50],
+        color: getSafeColor('success.500'),
+        backgroundColor: getSafeColor('success.50'),
         icon: 'checkmark-circle',
         text: 'Betrouwbaar',
         description: 'Hoge betrouwbaarheid - directe sensor data'
@@ -29,8 +30,8 @@ const ConfidenceIndicator = ({
     } else if (confidence >= 0.7) {
       return {
         level: 'medium',
-        color: Colors.warning[500],
-        backgroundColor: Colors.warning[50],
+        color: getSafeColor('warning.500'),
+        backgroundColor: getSafeColor('warning.50'),
         icon: 'warning',
         text: 'Schatting',
         description: 'Gemiddelde betrouwbaarheid - gecombineerde bronnen'
@@ -38,8 +39,8 @@ const ConfidenceIndicator = ({
     } else {
       return {
         level: 'low',
-        color: Colors.error[500],
-        backgroundColor: Colors.error[50],
+        color: getSafeColor('error.500'),
+        backgroundColor: getSafeColor('error.50'),
         icon: 'alert-circle',
         text: 'Onzeker',
         description: 'Lage betrouwbaarheid - beperkte data beschikbaar'
@@ -168,7 +169,7 @@ export const DataCardWithConfidence = ({
     <View style={[styles.dataCard, style]}>
       <View style={styles.dataCardHeader}>
         <View style={styles.dataCardTitleContainer}>
-          {icon && <Ionicons name={icon} size={20} color={Colors.primary[500]} />}
+          {icon && <Ionicons name={icon} size={20} color={getSafeColor('primary.500')} />}
           <Text style={styles.dataCardTitle}>{title}</Text>
         </View>
         <ConfidenceIndicator 
@@ -218,7 +219,7 @@ export const ConfidenceLegend = ({ visible, onClose }) => {
         <View style={styles.legendHeader}>
           <Text style={styles.legendTitle}>Betrouwbaarheid Indicator</Text>
           <TouchableOpacity onPress={onClose}>
-            <Ionicons name="close" size={24} color={Colors.gray[600]} />
+            <Ionicons name="close" size={24} color={getSafeColor('gray.600')} />
           </TouchableOpacity>
         </View>
         
@@ -264,7 +265,7 @@ const styles = StyleSheet.create({
     padding: Spacing.sm,
     borderRadius: BorderRadius.md,
     borderWidth: 1,
-    borderColor: Colors.gray[200],
+    borderColor: getSafeColor('gray.200'),
   },
 
   indicatorHeader: {
@@ -281,28 +282,28 @@ const styles = StyleSheet.create({
     marginTop: Spacing.sm,
     paddingTop: Spacing.sm,
     borderTopWidth: 1,
-    borderTopColor: Colors.gray[200],
+    borderTopColor: getSafeColor('gray.200'),
   },
 
   sourceText: {
-    color: Colors.gray[600],
+    color: getSafeColor('gray.600'),
     marginBottom: Spacing.xs,
   },
 
   descriptionText: {
-    color: Colors.gray[500],
+    color: getSafeColor('gray.500'),
     lineHeight: 16,
     marginBottom: Spacing.xs,
   },
 
   lineageText: {
-    color: Colors.gray[400],
+    color: getSafeColor('gray.400'),
     fontFamily: 'monospace',
   },
 
   // Data card styles
   dataCard: {
-    backgroundColor: Colors.white,
+    backgroundColor: getSafeColor('white'),
     borderRadius: BorderRadius.lg,
     padding: Spacing.md,
     marginBottom: Spacing.sm,
@@ -327,7 +328,7 @@ const styles = StyleSheet.create({
 
   dataCardTitle: {
     ...DesignTypography.body.medium,
-    color: Colors.gray[700],
+    color: getSafeColor('gray.700'),
     marginLeft: Spacing.sm,
     fontWeight: '500',
   },
@@ -338,13 +339,13 @@ const styles = StyleSheet.create({
 
   dataCardValue: {
     ...DesignTypography.headline.large,
-    color: Colors.gray[900],
+    color: getSafeColor('gray.900'),
     fontWeight: 'bold',
   },
 
   dataCardUnit: {
     ...DesignTypography.body.medium,
-    color: Colors.gray[600],
+    color: getSafeColor('gray.600'),
     fontWeight: 'normal',
   },
 
@@ -362,7 +363,7 @@ const styles = StyleSheet.create({
   },
 
   legendContainer: {
-    backgroundColor: Colors.white,
+    backgroundColor: getSafeColor('white'),
     margin: Spacing.lg,
     borderRadius: BorderRadius.lg,
     padding: Spacing.lg,
@@ -378,7 +379,7 @@ const styles = StyleSheet.create({
 
   legendTitle: {
     ...DesignTypography.title.large,
-    color: Colors.gray[900],
+    color: getSafeColor('gray.900'),
     fontWeight: 'bold',
   },
 
@@ -395,20 +396,20 @@ const styles = StyleSheet.create({
 
   legendItemTitle: {
     ...DesignTypography.body.medium,
-    color: Colors.gray[900],
+    color: getSafeColor('gray.900'),
     fontWeight: '600',
     marginBottom: Spacing.xs,
   },
 
   legendItemDescription: {
     ...DesignTypography.body.small,
-    color: Colors.gray[600],
+    color: getSafeColor('gray.600'),
     lineHeight: 18,
   },
 
   legendFooter: {
     ...DesignTypography.label.small,
-    color: Colors.gray[500],
+    color: getSafeColor('gray.500'),
     textAlign: 'center',
     marginTop: Spacing.md,
     fontStyle: 'italic',

@@ -42,7 +42,7 @@ const Stack = createStackNavigator();
 const SettingsScreen = ({ navigation }) => {
   const { settings, updateSettings } = useAppContext();
   const theme = useTheme();
-  const [narrativeStyle, setNarrativeStyle] = useState(NARRATIVE_STYLES.STANDARD);
+  const [narrativeStyle, setNarrativeStyle] = useState(NARRATIVE_STYLES.STANDAARD);
   const [stravaWebViewVisible, setStravaWebViewVisible] = useState(false);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const SettingsScreen = ({ navigation }) => {
 
   const getNarrativeStyleDisplayName = (style) => {
     const styleNames = {
-      [NARRATIVE_STYLES.STANDARD]: 'Standaard',
+      [NARRATIVE_STYLES.STANDAARD]: 'Standaard',
       [NARRATIVE_STYLES.DETAILED]: 'Gedetailleerd',
       [NARRATIVE_STYLES.CASUAL]: 'Casual',
       [NARRATIVE_STYLES.PROFESSIONAL]: 'Professioneel',

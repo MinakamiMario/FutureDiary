@@ -1,4 +1,19 @@
-// Mock notification service for React Native without Expo
+// Smart notification service that automatically chooses between native and mock
+import errorHandler from './errorLogger';
+
+// Try to import native notifications, fallback to mock if not available
+let nativeNotificationService;
+
+// Import native notification service
+try {
+  nativeNotificationService = require('./nativeNotificationService').default;
+  console.log('[NotificationService] Native notification service available');
+} catch (error) {
+  console.log('[NotificationService] Native notification service not available:', error.message);
+  nativeNotificationService = null;
+}
+
+// Mock notifications as fallback
 const MockNotifications = {
   setNotificationHandler: () => {},
   getPermissionsAsync: async () => ({ status: 'granted' }),
@@ -11,19 +26,6 @@ const MockNotifications = {
   setNotificationChannelAsync: async () => {},
   AndroidImportance: { MAX: 'max' }
 };
-
-const Notifications = MockNotifications;
-const Device = { isDevice: true };
-import errorHandler from './errorLogger';
-
-// Configure default notification handling
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-  }),
-});
 
 class NotificationService {
   constructor() {
@@ -52,9 +54,38 @@ class NotificationService {
     }
 
     try {
+      console.log('[NotificationService] Initializing...');
+      
       // Store callback functions
       this.onNotificationReceived = onNotificationReceived;
       this.onNotificationResponseReceived = onNotificationResponseReceived;
+
+      // Use native notification service if available
+      if (nativeNotificationService) {
+        console.log('[NotificationService] Using native notification service');
+        const result = await nativeNotificationService.initialize(
+          onNotificationReceived,
+          onNotificationResponseReceived
+        );
+        
+        if (result.success) {
+          this.isInitialized = true;
+        }
+        
+        return result;
+      }
+
+      // Fallback to mock notifications
+      console.log('[NotificationService] Using mock notification service');
+      
+      // Configure mock notifications
+      MockNotifications.setNotificationHandler({
+        handleNotification: async () => ({
+          shouldShowAlert: true,
+          shouldPlaySound: true,
+          shouldSetBadge: true,
+        }),
+      });
 
       // Request permissions
       const permissionResult = await this.requestPermissions();
@@ -80,99 +111,100 @@ class NotificationService {
   }
 
   /**
-   * Clean up notification listeners
-   */
-  async cleanup() {
-    if (this.notificationListener) {
-      this.notificationListener.remove();
-      this.notificationListener = null;
-    }
-
-    if (this.responseListener) {
-      this.responseListener.remove();
-      this.responseListener = null;
-    }
-
-    this.isInitialized = false;
-  }
-
-  /**
    * Request notification permissions
    * @returns {Promise<Object>} Permission request result
    */
   async requestPermissions() {
-    // Check if running on a physical device
-    if (!Device.isDevice) {
-      return { success: true, isDevice: false };
+    // Use native service if available
+    if (nativeNotificationService) {
+      return await nativeNotificationService.requestPermissionsAsync();
     }
 
-    // Check current permission status
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
+    // Fallback to mock permissions
+    try {
+      const { status: existingStatus } = await MockNotifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
 
-    // Request permissions if not already granted
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
+      // Request permissions if not already granted
+      if (existingStatus !== 'granted') {
+        const { status } = await MockNotifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
 
-    // Verify permissions
-    if (finalStatus !== 'granted') {
+      // Verify permissions
+      if (finalStatus !== 'granted') {
+        return {
+          success: false,
+          message: 'Notificatiepermissies niet verleend',
+        };
+      }
+
+      return { success: true };
+    } catch (error) {
+      console.error('Error requesting permissions:', error);
       return {
         success: false,
-        message: 'Notificatiepermissies niet verleend',
+        message: 'Fout bij het aanvragen van permissies',
       };
     }
-
-    // Configure Android notification channel (assume Android for mobile app)
-    try {
-      await Notifications.setNotificationChannelAsync('default', {
-        name: 'default',
-        importance: Notifications.AndroidImportance.MAX,
-        vibrationPattern: [0, 250, 250, 250],
-        lightColor: '#FF231F7C',
-      });
-    } catch (error) {
-      if (__DEV__) console.warn('Could not set notification channel:', error.message);
-    }
-
-    return { success: true };
   }
 
   /**
    * Register notification listeners
    */
   registerListeners() {
-    // Listener for received notifications
-    this.notificationListener = Notifications.addNotificationReceivedListener(
-      (notification) => {
-        if (this.onNotificationReceived) {
-          this.onNotificationReceived(notification);
-        }
-      }
-    );
+    if (nativeNotificationService) {
+      // Native service handles its own listeners
+      return;
+    }
 
-    // Listener for notification responses
-    this.responseListener = Notifications.addNotificationResponseReceivedListener(
-      (response) => {
-        if (this.onNotificationResponseReceived) {
-          this.onNotificationResponseReceived(response);
-        }
-      }
-    );
+    // Mock notification listeners
+    this.notificationListener = MockNotifications.addNotificationReceivedListener(this.handleNotificationReceived);
+    this.responseListener = MockNotifications.addNotificationResponseReceivedListener(this.handleNotificationResponse);
   }
+
+  /**
+   * Handle received notification
+   */
+  handleNotificationReceived = (notification) => {
+    if (this.onNotificationReceived) {
+      this.onNotificationReceived(notification);
+    }
+  };
+
+  /**
+   * Handle notification response
+   */
+  handleNotificationResponse = (response) => {
+    if (this.onNotificationResponseReceived) {
+      this.onNotificationResponseReceived(response);
+    }
+  };
 
   /**
    * Schedule a notification
    * @param {string} title - Notification title
    * @param {string} body - Notification body
    * @param {Object} [data] - Additional data
-   * @param {Object} [trigger] - Trigger conditions
+   * @param {Object} [trigger] - Trigger configuration
    * @returns {Promise<Object>} Scheduling result
    */
   async scheduleNotification(title, body, data = {}, trigger = null) {
     try {
-      // Prepare notification content
+      // Use native service if available
+      if (nativeNotificationService) {
+        const date = trigger ? new Date(Date.now() + (trigger.seconds || 0) * 1000) : new Date();
+        const notificationId = await nativeNotificationService.scheduleNotification({
+          title,
+          message: body,
+          data,
+          date,
+          channelId: 'daily_summary'
+        });
+        return { success: true, notificationId };
+      }
+
+      // Fallback to mock
       const notificationContent = {
         title,
         body,
@@ -180,8 +212,7 @@ class NotificationService {
         sound: true,
       };
 
-      // Schedule the notification
-      const notificationId = await Notifications.scheduleNotificationAsync({
+      const notificationId = await MockNotifications.scheduleNotificationAsync({
         content: notificationContent,
         trigger: trigger || null,
       });
@@ -204,7 +235,27 @@ class NotificationService {
    * @returns {Promise<Object>} Sending result
    */
   async sendNotification(title, body, data = {}) {
-    return this.scheduleNotification(title, body, data);
+    try {
+      // Use native service if available
+      if (nativeNotificationService) {
+        nativeNotificationService.sendNotification({
+          title,
+          message: body,
+          data,
+          channelId: 'daily_summary'
+        });
+        return { success: true };
+      }
+
+      // Fallback to schedule immediate notification
+      return this.scheduleNotification(title, body, data);
+    } catch (error) {
+      await errorHandler.error('Error sending notification', error, 'notificationService.js');
+      return {
+        success: false,
+        message: 'Fout bij het versturen van notificatie: ' + error.message,
+      };
+    }
   }
 
   /**
@@ -217,13 +268,41 @@ class NotificationService {
    * @returns {Promise<Object>} Scheduling result
    */
   async scheduleDaily(title, body, hour, minute, data = {}) {
-    const trigger = {
-      hour,
-      minute,
-      repeats: true,
-    };
+    try {
+      // Use native service if available
+      if (nativeNotificationService) {
+        const now = new Date();
+        const scheduledDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute, 0);
+        
+        // If time has passed today, schedule for tomorrow
+        if (scheduledDate <= now) {
+          scheduledDate.setDate(scheduledDate.getDate() + 1);
+        }
 
-    return this.scheduleNotification(title, body, data, trigger);
+        const notificationId = await nativeNotificationService.scheduleNotification({
+          title,
+          message: body,
+          data,
+          date: scheduledDate,
+          channelId: 'daily_summary'
+        });
+        return { success: true, notificationId };
+      }
+
+      // Fallback to mock with daily repeat
+      const trigger = {
+        hour,
+        minute,
+        repeats: true,
+      };
+      return this.scheduleNotification(title, body, data, trigger);
+    } catch (error) {
+      await errorHandler.error('Error scheduling daily notification', error, 'notificationService.js');
+      return {
+        success: false,
+        message: 'Fout bij het plannen van dagelijkse notificatie: ' + error.message,
+      };
+    }
   }
 
   /**
@@ -233,7 +312,14 @@ class NotificationService {
    */
   async cancelNotification(notificationId) {
     try {
-      await Notifications.cancelScheduledNotificationAsync(notificationId);
+      // Use native service if available
+      if (nativeNotificationService) {
+        nativeNotificationService.cancelNotification(notificationId);
+        return { success: true };
+      }
+
+      // Fallback to mock
+      await MockNotifications.cancelScheduledNotificationAsync(notificationId);
       return { success: true };
     } catch (error) {
       await errorHandler.error('Error canceling notification', error, 'notificationService.js');
@@ -250,7 +336,14 @@ class NotificationService {
    */
   async cancelAllNotifications() {
     try {
-      await Notifications.cancelAllScheduledNotificationsAsync();
+      // Use native service if available
+      if (nativeNotificationService) {
+        nativeNotificationService.cancelAllNotifications();
+        return { success: true };
+      }
+
+      // Fallback to mock
+      await MockNotifications.cancelAllScheduledNotificationsAsync();
       return { success: true };
     } catch (error) {
       await errorHandler.error('Error canceling all notifications', error, 'notificationService.js');
@@ -262,54 +355,100 @@ class NotificationService {
   }
 
   /**
-   * Send a milestone notification when approaching or reaching a goal
-   * @param {number} currentValue - Current progress value
-   * @param {number} targetValue - Target value
-   * @param {string} metricName - Name of the metric
-   * @param {number} [threshold] - Percentage threshold for notification (default 0.9)
-   * @returns {Promise<boolean>} Whether a notification was sent
+   * Get notification permissions status
+   * @returns {Promise<Object>} Permission status
    */
-  async scheduleMilestoneNotification(currentValue, targetValue, metricName, threshold = 0.9) {
-    const percentage = currentValue / targetValue;
+  async getPermissionsAsync() {
+    try {
+      // Use native service if available
+      if (nativeNotificationService) {
+        return await nativeNotificationService.getPermissionsAsync();
+      }
 
-    if (percentage >= threshold && percentage < 1) {
-      // Almost reached the goal
-      const remainingValue = targetValue - currentValue;
-      await this.sendNotification(
-        `Bijna je ${metricName}-doel bereikt!`,
-        `Nog ${remainingValue} ${metricName} te gaan om je dagelijkse doel te bereiken.`,
-        { metricName, currentValue, targetValue }
-      );
-      return true;
-    } else if (percentage >= 1) {
-      // Goal reached
-      await this.sendNotification(
-        `${metricName}-doel bereikt!`,
-        `Gefeliciteerd, je hebt je dagelijkse doel van ${targetValue} ${metricName} bereikt!`,
-        { metricName, currentValue, targetValue }
-      );
-      return true;
+      // Fallback to mock
+      return await MockNotifications.getPermissionsAsync();
+    } catch (error) {
+      console.error('Error getting permissions:', error);
+      return {
+        status: 'undetermined',
+        error: error.message
+      };
     }
-
-    return false;
   }
 
   /**
-   * Schedule a weekly summary notification
+   * Request notification permissions
+   * @returns {Promise<Object>} Permission request result
+   */
+  async requestPermissionsAsync() {
+    try {
+      // Use native service if available
+      if (nativeNotificationService) {
+        return await nativeNotificationService.requestPermissionsAsync();
+      }
+
+      // Fallback to mock
+      return await MockNotifications.requestPermissionsAsync();
+    } catch (error) {
+      console.error('Error requesting permissions:', error);
+      return {
+        status: 'denied',
+        error: error.message
+      };
+    }
+  }
+
+  /**
+   * Check if service is initialized
+   * @returns {boolean} Initialization status
+   */
+  isServiceInitialized() {
+    return this.isInitialized;
+  }
+
+  /**
+   * Clean up resources
+   */
+  async cleanup() {
+    try {
+      if (nativeNotificationService) {
+        nativeNotificationService.cleanup();
+      } else {
+        // Cleanup mock listeners
+        if (this.notificationListener) {
+          this.notificationListener.remove();
+          this.notificationListener = null;
+        }
+        
+        if (this.responseListener) {
+          this.responseListener.remove();
+          this.responseListener = null;
+        }
+      }
+      
+      this.isInitialized = false;
+      console.log('[NotificationService] Cleanup completed');
+    } catch (error) {
+      console.error('[NotificationService] Error during cleanup:', error);
+    }
+  }
+
+  // Utility methods
+
+  /**
+   * Schedule a weekly notification
+   * @param {string} title - Notification title
+   * @param {string} body - Notification body
+   * @param {Object} [data] - Additional data
    * @returns {Promise<Object>} Scheduling result
    */
-  async scheduleWeeklySummary() {
-    // Schedule for Sunday at 20:00
-    return this.scheduleNotification(
+  async scheduleWeeklySummary(data = {}) {
+    return this.scheduleDaily(
       'Je wekelijkse activiteitenoverzicht',
       'Bekijk je activiteiten en trends van afgelopen week',
-      { type: 'weekly_summary' },
-      {
-        weekday: 7, // Sunday
-        hour: 20,
-        minute: 0,
-        repeats: true,
-      }
+      { type: 'weekly_summary', ...data },
+      20, // 8 PM
+      0   // 0 minutes
     );
   }
 
@@ -333,66 +472,30 @@ class NotificationService {
     }
 
     return this.sendNotification(title, body, {
-      type: 'key_rotation',
+      type: 'security_rotation',
       keyType,
-      timestamp: new Date().toISOString(),
       ...rotationDetails
     });
   }
 
   /**
-   * Show warning notification for approaching rotation deadline
-   * @param {string} keyType - Type of API key
-   * @param {number} daysUntilRotation - Days until required rotation
-   */
-  async showRotationWarning(keyType, daysUntilRotation) {
-    const keyDisplayName = this.getKeyDisplayName(keyType);
-    
-    return this.sendNotification(
-      '🔐 Security Reminder',
-      `Your ${keyDisplayName} API key will require rotation in ${daysUntilRotation} days for security purposes.`,
-      {
-        type: 'rotation_warning',
-        keyType,
-        daysUntilRotation,
-        timestamp: new Date().toISOString()
-      }
-    );
-  }
-
-  /**
-   * Show notification for successful key storage
-   * @param {string} keyType - Type of API key stored
-   */
-  async showKeyStoredNotification(keyType) {
-    const keyDisplayName = this.getKeyDisplayName(keyType);
-    
-    return this.sendNotification(
-      '✅ Security Update',
-      `Your ${keyDisplayName} API key has been securely stored with encryption.`,
-      {
-        type: 'key_stored',
-        keyType,
-        timestamp: new Date().toISOString()
-      }
-    );
-  }
-
-  /**
-   * Get display-friendly name for API key type
-   * @param {string} keyType - Internal key type
+   * Get display name for API key type
+   * @param {string} keyType - API key type
+   * @returns {string} Display name
    */
   getKeyDisplayName(keyType) {
     const displayNames = {
-      'openai_api_key': 'OpenAI',
-      'claude_api_key': 'Claude',
-      'encryption_key': 'Encryption',
-      'oauth_tokens': 'OAuth'
+      'openai': 'OpenAI',
+      'claude': 'Claude',
+      'gemini': 'Gemini',
+      'default': 'AI Model'
     };
-    return displayNames[keyType] || keyType.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    return displayNames[keyType] || displayNames.default;
   }
 }
 
-// Singleton instance
+// Create singleton instance
 const notificationService = new NotificationService();
+
 export default notificationService;
+export { NotificationService };

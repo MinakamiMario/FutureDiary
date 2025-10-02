@@ -1,10 +1,8 @@
-// src/screens/OnboardingScreen.js
 import React, { useState, useRef } from 'react';
 import { 
   View, 
   StyleSheet, 
   TouchableOpacity, 
-  Image, 
   ScrollView,
   Dimensions,
   ActivityIndicator,
@@ -14,1075 +12,700 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppContext } from '../utils/appContext';
-// Assume Android mobile app
-import { AI_MODEL_TYPES, setPreferredAIModel, isBrowserContext } from '../services/aiNarrativeService';
+import { AI_MODEL_TYPES, setPreferredAIModel } from '../services/aiNarrativeService';
 import { NARRATIVE_STYLES } from '../utils/narrativeStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Card from '../components/ui/Card';
 import Typography from '../components/ui/Typography';
 import Button from '../components/ui/Button';
-import { Colors, Spacing, Typography as DesignTypography } from '../styles/designSystem';
+import { Colors, Spacing } from '../styles/designSystem';
 
-import locationService from '../services/locationService';
-import activityService from '../services/activityService';
-import callLogService from '../services/callLogService';
-import notificationService from '../services/notificationService';
-
-// Import de echte permissions van permissions.js
 import {
-  requestAllCorePermissions,
-  requestLocationPermissions as requestLocationPermissionsFromUtils,
-  requestCallLogPermission,
-  requestPhoneStatePermission,
   requestActivityRecognitionPermission,
+  requestLocationPermissions,
+  requestCallLogPermission,
   requestNotificationPermission,
-  requestBodySensorsPermission,
-  checkAllPermissionsStatus,
   isPermissionGranted,
   PERMISSIONS,
-  RESULTS
+  RESULTS,
 } from '../utils/permissions';
 
 const { width } = Dimensions.get('window');
 
 const OnboardingScreen = ({ onComplete }) => {
   const { updateSettings } = useAppContext();
-  const [currentPage, setCurrentPage] = useState(0);
-  const scrollViewRef = useRef(null);
-  const [settings, setSettings] = useState({
-    trackLocation: true,
-    trackActivity: true,
-    trackCalls: true,
-    allowNotifications: true,
-    dailyNotifications: true,
-    weeklyNotifications: true,
-    preferredAIModel: AI_MODEL_TYPES.TEMPLATE,
-    narrativeStyle: NARRATIVE_STYLES.STANDARD,
-    privacySettings: {
-      shareAnalytics: false,
-      storeEncrypted: true,
-      encryptCallData: true,
-      retentionPeriod: 90 // dagen
-    }
-  });
+  const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [permissionsRequested, setPermissionsRequested] = useState(new Set());
+  const [settings, setSettings] = useState({
+    trackLocation: false,
+    trackActivity: false,
+    trackCalls: false,
+    allowNotifications: false,
+    preferredAIModel: AI_MODEL_TYPES.TEMPLATE,
+    narrativeStyle: NARRATIVE_STYLES.STANDAARD,
+  });
 
-  // Vraag automatisch permissies aan voor ingeschakelde settings bij eerste keer bekijken
-  const requestPermissionsForEnabledSettings = async (pageId, setting) => {
-    if (!setting || permissionsRequested.has(setting)) {
-      return; // Geen setting of al gevraagd
-    }
-
-    const isEnabled = setting.includes('.') 
-      ? settings[setting.split('.')[0]][setting.split('.')[1]]
-      : settings[setting];
-
-    if (isEnabled && ['trackActivity', 'trackLocation', 'trackCalls', 'allowNotifications'].includes(setting)) {
-      console.log(`🔄 Auto-requesting permissions for enabled setting: ${setting}`);
-      setPermissionsRequested(prev => new Set([...prev, setting]));
-      
-      // Vraag permission aan maar update setting niet (is al true)
-      try {
-        switch (setting) {
-          case 'trackActivity':
-            await requestActivityPermissions();
-            break;
-          case 'trackLocation':
-            await requestLocationPermissions();
-            break;
-          case 'trackCalls':
-            await requestCallPermissions();
-            break;
-          case 'allowNotifications':
-            await requestNotificationPermissions();
-            break;
-        }
-      } catch (error) {
-        console.error(`❌ Auto-permission error for ${setting}:`, error);
-      }
-    }
-  };
-
-  // Onboarding pagina's - Elke stap vertelt een ander verhaal
-  const pages = [
+  const steps = [
     {
       id: 'welcome',
-      title: 'Hallo! 👋',
-      description: 'Dit is het begin van een persoonlijke ontdekkingstocht. We gaan samen kijken naar hoe jij jouw dagen echt doorbrengt.',
-      icon: 'hand-left-outline',
+      title: 'Welkom bij Minakami',
+      subtitle: 'Jouw persoonlijke gezondheidsassistent',
+      description: 'Minakami helpt je inzicht te krijgen in je dagelijkse activiteiten en gezondheid. Laten we beginnen met het instellen van je voorkeuren.',
+      icon: 'heart-outline',
+      iconColor: Colors.primary[500],
     },
     {
-      id: 'ai-preference',
-      title: 'Jouw Verhaalgenerator',
-      description: 'Hoe wil je dat je dagverhalen worden gemaakt? Kies uit verschillende opties van eenvoudig tot geavanceerd.',
-      icon: 'bulb-outline',
-      type: 'choice',
+      id: 'ai-model',
+      title: 'Kies je AI-assistent',
+      subtitle: 'Hoe wil je dat je verhalen worden gegenereerd?',
+      description: 'Selecteer de AI-service die je verhalen en inzichten zal genereren.',
+      icon: 'sparkles-outline',
+      iconColor: Colors.secondary[500],
+      type: 'selection',
       setting: 'preferredAIModel',
-      choices: [
+      options: [
         {
           id: AI_MODEL_TYPES.TEMPLATE,
           title: 'Eenvoudige Sjablonen',
-          description: 'Snelle verhalen zonder internet nodig',
+          subtitle: 'Snel en offline',
+          description: 'Gebruikt voorgedefinieerde sjablonen voor snelle verhalen',
           icon: 'document-text-outline',
-          badge: 'Standaard'
-        },
-        {
-          id: AI_MODEL_TYPES.WEBLLM,
-          title: 'Lokale AI',
-          description: 'Creatievere verhalen, geen internet nodig',
-          icon: 'hardware-chip-outline',
-          badge: 'Gratis'
+          recommended: true,
         },
         {
           id: AI_MODEL_TYPES.CLAUDE,
           title: 'Claude AI',
-          description: 'Geavanceerde verhalen met Anthropic\'s Claude',
+          subtitle: 'Geavanceerd',
+          description: 'Premium AI voor uitgebreide en gepersonaliseerde verhalen',
           icon: 'sparkles-outline',
-          badge: 'Premium'
+          badge: 'Premium',
         },
         {
           id: AI_MODEL_TYPES.CHATGPT,
           title: 'ChatGPT',
-          description: 'Intelligente verhalen met OpenAI\'s ChatGPT',
+          subtitle: 'Intelligent',
+          description: 'OpenAI\'s ChatGPT voor creatieve en gedetailleerde verhalen',
           icon: 'chatbubbles-outline',
-          badge: 'Premium'
-        }
+          badge: 'Premium',
+        },
       ]
     },
     {
       id: 'narrative-style',
-      title: 'Jouw Vertelstijl',
-      description: 'In welke stijl wil je dat je verhalen worden verteld? Kies wat bij jou past.',
+      title: 'Jouw vertelstijl',
+      subtitle: 'Hoe wil je dat je verhalen klinken?',
+      description: 'Kies een stijl die bij jou past voor je dagelijkse samenvattingen.',
       icon: 'brush-outline',
-      type: 'choice',
+      iconColor: Colors.accent[500],
+      type: 'selection',
       setting: 'narrativeStyle',
-      choices: [
+      options: [
         {
-          id: NARRATIVE_STYLES.STANDARD,
+          id: NARRATIVE_STYLES.STANDAARD,
           title: 'Standaard',
-          description: 'Heldere, directe verhalen',
-          icon: 'document-outline'
+          subtitle: 'Helder en direct',
+          description: 'Eenvoudige en duidelijke verhalen',
+          icon: 'document-outline',
+          recommended: true,
         },
         {
           id: NARRATIVE_STYLES.CASUAL,
           title: 'Casual',
-          description: 'Vriendelijk en ontspannen',
-          icon: 'happy-outline'
+          subtitle: 'Vriendelijk en ontspannen',
+          description: 'Informele en toegankelijke verhalen',
+          icon: 'happy-outline',
         },
         {
           id: NARRATIVE_STYLES.DETAILED,
           title: 'Gedetailleerd',
-          description: 'Uitgebreide verhalen met veel context',
-          icon: 'list-outline'
+          subtitle: 'Uitgebreid en informatief',
+          description: 'Uitvoerige verhalen met veel context',
+          icon: 'list-outline',
         },
-        {
-          id: NARRATIVE_STYLES.PROFESSIONAL,
-          title: 'Professioneel',
-          description: 'Formele, rapport-achtige stijl',
-          icon: 'business-outline'
-        },
-        {
-          id: NARRATIVE_STYLES.POETIC,
-          title: 'Poëtisch',
-          description: 'Creatief met mooie beeldspraak',
-          icon: 'flower-outline'
-        }
       ]
     },
     {
-      id: 'activity',
-      title: 'Beweging in Beeld',
-      description: 'Zit je veel of beweeg je genoeg? We tellen je stappen en herkennen of je loopt, staat still of actief bent.',
-      icon: 'walk-outline',
-      setting: 'trackActivity',
-    },
-    {
-      id: 'location',
-      title: 'Jouw Stammplekken',
-      description: 'Waar ben je eigenlijk de hele dag? We maken een kaart van je favoriete plekken zonder je exacte route te volgen.',
-      icon: 'location-outline',
-      setting: 'trackLocation',
-    },
-    {
-      id: 'calls',
-      title: 'Met wie praat je?',
-      description: 'Hoe vaak bel je eigenlijk en hoe lang? We tellen alleen hoe vaak en hoe lang, niet met wie.',
-      icon: 'call-outline',
-      setting: 'trackCalls',
-      androidOnly: true,
-    },
-    {
-      id: 'notifications',
-      title: 'Dagelijkse Terugblik',
-      description: 'Elke avond een kort overzichtje: hoe actief was je vandaag en waar heb je tijd doorgebracht.',
-      icon: 'notifications-outline',
-      setting: 'allowNotifications',
-    },
-    {
-      id: 'privacy',
-      title: 'Alles Blijft van Jou',
-      description: 'Geen zorgen - alles blijft op je telefoon. We delen niks met anderen en je kunt altijd alles uitzetten.',
+      id: 'permissions',
+      title: 'Toestemmingen instellen',
+      subtitle: 'Welke gegevens wil je delen?',
+      description: 'Kies welke informatie Minakami mag gebruiken om jouw verhaal te vertellen. Je kunt dit later altijd wijzigen.',
       icon: 'shield-checkmark-outline',
-      setting: 'privacySettings.shareAnalytics',
-      reversed: true,
+      iconColor: Colors.success[500],
+      type: 'permissions',
+      permissions: [
+        {
+          key: 'trackActivity',
+          title: 'Activiteit tracking',
+          subtitle: 'Stappen, beweging en activiteiten',
+          description: 'Toestaan om je dagelijkse activiteiten bij te houden',
+          icon: 'walk-outline',
+          permission: 'activity',
+        },
+        {
+          key: 'trackLocation',
+          title: 'Locatie tracking',
+          subtitle: 'Waar je de meeste tijd doorbrengt',
+          description: 'Helpt bij het herkennen van patronen in je dagelijkse routine',
+          icon: 'location-outline',
+          permission: 'location',
+        },
+        {
+          key: 'trackCalls',
+          title: 'Oproep statistieken',
+          subtitle: 'Gespreksduur en frequentie',
+          description: 'Alleen duur en aantal, geen inhoud of contacten',
+          icon: 'call-outline',
+          permission: 'calls',
+          androidOnly: true,
+        },
+        {
+          key: 'allowNotifications',
+          title: 'Dagelijkse meldingen',
+          subtitle: 'Samenvattingen en herinneringen',
+          description: 'Ontvang dagelijkse inzichten over je activiteiten',
+          icon: 'notifications-outline',
+          permission: 'notifications',
+        },
+      ]
+    },
+    {
+      id: 'complete',
+      title: 'Je bent klaar!',
+      subtitle: 'Minakami is ingesteld',
+      description: 'Je persoonlijke gezondheidsassistent is klaar voor gebruik. Begin vandaag nog met het ontdekken van je dagelijkse patronen.',
+      icon: 'checkmark-circle-outline',
+      iconColor: Colors.success[500],
     },
   ];
 
-  // Update een instelling met optionele permissie-aanvragen
-  const updateSetting = async (setting, value) => {
-    if (setting.includes('.')) {
-      // Update een geneste instelling
-      const [parent, child] = setting.split('.');
-      setSettings(prev => ({
-        ...prev,
-        [parent]: {
-          ...prev[parent],
-          [child]: value
-        }
-      }));
-    } else {
-      // Update een reguliere instelling
-      setSettings(prev => ({
-        ...prev,
-        [setting]: value
-      }));
-    }
+  const updateSetting = (key, value) => {
+    setSettings(prev => ({ ...prev, [key]: value }));
   };
-  
-  // Vraag permissies aan voor specifieke instellingen - DIRECT bij toggle
-  const requestPermissionForSetting = async (setting, value) => {
-    console.log(`🔄 Toggle ${setting} to ${value}`);
-    
-    if (!value) {
-      // Als uitgeschakeld, geen permissies nodig, gewoon uitzetten
-      await updateSetting(setting, value);
-      return;
-    }
-    
+
+  const requestPermission = async (permissionType) => {
     try {
-      let permissionGranted = false;
-      
-      switch (setting) {
-        case 'trackActivity':
-          console.log('🚶‍♂️ Requesting activity permissions...');
-          // Vraag DIRECT activiteit permissies aan bij toggle
-          permissionGranted = await requestActivityPermissions();
-          if (permissionGranted) {
-            await updateSetting(setting, value);
-            Alert.alert(
-              'Beweging in Beeld Ingeschakeld! 🚶‍♂️',
-              'We kunnen nu je stappen tellen en je activiteiten herkennen.',
-              [{ text: 'Geweldig!', style: 'default' }]
-            );
-          } else {
-            console.log('❌ Activity permission denied');
-            Alert.alert(
-              'Toestemming Nodig',
-              'Voor bewegingsherkenning hebben we toegang nodig tot je activiteitssensoren.',
-              [{ text: 'Begrijp ik', style: 'default' }]
-            );
-            return; // Verlaat functie zonder setting te updaten
-          }
-          break;
-          
-        case 'trackLocation':
-          console.log('📍 Requesting location permissions...');
-          // Vraag DIRECT locatie permissies aan bij toggle
-          permissionGranted = await requestLocationPermissions();
-          if (permissionGranted) {
-            await updateSetting(setting, value);
-            Alert.alert(
-              'Locatie Tracking Ingeschakeld! 📍',
-              'We kunnen nu zien waar je de meeste tijd doorbrengt. Je privacy blijft beschermd.',
-              [{ text: 'Perfect!', style: 'default' }]
-            );
-          } else {
-            console.log('❌ Location permission denied');
-            Alert.alert(
-              'Locatie Toestemming Nodig',
-              'Voor locatie tracking hebben we toegang nodig tot je locatie.',
-              [{ text: 'Begrijp ik', style: 'default' }]
-            );
-            return; // Verlaat functie zonder setting te updaten
-          }
-          break;
-          
-        case 'trackCalls':
-          console.log('📞 Requesting call permissions...');
-          // Vraag DIRECT telefoon permissies aan bij toggle (alleen Android)
-          if (Platform.OS === 'android') {
-            permissionGranted = await requestCallPermissions();
-            if (permissionGranted) {
-              await updateSetting(setting, value);
-              Alert.alert(
-                'Oproep Tracking Ingeschakeld! 📞',
-                'We tellen nu je gespreksduur. Wie je belt blijft privé.',
-                [{ text: 'Oké!', style: 'default' }]
-              );
-            } else {
-              console.log('❌ Call permission denied');
-              Alert.alert(
-                'Telefoon Toestemming Nodig',
-                'Voor oproep tracking hebben we toegang nodig tot je telefoongegevens.',
-                [{ text: 'Begrijp ik', style: 'default' }]
-              );
-              return; // Verlaat functie zonder setting te updaten
-            }
-          } else {
-            // iOS - geen expliciete call permissions nodig
-            await updateSetting(setting, value);
-            permissionGranted = true;
-          }
-          break;
-          
-        case 'allowNotifications':
-          console.log('🔔 Requesting notification permissions...');
-          // Vraag DIRECT notificatie permissies aan bij toggle
-          permissionGranted = await requestNotificationPermissions();
-          if (permissionGranted) {
-            await updateSetting(setting, value);
-            Alert.alert(
-              'Notificaties Ingeschakeld! 🔔',
-              'Je krijgt nu dagelijkse samenvattingen van je activiteiten.',
-              [{ text: 'Top!', style: 'default' }]
-            );
-          } else {
-            console.log('❌ Notification permission denied');
-            Alert.alert(
-              'Notificatie Toestemming Nodig',
-              'Voor dagelijkse samenvattingen hebben we toestemming nodig voor notificaties.',
-              [{ text: 'Begrijp ik', style: 'default' }]
-            );
-            return; // Verlaat functie zonder setting te updaten
-          }
-          break;
-          
-        default:
-          // Voor andere instellingen (AI model, stijl, privacy) geen permissies nodig
-          console.log(`✅ No permissions needed for ${setting}`);
-          await updateSetting(setting, value);
-          permissionGranted = true;
-          break;
-      }
-      
-      console.log(`✅ Setting ${setting} updated to ${value}`);
-      
-    } catch (error) {
-      console.error('❌ Error requesting permissions for', setting, ':', error);
-      Alert.alert(
-        'Permissie Probleem',
-        `Er ging iets mis bij het aanvragen van toestemming voor ${setting}. Probeer het later opnieuw.`,
-        [{ text: 'Oké', style: 'default' }]
-      );
-    }
-  };
-  
-  // Permissie helper functies - gebruik de echte permissions.js functies
-  const requestActivityPermissions = async () => {
-    try {
-      console.log('🔐 Requesting activity permissions...');
-      const result = await requestActivityRecognitionPermission();
-      const bodySensorsResult = await requestBodySensorsPermission();
-      
-      // For activity tracking, we need at least one permission to be granted
-      return isPermissionGranted(result) || isPermissionGranted(bodySensorsResult);
-    } catch (error) {
-      console.error('Activity permission error:', error);
-      return false;
-    }
-  };
-  
-  const requestLocationPermissions = async () => {
-    try {
-      console.log('🔐 Requesting location permissions...');
-      const results = await requestLocationPermissionsFromUtils();
-      
-      // requestLocationPermissionsFromUtils returns an object with permission results
-      if (results && typeof results === 'object' && !results.error) {
-        return isPermissionGranted(results[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION]) || 
-               isPermissionGranted(results[PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION]);
-      }
-      return false;
-    } catch (error) {
-      console.error('Location permission error:', error);
-      return false;
-    }
-  };
-  
-  const requestCallPermissions = async () => {
-    try {
-      console.log('🔐 Requesting call permissions...');
-      if (Platform.OS === 'android') {
-        const callLogResult = await requestCallLogPermission();
-        const phoneStateResult = await requestPhoneStatePermission();
+      switch (permissionType) {
+        case 'activity':
+          const activityResult = await requestActivityRecognitionPermission();
+          return isPermissionGranted(activityResult);
         
-        // For call tracking, we need at least call log permission
-        return isPermissionGranted(callLogResult) || isPermissionGranted(phoneStateResult);
+        case 'location':
+          const locationResult = await requestLocationPermissions();
+          // Controleer of fine location is toegestaan (dat is wat we nodig hebben voor exacte locatie)
+          if (locationResult && locationResult[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION] === RESULTS.GRANTED) {
+            return true;
+          }
+          return false;
+        
+        case 'calls':
+          if (Platform.OS === 'android') {
+            const callResult = await requestCallLogPermission();
+            return isPermissionGranted(callResult);
+          }
+          return true;
+        
+        case 'notifications':
+          const notificationResult = await requestNotificationPermission();
+          return isPermissionGranted(notificationResult);
+        
+        default:
+          return false;
       }
-      return true; // iOS doesn't need explicit call permissions
     } catch (error) {
-      console.error('Call permission error:', error);
-      return false;
-    }
-  };
-  
-  const requestNotificationPermissions = async () => {
-    try {
-      console.log('🔐 Requesting notification permissions...');
-      const result = await requestNotificationPermission();
-      return isPermissionGranted(result);
-    } catch (error) {
-      console.error('Notification permission error:', error);
+      console.error(`Permission error for ${permissionType}:`, error);
       return false;
     }
   };
 
-  // Ga naar de volgende pagina
-  const nextPage = async () => {
-    const filteredPages = false 
-      ? pages.filter(page => !page.androidOnly) 
-      : pages;
+  const handlePermissionToggle = async (permissionKey, permissionType) => {
+    const currentValue = settings[permissionKey];
     
-    if (currentPage < filteredPages.length - 1) {
-      const newPage = currentPage + 1;
-      setCurrentPage(newPage);
-      scrollViewRef.current?.scrollTo({
-        x: newPage * width,
-        animated: true
-      });
-      
-      // Auto-request permissions voor de nieuwe pagina als setting enabled is
-      const nextPageData = filteredPages[newPage];
-      if (nextPageData && nextPageData.setting) {
-        setTimeout(() => {
-          requestPermissionsForEnabledSettings(nextPageData.id, nextPageData.setting);
-        }, 500); // Kleine delay om scroll animatie te voltooien
+    if (!currentValue) {
+      // Turning on - request permission
+      const granted = await requestPermission(permissionType);
+      if (granted) {
+        updateSetting(permissionKey, true);
+        Alert.alert(
+          'Toestemming verleend',
+          'Deze functie is nu ingeschakeld.',
+          [{ text: 'Oké' }]
+        );
+      } else {
+        Alert.alert(
+          'Toestemming geweigerd',
+          'Deze functie kan niet worden ingeschakeld zonder toestemming.',
+          [{ text: 'Begrijp ik' }]
+        );
       }
     } else {
-      finishOnboarding();
+      // Turning off
+      updateSetting(permissionKey, false);
     }
   };
 
-  // Ga naar de vorige pagina
-  const prevPage = () => {
-    if (currentPage > 0) {
-      const newPage = currentPage - 1;
-      setCurrentPage(newPage);
-      scrollViewRef.current?.scrollTo({
-        x: newPage * width,
-        animated: true
-      });
+  const nextStep = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      completeOnboarding();
     }
   };
 
-  // Vervolledig de onboarding - ALLEEN settings opslaan, geen nieuwe permissions
-  const finishOnboarding = async () => {
+  const prevStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const completeOnboarding = async () => {
     setIsLoading(true);
     
     try {
-      console.log('🚀 Starting onboarding completion...');
-      console.log('📋 Current settings:', settings);
+      // Save AI preferences
+      await setPreferredAIModel(settings.preferredAIModel);
+      await AsyncStorage.setItem('narrativeStyle', settings.narrativeStyle);
       
-      // Start services alleen als de gebruiker toestemming heeft gegeven tijdens toggles
-      // GEEN nieuwe permission requests hier - die zijn al gebeurd bij toggles!
+      // Update app context with settings
+      await updateSettings({ ...settings, isOnboarded: true });
       
-      // Start services conservatief - alleen als settings enabled zijn
-      try {
-        if (settings.trackLocation && locationService && typeof locationService.startTracking === 'function') {
-          console.log('📍 Starting location service...');
-          try {
-            await locationService.startTracking(); // Permissions al gevraagd bij toggle
-          } catch (locError) {
-            console.warn('⚠️ Location service warning:', locError);
-          }
-        }
-        
-        if (settings.trackActivity && activityService && typeof activityService.startMonitoring === 'function') {
-          console.log('🚶‍♂️ Starting activity service...');
-          try {
-            await activityService.startMonitoring(); // Permissions al gevraagd bij toggle
-          } catch (actError) {
-            console.warn('⚠️ Activity service warning:', actError);
-          }
-        }
-        
-        if (settings.trackCalls && callLogService) {
-          console.log('📞 Call log service ready...');
-          // Call permissions al gevraagd bij toggle, start geen nieuwe request
-        }
-        
-        if (settings.allowNotifications && notificationService && typeof notificationService.initialize === 'function') {
-          console.log('🔔 Starting notification service...');
-          try {
-            await notificationService.initialize(); // Permissions al gevraagd bij toggle
-            
-            if (settings.dailyNotifications && typeof notificationService.scheduleDaily === 'function') {
-              await notificationService.scheduleDaily(
-                'Dagelijkse samenvatting',
-                'Bekijk je activiteiten van vandaag',
-                20, 0 // 20:00 uur
-              );
-            }
-            
-            if (settings.weeklyNotifications && typeof notificationService.scheduleWeeklySummary === 'function') {
-              await notificationService.scheduleWeeklySummary();
-            }
-          } catch (notError) {
-            console.warn('⚠️ Notification service warning:', notError);
-          }
-        }
-      } catch (serviceError) {
-        // Service errors shouldn't block onboarding completion
-        console.warn('⚠️ Service initialization warning:', serviceError);
-      }
-      
-      // Sla AI en stijl voorkeuren op
-      console.log('💾 Saving AI preferences...');
-      console.log('🤖 Selected AI Model:', settings.preferredAIModel);
-      console.log('🎨 Selected Narrative Style:', settings.narrativeStyle);
-      try {
-        await setPreferredAIModel(settings.preferredAIModel);
-        await AsyncStorage.setItem('narrativeStyle', settings.narrativeStyle);
-        
-        // Verificatie dat de keuze is opgeslagen
-        const savedModel = await AsyncStorage.getItem('preferredAIModel');
-        const savedStyle = await AsyncStorage.getItem('narrativeStyle');
-        console.log('✅ Verified saved AI Model:', savedModel);
-        console.log('✅ Verified saved Narrative Style:', savedStyle);
-        
-        if (settings.preferredAIModel === AI_MODEL_TYPES.CHATGPT) {
-          console.log('🤖 ChatGPT selected! User will need to add API key in settings.');
-        }
-      } catch (prefError) {
-        console.warn('⚠️ Preference saving warning:', prefError);
-      }
-      
-      // Sla de instellingen op en markeer de onboarding als voltooid
-      console.log('✅ Saving settings and completing onboarding...');
-      const finalSettings = {
-        ...settings,
-        isOnboarded: true
-      };
-      
-      console.log('📋 Final settings to save:', {
-        preferredAIModel: finalSettings.preferredAIModel,
-        narrativeStyle: finalSettings.narrativeStyle,
-        trackLocation: finalSettings.trackLocation,
-        trackActivity: finalSettings.trackActivity,
-        trackCalls: finalSettings.trackCalls,
-        allowNotifications: finalSettings.allowNotifications
-      });
-      
-      // Sla settings op via context
-      await updateSettings(finalSettings);
-      
-      // Markeer onboarding als voltooid in AsyncStorage (backup)
+      // Mark onboarding as completed
       await AsyncStorage.setItem('onboarding_completed', 'true');
       
-      console.log('🎉 Onboarding completed successfully!');
-      console.log('🔄 Calling onComplete function...', typeof onComplete);
-      
-      // Small delay to ensure state is saved
+      // Complete onboarding
       setTimeout(() => {
-        if (onComplete && typeof onComplete === 'function') {
-          console.log('✅ Executing onComplete...');
+        if (onComplete) {
           onComplete();
-        } else {
-          console.error('❌ onComplete is not available:', onComplete);
-          // Force navigation via AsyncStorage change
-          console.log('🔄 Forcing app reload by updating storage...');
-          AsyncStorage.setItem('force_app_reload', 'true').then(() => {
-            Alert.alert(
-              'Setup Voltooid!',
-              'Herstart de app om te beginnen.',
-              [{ text: 'OK' }]
-            );
-          });
         }
       }, 500);
       
     } catch (error) {
-      console.error('❌ Critical error during onboarding:', error);
-      console.error('❌ Error details:', {
-        message: error.message,
-        stack: error.stack,
-        settings: settings,
-        onComplete: typeof onComplete
-      });
-      
+      console.error('Onboarding completion error:', error);
       Alert.alert(
-        'Setup Probleem',
-        `Er ging iets mis: ${error.message}. Wil je het opnieuw proberen?`,
-        [
-          { 
-            text: 'Opnieuw', 
-            onPress: () => {
-              setIsLoading(false);
-              setTimeout(() => finishOnboarding(), 1000);
-            }
-          },
-          { 
-            text: 'Overslaan', 
-            onPress: async () => {
-              // Emergency completion - just save basic state
-              try {
-                await AsyncStorage.setItem('onboarding_completed', 'true');
-                await AsyncStorage.setItem('emergency_completion', 'true');
-                Alert.alert('Basis setup opgeslagen. Herstart de app.');
-              } catch (emergencyError) {
-                console.error('Emergency save failed:', emergencyError);
-              }
-            },
-            style: 'cancel' 
-          }
-        ]
+        'Fout',
+        'Er ging iets mis bij het voltooien van de setup. Probeer het opnieuw.',
+        [{ text: 'Oké' }]
       );
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Render een keuze optie voor choice-type pagina's
-  const renderChoice = (page) => {
-    const currentValue = settings[page.setting];
-    
-    // All choices are now available including WebLLM via WebView bridge
-    let availableChoices = page.choices;
+  const renderSelectionStep = (step) => {
+    const currentValue = settings[step.setting];
     
     return (
-      <View style={styles.choicesContainer}>
-        <ScrollView 
-          horizontal 
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.horizontalChoicesContent}
-          style={styles.horizontalChoicesScroll}
-        >
-          {availableChoices.map((choice, index) => (
-            <TouchableOpacity
-              key={choice.id}
-              style={[
-                styles.choiceCard,
-                styles.horizontalChoiceCard,
-                currentValue === choice.id && styles.choiceCardSelected
-              ]}
-              onPress={() => {
-                // Voor narrative style geen permissies nodig
-                if (page.setting === 'narrativeStyle' || page.setting === 'privacySettings.shareAnalytics') {
-                  updateSetting(page.setting, choice.id);
-                } else {
-                  requestPermissionForSetting(page.setting, choice.id);
-                }
-              }}
-            >
-              <View style={styles.choiceHeader}>
+      <View style={styles.selectionContainer}>
+        {step.options.map((option) => (
+          <TouchableOpacity
+            key={option.id}
+            style={[
+              styles.optionCard,
+              currentValue === option.id && styles.optionCardSelected
+            ]}
+            onPress={() => updateSetting(step.setting, option.id)}
+          >
+            <View style={styles.optionHeader}>
+              <View style={styles.optionIconContainer}>
                 <Ionicons 
-                  name={choice.icon} 
-                  size={28} 
-                  color={currentValue === choice.id ? Colors.primary[500] : Colors.gray[400]} 
+                  name={option.icon} 
+                  size={24} 
+                  color={currentValue === option.id ? Colors.primary[500] : Colors.gray[400]} 
                 />
-                {choice.badge && (
-                  <View style={styles.choiceBadge}>
-                    <Typography variant="caption" color="white">
-                      {choice.badge}
-                    </Typography>
-                  </View>
-                )}
               </View>
-              <Typography 
-                variant="h6" 
-                color={currentValue === choice.id ? "primary" : "text.primary"}
-                style={styles.choiceTitle}
-                numberOfLines={2}
-              >
-                {choice.title}
-              </Typography>
-              <Typography 
-                variant="body2" 
-                color="text.secondary" 
-                style={styles.choiceDescription}
-                numberOfLines={3}
-              >
-                {choice.description}
-              </Typography>
-              {currentValue === choice.id && (
-                <View style={styles.choiceCheckmark}>
-                  <Ionicons name="checkmark-circle" size={20} color={Colors.primary[500]} />
+              <View style={styles.optionContent}>
+                <View style={styles.optionTitleRow}>
+                  <Typography variant="h6" color={currentValue === option.id ? "primary" : "text.primary"}>
+                    {option.title}
+                  </Typography>
+                  {option.recommended && (
+                    <View key={`recommended-${option.id}`} style={styles.recommendedBadge}>
+                      <Typography variant="caption" color="white">
+                        Aanbevolen
+                      </Typography>
+                    </View>
+                  )}
+                  {option.badge && (
+                    <View key={`badge-${option.id}`} style={styles.premiumBadge}>
+                      <Typography variant="caption" color="white">
+                        {option.badge}
+                      </Typography>
+                    </View>
+                  )}
                 </View>
+                <Typography variant="body2" color="text.secondary">
+                  {option.subtitle}
+                </Typography>
+                <Typography variant="caption" color="text.secondary" style={styles.optionDescription}>
+                  {option.description}
+                </Typography>
+              </View>
+              {currentValue === option.id && (
+                <Ionicons name="checkmark-circle" size={24} color={Colors.primary[500]} />
               )}
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-        
-        {/* Horizontal pagination dots */}
-        <View style={styles.choicePagination}>
-          {availableChoices.map((choice, index) => (
-            <View
-              key={`choice-dot-${index}`}
-              style={[
-                styles.choicePaginationDot,
-                settings[page.setting] === choice.id && styles.choicePaginationDotActive
-              ]}
-            />
-          ))}
-        </View>
+            </View>
+          </TouchableOpacity>
+        ))}
       </View>
     );
   };
 
-  // Render een toggle knop voor een instelling
-  const renderToggle = (settingKey, reversed = false) => {
-    const getValue = () => {
-      if (settingKey.includes('.')) {
-        const [parent, child] = settingKey.split('.');
-        return settings[parent][child];
-      }
-      return settings[settingKey];
-    };
-    
-    const isEnabled = getValue();
-    const finalEnabled = reversed ? !isEnabled : isEnabled;
-    
+  const renderPermissionsStep = (step) => {
+    const availablePermissions = step.permissions.filter(
+      perm => !perm.androidOnly || Platform.OS === 'android'
+    );
+
     return (
-      <TouchableOpacity
-        style={[
-          styles.toggleButton,
-          finalEnabled ? styles.toggleEnabled : styles.toggleDisabled
-        ]}
-        onPress={() => requestPermissionForSetting(settingKey, !isEnabled)}
-      >
-        <View 
-          style={[
-            styles.toggleCircle,
-            finalEnabled ? styles.toggleCircleEnabled : styles.toggleCircleDisabled
-          ]}
-        />
-      </TouchableOpacity>
+      <View style={styles.permissionsContainer}>
+        {availablePermissions.map((permission) => (
+          <View key={permission.key} style={styles.permissionCard}>
+            <View style={styles.permissionHeader}>
+              <View style={styles.permissionIconContainer}>
+                <Ionicons 
+                  name={permission.icon} 
+                  size={24} 
+                  color={settings[permission.key] ? Colors.primary[500] : Colors.gray[400]} 
+                />
+              </View>
+              <View style={styles.permissionContent}>
+                <Typography variant="h6" color="text.primary">
+                  {permission.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {permission.subtitle}
+                </Typography>
+                <Typography variant="caption" color="text.secondary" style={styles.permissionDescription}>
+                  {permission.description}
+                </Typography>
+              </View>
+              <TouchableOpacity
+                key={`toggle-${permission.key}`}
+                style={[
+                  styles.permissionToggle,
+                  settings[permission.key] && styles.permissionToggleActive
+                ]}
+                onPress={() => handlePermissionToggle(permission.key, permission.permission)}
+              >
+                <View 
+                  style={[
+                    styles.permissionToggleKnob,
+                    settings[permission.key] && styles.permissionToggleKnobActive
+                  ]}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        ))}
+      </View>
     );
   };
 
-  // Huidige pagina
-  const currentPageData = pages[currentPage];
-  
-  // Filter Android-specifieke pagina's indien nodig
-  const filteredPages = false 
-    ? pages.filter(page => !page.androidOnly) 
-    : pages;
-  
-  const isLastPage = currentPage === filteredPages.length - 1;
+  const currentStepData = steps[currentStep];
+  const isLastStep = currentStep === steps.length - 1;
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header - alleen app naam, geen welkomstekst */}
+      {/* Header */}
       <View style={styles.header}>
-        <Typography variant="h1" color={Colors.primary[500]} style={styles.appTitle}>
+        <Typography variant="h2" color="primary" style={styles.appTitle}>
           Minakami
         </Typography>
-      </View>
-      
-      {/* Pagination dots */}
-      <View style={styles.pagination}>
-        {filteredPages.map((_, index) => (
-          <View
-            key={`dot-${index}`}
-            style={[
-              styles.paginationDot,
-              index === currentPage && styles.paginationDotActive
-            ]}
-          />
-        ))}
-      </View>
-      
-      {/* Content */}
-      <ScrollView 
-        ref={scrollViewRef}
-        horizontal 
-        pagingEnabled 
-        showsHorizontalScrollIndicator={false}
-        scrollEnabled={false}
-        contentContainerStyle={styles.scrollContainer}
-      >
-        {filteredPages.map((page, index) => (
-          <View 
-            key={page.id} 
-            style={[styles.page, { width }]}
-            {...(index === currentPage ? { accessibilityState: { selected: true } } : {})}
-          >
-            <Card style={styles.pageCard}>
-              <View style={styles.iconContainer}>
-                <Ionicons name={page.icon} size={72} color={Colors.primary[500]} />
-              </View>
-              
-              <Typography variant="h4" color="text.primary" style={styles.pageTitle}>
-                {page.title}
-              </Typography>
-              
-              <Typography variant="body1" color="text.secondary" style={styles.pageDescription}>
-                {page.description}
-              </Typography>
-              
-              {page.type === 'choice' ? (
-                renderChoice(page)
-              ) : page.setting && (
-                <View style={styles.settingContainer}>
-                  <Typography variant="body2" color="text.secondary">
-                    {page.reversed ? 'Uit' : 'Aan'}
-                  </Typography>
-                  
-                  {renderToggle(page.setting, page.reversed)}
-                  
-                  <Typography variant="body2" color="text.secondary">
-                    {page.reversed ? 'Aan' : 'Uit'}
-                  </Typography>
-                </View>
-              )}
-            </Card>
+        
+        {/* Progress Indicator */}
+        <View style={styles.progressContainer}>
+          <View style={styles.progressBar}>
+            <View 
+              style={[
+                styles.progressFill, 
+                { width: `${((currentStep + 1) / steps.length) * 100}%` }
+              ]} 
+            />
           </View>
-        ))}
+          <Typography variant="caption" color="text.secondary" style={styles.progressText}>
+            Stap {currentStep + 1} van {steps.length}
+          </Typography>
+        </View>
+      </View>
+
+      {/* Content */}
+      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+        <Card style={styles.stepCard}>
+          <View style={styles.stepIconContainer}>
+            <View style={[styles.stepIcon, { backgroundColor: `${currentStepData.iconColor || Colors.primary[500]}20` }]}>
+              <Ionicons 
+                name={currentStepData.icon} 
+                size={48} 
+                color={currentStepData.iconColor || Colors.primary[500]} 
+              />
+            </View>
+          </View>
+
+          <Typography variant="h3" color="text.primary" style={styles.stepTitle}>
+            {currentStepData.title}
+          </Typography>
+
+          <Typography variant="h6" color="text.secondary" style={styles.stepSubtitle}>
+            {currentStepData.subtitle}
+          </Typography>
+
+          <Typography variant="body1" color="text.secondary" style={styles.stepDescription}>
+            {currentStepData.description}
+          </Typography>
+
+          {/* Step Content */}
+          {currentStepData.type === 'selection' && renderSelectionStep(currentStepData)}
+          {currentStepData.type === 'permissions' && renderPermissionsStep(currentStepData)}
+        </Card>
       </ScrollView>
-      
+
       {/* Navigation */}
-      <View style={styles.navigationContainer}>
+      <View style={styles.navigation}>
         <View style={styles.navigationButtons}>
-          {currentPage > 0 ? (
+          {currentStep > 0 ? (
             <Button
               title="Vorige"
               variant="outline"
               size="medium"
               leftIcon={<Ionicons name="arrow-back" size={20} color={Colors.primary[500]} />}
-              onPress={prevPage}
+              onPress={prevStep}
+              style={styles.backButton}
             />
-          ) : (
-            <View style={{ width: 100 }} />
-          )}
-          
-          {currentPage < filteredPages.length - 1 ? (
-            <Button
-              title="Volgende"
-              variant="primary"
-              size="large"
-              onPress={nextPage}
-            />
-          ) : (
-            <Button
-              title={isLoading ? "Bezig..." : "Aan de slag"}
-              variant="primary"
-              size="large"
-              onPress={nextPage}
-              disabled={isLoading}
-              loading={isLoading}
-            />
-          )}
+          ) : <View style={styles.backButton} />}
+
+          <Button
+            title={isLastStep ? (isLoading ? "Bezig..." : "Voltooien") : "Volgende"}
+            variant="primary"
+            size="large"
+            rightIcon={!isLastStep ? <Ionicons name="arrow-forward" size={20} color="white" /> : null}
+            onPress={nextStep}
+            disabled={isLoading}
+            loading={isLoading}
+            style={styles.nextButton}
+          />
         </View>
-        
-        {currentPage < filteredPages.length - 1 && (
-          <TouchableOpacity 
-            style={styles.skipButton} 
-            onPress={() => {
-              const lastPage = filteredPages.length - 1;
-              setCurrentPage(lastPage);
-              scrollViewRef.current?.scrollTo({
-                x: lastPage * width,
-                animated: true
-              });
-            }}
-          >
-            <Typography variant="body2" color={Colors.primary[500]}>
-              Overslaan
-            </Typography>
-          </TouchableOpacity>
-        )}
+
+        {/* Privacy Notice */}
+        <View style={styles.privacyNotice}>
+          <Ionicons name="shield-checkmark-outline" size={16} color={Colors.success[500]} />
+          <Typography variant="caption" color="text.secondary" style={styles.privacyText}>
+            Je gegevens blijven veilig op je telefoon en worden nooit gedeeld
+          </Typography>
+        </View>
       </View>
-      
-      {/* Privacy note */}
-      <Card style={styles.privacyCard} variant="outlined">
-        <Typography variant="caption" color="text.secondary" align="center">
-          Je gegevens blijven lokaal op je telefoon. Je kunt je instellingen altijd wijzigen via het instellingenscherm.
-        </Typography>
-      </Card>
     </SafeAreaView>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.gray[50],
+    backgroundColor: Colors.background.primary,
   },
   header: {
-    alignItems: 'center',
-    paddingVertical: Spacing.lg,
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.lg,
+    paddingBottom: Spacing.md,
+    backgroundColor: Colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.gray[100],
   },
   appTitle: {
-    color: Colors.primary[500],
+    textAlign: 'center',
+    marginBottom: Spacing.md,
+  },
+  progressContainer: {
+    alignItems: 'center',
+  },
+  progressBar: {
+    width: '100%',
+    height: 4,
+    backgroundColor: Colors.gray[200],
+    borderRadius: 2,
+    overflow: 'hidden',
     marginBottom: Spacing.xs,
   },
-  pagination: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: Spacing.md,
-  },
-  paginationDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: Colors.gray[300],
-    marginHorizontal: Spacing.xs,
-  },
-  paginationDotActive: {
+  progressFill: {
+    height: '100%',
     backgroundColor: Colors.primary[500],
-    width: 24,
-    height: 8,
+    borderRadius: 2,
   },
-  scrollContainer: {
-    // Add any scroll container styles
+  progressText: {
+    textAlign: 'center',
   },
-  page: {
-    alignItems: 'center',
-    paddingHorizontal: Spacing.md,
-  },
-  pageCard: {
+  content: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: Spacing.md,
-    padding: Spacing.xl,
+    paddingHorizontal: Spacing.lg,
   },
-  iconContainer: {
+  stepCard: {
+    marginVertical: Spacing.lg,
+    padding: Spacing.xl,
+    alignItems: 'center',
+  },
+  stepIconContainer: {
     marginBottom: Spacing.lg,
   },
-  pageTitle: {
+  stepIcon: {
+    width: 96,
+    height: 96,
+    borderRadius: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  stepTitle: {
     textAlign: 'center',
     marginBottom: Spacing.sm,
   },
-  pageDescription: {
+  stepSubtitle: {
     textAlign: 'center',
-    marginBottom: Spacing.lg,
+    marginBottom: Spacing.md,
   },
-  settingContainer: {
+  stepDescription: {
+    textAlign: 'center',
+    lineHeight: 24,
+    marginBottom: Spacing.xl,
+  },
+
+  // Selection styles
+  selectionContainer: {
+    width: '100%',
+  },
+  optionCard: {
+    backgroundColor: Colors.white,
+    borderRadius: 12,
+    padding: Spacing.lg,
+    marginBottom: Spacing.md,
+    borderWidth: 2,
+    borderColor: Colors.gray[200],
+  },
+  optionCardSelected: {
+    borderColor: Colors.primary[500],
+    backgroundColor: Colors.primary[50],
+  },
+  optionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: Spacing.md,
   },
-  toggleButton: {
-    width: 56,
+  optionIconContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: Colors.gray[100],
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: Spacing.md,
+  },
+  optionContent: {
+    flex: 1,
+  },
+  optionTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: Spacing.xs,
+  },
+  recommendedBadge: {
+    backgroundColor: Colors.success[500],
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: 2,
+    borderRadius: 10,
+    marginLeft: Spacing.sm,
+  },
+  premiumBadge: {
+    backgroundColor: Colors.warning[500],
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: 2,
+    borderRadius: 10,
+    marginLeft: Spacing.sm,
+  },
+  optionDescription: {
+    marginTop: Spacing.xs,
+    lineHeight: 16,
+  },
+
+  // Permissions styles
+  permissionsContainer: {
+    width: '100%',
+  },
+  permissionCard: {
+    backgroundColor: Colors.white,
+    borderRadius: 12,
+    padding: Spacing.lg,
+    marginBottom: Spacing.md,
+    borderWidth: 1,
+    borderColor: Colors.gray[200],
+  },
+  permissionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  permissionIconContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: Colors.gray[100],
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: Spacing.md,
+  },
+  permissionContent: {
+    flex: 1,
+  },
+  permissionDescription: {
+    marginTop: Spacing.xs,
+    lineHeight: 16,
+  },
+  permissionToggle: {
+    width: 52,
     height: 28,
     borderRadius: 14,
-    justifyContent: 'center',
+    backgroundColor: Colors.gray[300],
     padding: 2,
+    justifyContent: 'center',
   },
-  toggleEnabled: {
+  permissionToggleActive: {
     backgroundColor: Colors.primary[500],
   },
-  toggleDisabled: {
-    backgroundColor: Colors.gray[300],
-  },
-  toggleCircle: {
+  permissionToggleKnob: {
     width: 24,
     height: 24,
     borderRadius: 12,
     backgroundColor: Colors.white,
-  },
-  toggleCircleEnabled: {
-    alignSelf: 'flex-end',
-  },
-  toggleCircleDisabled: {
     alignSelf: 'flex-start',
   },
-  navigationContainer: {
-    paddingHorizontal: Spacing.md,
-    marginBottom: Spacing.md,
+  permissionToggleKnobActive: {
+    alignSelf: 'flex-end',
+  },
+
+  // Navigation styles
+  navigation: {
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.lg,
+    backgroundColor: Colors.white,
+    borderTopWidth: 1,
+    borderTopColor: Colors.gray[100],
   },
   navigationButtons: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    gap: Spacing.md,
-  },
-  skipButton: {
-    alignSelf: 'center',
-    marginTop: Spacing.md,
-  },
-  privacyCard: {
-    marginHorizontal: Spacing.md,
     marginBottom: Spacing.md,
-    padding: Spacing.sm,
   },
-  
-  // Choice-specific styles
-  choicesContainer: {
-    marginTop: Spacing.lg,
-    height: 200, // Fixed height for horizontal scroll
+  backButton: {
+    flex: 0.3,
   },
-  horizontalChoicesScroll: {
-    flexGrow: 0,
+  nextButton: {
+    flex: 0.6,
   },
-  horizontalChoicesContent: {
-    paddingHorizontal: Spacing.sm,
-  },
-  choiceCard: {
-    backgroundColor: Colors.white,
-    borderRadius: 12,
-    padding: Spacing.lg,
-    borderWidth: 2,
-    borderColor: Colors.gray[200],
-    position: 'relative',
-    minHeight: 160,
-  },
-  horizontalChoiceCard: {
-    width: width * 0.75, // 75% of screen width for better visibility with 4 options
-    marginHorizontal: Spacing.xs,
-  },
-  choiceCardSelected: {
-    borderColor: Colors.primary[500],
-    backgroundColor: Colors.primary[50],
-  },
-  choiceHeader: {
+  privacyNotice: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: Spacing.sm,
-  },
-  choiceBadge: {
-    backgroundColor: Colors.primary[500],
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: Spacing.xs,
-    borderRadius: 12,
-  },
-  choiceTitle: {
-    marginBottom: Spacing.xs,
-    textAlign: 'left',
-  },
-  choiceDescription: {
-    lineHeight: 18,
-    textAlign: 'left',
-    flex: 1,
-  },
-  choiceCheckmark: {
-    position: 'absolute',
-    top: Spacing.sm,
-    right: Spacing.sm,
-  },
-  choicePagination: {
-    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: Spacing.md,
+    paddingHorizontal: Spacing.md,
   },
-  choicePaginationDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: Colors.gray[300],
-    marginHorizontal: Spacing.xs / 2,
-  },
-  choicePaginationDotActive: {
-    backgroundColor: Colors.primary[500],
-    width: 16,
-    height: 6,
+  privacyText: {
+    marginLeft: Spacing.xs,
+    textAlign: 'center',
+    lineHeight: 16,
   },
 });
+
 export default OnboardingScreen;

@@ -60,7 +60,7 @@ const STYLE_OPTIONS = [
 ];
 
 const NarrativeStyleScreen = ({ navigation }) => {
-  const [selectedStyle, setSelectedStyle] = useState(NARRATIVE_STYLES.STANDARD);
+  const [selectedStyle, setSelectedStyle] = useState(NARRATIVE_STYLES.STANDAARD);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
