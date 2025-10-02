@@ -130,6 +130,9 @@ dependencies {
     // WebView dependencies for react-native-webview
     implementation 'androidx.webkit:webkit:1.8.0'
     implementation 'androidx.browser:browser:1.4.0'
+    
+    // Health Connect API - native implementation
+    implementation "androidx.health.connect:connect-client:1.1.0-alpha07"
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {

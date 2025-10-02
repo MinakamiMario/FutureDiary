@@ -6,6 +6,7 @@ import activityService from '../services/activityService';
 import locationService from '../services/locationService';
 import callLogService from '../services/callLogService';
 import samsungHealthService from '../services/samsungHealthService';
+import healthDataService from '../services/healthDataService';
 import { generateDailySummary } from '../services/summaryService';
 import errorHandler from '../services/errorLogger';
 import stravaService from '../services/stravaService';
@@ -40,7 +41,10 @@ export const AppProvider = ({ children }) => {
     },
     samsungHealthEnabled: false,
     samsungHealthAutoSync: true,
-    samsungHealthPermissions: []
+    samsungHealthPermissions: [],
+    healthConnectEnabled: true,
+    healthConnectAutoSync: true,
+    preferredHealthSource: 'health_connect' // 'health_connect', 'samsung_health', 'google_fit'
   });
   
   const [activityStats, setActivityStats] = useState({
@@ -89,8 +93,24 @@ export const AppProvider = ({ children }) => {
             await locationService.startTracking();
           }
           
+          // Initialize Health Connect if enabled (default voor Android)
+          if (savedSettings.healthConnectEnabled && savedSettings.preferredHealthSource === 'health_connect') {
+            console.log('Initializing Health Connect...');
+            try {
+              await healthDataService.initialize();
+              if (savedSettings.healthConnectAutoSync) {
+                console.log('Starting Health Connect auto-sync...');
+                const endDate = Date.now();
+                const startDate = endDate - (7 * 24 * 60 * 60 * 1000);
+                await healthDataService.importHealthData(startDate, endDate);
+              }
+            } catch (error) {
+              console.log('Health Connect initialization failed:', error);
+            }
+          }
+          
           // Initialize Samsung Health if enabled
-          if (savedSettings.samsungHealthEnabled) {
+          if (savedSettings.samsungHealthEnabled && savedSettings.preferredHealthSource === 'samsung_health') {
             console.log('Initializing Samsung Health...');
             try {
               const initResult = await samsungHealthService.initialize();

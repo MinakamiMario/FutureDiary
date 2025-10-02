@@ -1170,7 +1170,7 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.57.1.tgz"
   integrity sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==
 
-"@expo/config-plugins@^7.2.2", "@expo/config-plugins@>= 6.0.2":
+"@expo/config-plugins@^7.2.2":
   version "7.9.2"
   resolved "https://registry.npmjs.org/@expo/config-plugins/-/config-plugins-7.9.2.tgz"
   integrity sha512-sRU/OAp7kJxrCUiCTUZqvPMKPdiN1oTmNfnbkG4oPdfWQTpid3jyCH7ZxJEN5SI6jrY/ZsK5B/JPgjDUhuWLBQ==
@@ -6781,11 +6781,6 @@ react-native-google-fit@^0.21.0:
   integrity sha512-YtI8Ir8aPh9CIPHg3OfJqd07T6puSzmXFlkSEMRJK/9a+5Iir6sfzvaOuBlB8eNwRHnP0+crXR/p7GPdYTTHtA==
   dependencies:
     moment "^2.29.4"
-
-react-native-health-connect@^3.3.3:
-  version "3.3.3"
-  resolved "https://registry.npmjs.org/react-native-health-connect/-/react-native-health-connect-3.3.3.tgz"
-  integrity sha512-yBjgfwdFrbGU048UnT7RYnwMMjnn5KaT24hSSukHm6tCdFe8a/dQf4pUjN+EyO5hfuS5b18GU0nKu4UuffO/5g==
 
 react-native-health@^1.19.0:
   version "1.19.0"

@@ -36,9 +36,21 @@ function DashboardWrapper() {
     isTracking: false,
   });
 
-  const loadRealHealthData = () => {
-    const realStats = HealthDataService.getCurrentStats();
-    setStats(realStats);
+  const loadRealHealthData = async () => {
+    try {
+      const realStats = await HealthDataService.getHealthStats();
+      setStats({
+        steps: realStats.daily?.steps || 0,
+        calories: realStats.daily?.calories || 0,
+        distance: realStats.daily?.distance || 0,
+        activeMinutes: realStats.daily?.activeMinutes || 0,
+        heartRate: realStats.daily?.heartRate || 0,
+        isTracking: true
+      });
+    } catch (error) {
+      console.log('Error loading health stats:', error);
+      // Keep default demo stats on error
+    }
   };
 
   useEffect(() => {
@@ -60,9 +72,21 @@ function StatsWrapper() {
     isTracking: false,
   });
 
-  const loadRealHealthData = () => {
-    const realStats = HealthDataService.getCurrentStats();
-    setStats(realStats);
+  const loadRealHealthData = async () => {
+    try {
+      const realStats = await HealthDataService.getHealthStats();
+      setStats({
+        steps: realStats.daily?.steps || 0,
+        calories: realStats.daily?.calories || 0,
+        distance: realStats.daily?.distance || 0,
+        activeMinutes: realStats.daily?.activeMinutes || 0,
+        heartRate: realStats.daily?.heartRate || 0,
+        isTracking: true
+      });
+    } catch (error) {
+      console.log('Error loading health stats:', error);
+      // Keep default demo stats on error
+    }
   };
 
   useEffect(() => {

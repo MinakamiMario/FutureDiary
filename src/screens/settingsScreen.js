@@ -19,6 +19,7 @@ import { getNarrativeStyle, NARRATIVE_STYLES } from '../utils/narrativeStyles';
 import { useAppContext } from '../utils/appContext';
 import { useTheme } from '../utils/themeContext';
 import stravaService from '../services/stravaService';
+import healthDataService from '../services/healthDataService';
 import StravaAuthWebView from '../components/StravaAuthWebView';
 import { Linking } from 'react-native';
 import { 
@@ -88,6 +89,49 @@ const SettingsScreen = ({ navigation }) => {
   const toggleSetting = async (setting, value) => {
     try {
       switch (setting) {
+        case 'healthConnect':
+          if (value) {
+            try {
+              // Initialize Health Connect service
+              await healthDataService.initialize();
+              const isAvailable = await healthDataService.isAvailable();
+              if (isAvailable) {
+                await updateSettings({ 
+                  healthConnectEnabled: value,
+                  preferredHealthSource: 'health_connect'
+                });
+                Alert.alert(
+                  '✅ Health Connect Ingeschakeld!',
+                  'Health Connect is nu je primaire bron voor health data.',
+                  [{ text: 'Perfect!', style: 'default' }]
+                );
+              } else {
+                Alert.alert(
+                  '❌ Health Connect Error',
+                  'Kan Health Connect niet initialiseren. Controleer of de Health Connect app is geïnstalleerd.',
+                  [{ text: 'OK', style: 'default' }]
+                );
+              }
+            } catch (error) {
+              Alert.alert(
+                '❌ Health Connect Error',
+                `Error: ${error.message}`,
+                [{ text: 'OK', style: 'default' }]
+              );
+            }
+          } else {
+            await updateSettings({ healthConnectEnabled: value });
+          }
+          break;
+          
+        case 'healthConnectAutoSync':
+          await updateSettings({ healthConnectAutoSync: value });
+          if (value) {
+            // Trigger immediate sync
+            await syncHealthConnectData();
+          }
+          break;
+          
         case 'notifications':
           if (value) {
             // Request notification permission
@@ -249,6 +293,41 @@ const SettingsScreen = ({ navigation }) => {
     }
   };
 
+  const syncHealthConnectData = async () => {
+    try {
+      Alert.alert(
+        '🔄 Synchroniseren...',
+        'Health Connect data wordt geïmporteerd. Dit kan even duren.',
+        [{ text: 'OK', style: 'default' }]
+      );
+
+      // Import last 7 days of data
+      const endDate = Date.now();
+      const startDate = endDate - (7 * 24 * 60 * 60 * 1000);
+      const result = await healthDataService.importHealthData(startDate, endDate);
+      
+      if (result.success) {
+        Alert.alert(
+          '✅ Sync Voltooid!',
+          `${result.imported} health records geïmporteerd.`,
+          [{ text: 'Perfect!', style: 'default' }]
+        );
+      } else {
+        Alert.alert(
+          '⚠️ Sync Warning',
+          result.message || 'Sommige data kon niet worden geïmporteerd.',
+          [{ text: 'OK', style: 'default' }]
+        );
+      }
+    } catch (error) {
+      Alert.alert(
+        '❌ Sync Error',
+        `Fout bij synchroniseren: ${error.message}`,
+        [{ text: 'OK', style: 'default' }]
+      );
+    }
+  };
+
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background.primary }]}>
@@ -348,6 +427,74 @@ const SettingsScreen = ({ navigation }) => {
           </Card>
 
           {/* Externe Bronnen */}
+          {/* Health Connect (Android) */}
+          <Card variant="elevated" style={styles.cardMargin}>
+            <View style={styles.cardHeader}>
+              <Ionicons name="fitness" size={20} color={Colors.success[500]} />
+              <Typography variant="h6" color="text.primary" style={styles.cardTitle}>
+                Health Connect
+              </Typography>
+            </View>
+            
+            <TouchableOpacity style={styles.settingRow} onPress={() => toggleSetting('healthConnect', !settings.healthConnectEnabled)}>
+              <Ionicons name="heart-outline" size={24} color={Colors.success[500]} />
+              <View style={styles.settingContent}>
+                <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
+                  Enable Health Connect
+                </Typography>
+                <Typography variant="caption" color="text.secondary" style={styles.settingSubtitle}>
+                  Modern Android health data API
+                </Typography>
+              </View>
+              <Switch
+                value={settings.healthConnectEnabled}
+                onValueChange={(value) => toggleSetting('healthConnect', value)}
+                trackColor={{ false: Colors.gray[300], true: Colors.success[300] }}
+                thumbColor={settings.healthConnectEnabled ? Colors.success[500] : Colors.gray[400]}
+              />
+            </TouchableOpacity>
+
+            {settings.healthConnectEnabled && (
+              <>
+                <View style={[styles.divider, { backgroundColor: theme.colors.border.primary }]} />
+                
+                <TouchableOpacity style={styles.settingRow} onPress={() => toggleSetting('healthConnectAutoSync', !settings.healthConnectAutoSync)}>
+                  <Ionicons name="sync-outline" size={24} color={Colors.primary[500]} />
+                  <View style={styles.settingContent}>
+                    <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
+                      Auto Sync
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary" style={styles.settingSubtitle}>
+                      Automatisch data synchroniseren
+                    </Typography>
+                  </View>
+                  <Switch
+                    value={settings.healthConnectAutoSync}
+                    onValueChange={(value) => toggleSetting('healthConnectAutoSync', value)}
+                    trackColor={{ false: Colors.gray[300], true: Colors.success[300] }}
+                    thumbColor={settings.healthConnectAutoSync ? Colors.success[500] : Colors.gray[400]}
+                  />
+                </TouchableOpacity>
+
+                <View style={[styles.divider, { backgroundColor: theme.colors.border.primary }]} />
+                
+                <TouchableOpacity style={styles.settingRow} onPress={() => syncHealthConnectData()}>
+                  <Ionicons name="refresh-outline" size={24} color={Colors.warning[500]} />
+                  <View style={styles.settingContent}>
+                    <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
+                      Sync Now
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary" style={styles.settingSubtitle}>
+                      Importeer laatste health data
+                    </Typography>
+                  </View>
+                  <Ionicons name="chevron-forward" size={20} color={Colors.gray[400]} />
+                </TouchableOpacity>
+              </>
+            )}
+          </Card>
+
+          {/* Externe Bronnen */}
           <Card variant="elevated">
             <View style={styles.cardHeader}>
               <Ionicons name="link" size={20} color={Colors.primary[500]} />
@@ -363,10 +510,10 @@ const SettingsScreen = ({ navigation }) => {
               <Ionicons name="heart-circle" size={24} color={Colors.secondary[500]} />
               <View style={styles.settingContent}>
                 <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
-                  Health Data
+                  Legacy Health Data
                 </Typography>
                 <Typography variant="caption" color="text.secondary" style={styles.settingSubtitle}>
-                  Google Fit, Apple Health
+                  Google Fit, Apple Health (oude API's)
                 </Typography>
               </View>
               <Ionicons name="chevron-forward" size={20} color={Colors.gray[400]} />
