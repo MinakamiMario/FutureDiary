@@ -1,92 +1,104 @@
 import { OnboardingStep } from '../types/onboarding.types';
+import { AI_MODEL_TYPES } from '../../../services/aiNarrativeService';
+import { NARRATIVE_STYLES } from '../../../utils/narrativeStyles';
 
 export const ONBOARDING_STEPS: OnboardingStep[] = [
   {
     id: 'welcome',
     type: 'info',
     title: 'Welkom bij Minakami',
-    subtitle: 'Je persoonlijke menstruatie- en vruchtbaarheids tracker',
-    description: 'Minakami helpt je bij het bijhouden van je menstruatiecyclus, het voorspellen van je vruchtbare dagen en het begrijpen van je lichaam.',
-    icon: 'heart-outline',
-    iconColor: '#E91E63',
-    key: 'onboarding_completed'
+    subtitle: 'Je persoonlijke leven & activiteiten tracker',
+    description: 'Minakami helpt je jouw dagelijkse activiteiten, gezondheid en levenspatronen bij te houden met AI-gegenereerde dagboeken.',
+    icon: 'analytics-outline',
+    iconColor: '#4a90e2',
+    key: 'onboarding_welcome'
   },
   {
-    id: 'cycle_length',
+    id: 'ai_model',
     type: 'selection',
-    title: 'Hoe lang is je cyclus?',
-    subtitle: 'Dit helpt ons je voorspellingen nauwkeuriger te maken',
-    description: 'Selecteer de lengte die het dichtst bij jouw cyclus komt. Je kunt dit later altijd aanpassen.',
-    icon: 'calendar-outline',
+    title: 'Kies je AI Model',
+    subtitle: 'Hoe wil je je dagboeken gegenereerd hebben?',
+    description: 'Selecteer het AI model dat je dagboeken gaat schrijven. Dit kun je later altijd aanpassen.',
+    icon: 'sparkles-outline',
     iconColor: '#9C27B0',
-    key: 'cycle_length',
+    key: 'preferredAIModel',
     options: [
       {
-        id: '21-25',
-        title: '21-25 dagen',
-        subtitle: 'Korte cyclus',
-        description: 'Je cyclus duurt tussen de 21 en 25 dagen',
-        icon: 'trending-down-outline',
+        id: AI_MODEL_TYPES.GPT35,
+        title: 'ChatGPT 3.5',
+        subtitle: 'Snel & Efficiënt',
+        description: 'Snelle dagboekgeneratie met goede kwaliteit',
+        icon: 'flash-outline',
+        recommended: true,
+        badge: 'Populair'
+      },
+      {
+        id: AI_MODEL_TYPES.GPT4,
+        title: 'ChatGPT 4',
+        subtitle: 'Premium Kwaliteit',
+        description: 'Hoogste kwaliteit verhalen met diepere inzichten',
+        icon: 'star-outline',
+        recommended: false,
+        badge: 'Premium'
+      },
+      {
+        id: AI_MODEL_TYPES.CLAUDE,
+        title: 'Claude AI',
+        subtitle: 'Natuurlijke Stijl',
+        description: 'Natuurlijk schrijvende AI voor vloeiende verhalen',
+        icon: 'document-text-outline',
         recommended: false
       },
       {
-        id: '26-30',
-        title: '26-30 dagen',
-        subtitle: 'Normale cyclus',
-        description: 'Je cyclus duurt tussen de 26 en 30 dagen',
-        icon: 'remove-outline',
-        recommended: true
-      },
-      {
-        id: '31-35',
-        title: '31-35 dagen',
-        subtitle: 'Lange cyclus',
-        description: 'Je cyclus duurt tussen de 31 en 35 dagen',
-        icon: 'trending-up-outline',
-        recommended: false
-      },
-      {
-        id: 'irregular',
-        title: 'Onregelmatig',
-        subtitle: 'Wisselende lengte',
-        description: 'Je cyclus varieert sterk in lengte',
-        icon: 'shuffle-outline',
+        id: AI_MODEL_TYPES.TEMPLATE,
+        title: 'Template Modus',
+        subtitle: 'Geen AI',
+        description: 'Gebruik vaste templates zonder AI (gratis)',
+        icon: 'list-outline',
         recommended: false
       }
     ]
   },
   {
-    id: 'period_duration',
+    id: 'narrative_style',
     type: 'selection',
-    title: 'Hoe lang duurt je menstruatie?',
-    subtitle: 'Gemiddelde duur van je onttrekking',
-    description: 'Hoeveel dagen bloed je meestal tijdens je menstruatie.',
-    icon: 'time-outline',
+    title: 'Schrijfstijl',
+    subtitle: 'In welke stijl wil je je dagboeken?',
+    description: 'Kies de schrijfstijl die het beste bij jou past.',
+    icon: 'create-outline',
     iconColor: '#FF5722',
-    key: 'period_duration',
+    key: 'narrativeStyle',
     options: [
       {
-        id: '3-4',
-        title: '3-4 dagen',
-        subtitle: 'Kort',
-        description: 'Je menstruatie duurt 3 tot 4 dagen',
-        icon: 'trending-down-outline',
-        recommended: false
-      },
-      {
-        id: '5-6',
-        title: '5-6 dagen',
-        subtitle: 'Gemiddeld',
-        description: 'Je menstruatie duurt 5 tot 6 dagen',
-        icon: 'remove-outline',
+        id: NARRATIVE_STYLES.STANDAARD,
+        title: 'Standaard',
+        subtitle: 'Neutrale beschrijving',
+        description: 'Objectieve beschrijving van je dag',
+        icon: 'document-outline',
         recommended: true
       },
       {
-        id: '7-8',
-        title: '7-8 dagen',
-        subtitle: 'Lang',
-        description: 'Je menstruatie duurt 7 tot 8 dagen',
-        icon: 'trending-up-outline',
+        id: NARRATIVE_STYLES.PROFESSIONEEL,
+        title: 'Professioneel',
+        subtitle: 'Zakelijke toon',
+        description: 'Formele en gestructureerde dagboeken',
+        icon: 'briefcase-outline',
+        recommended: false
+      },
+      {
+        id: NARRATIVE_STYLES.CASUAL,
+        title: 'Casual',
+        subtitle: 'Relaxed schrijven',
+        description: 'Informele en persoonlijke stijl',
+        icon: 'happy-outline',
+        recommended: false
+      },
+      {
+        id: NARRATIVE_STYLES.POETIC,
+        title: 'Poëtisch',
+        subtitle: 'Creatief & Beeldend',
+        description: 'Artistieke en beeldende beschrijvingen',
+        icon: 'color-palette-outline',
         recommended: false
       }
     ]
@@ -96,33 +108,34 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     type: 'selection',
     title: 'Wat wil je bijhouden?',
     subtitle: 'Kies je tracking doelen',
-    description: 'We passen de app aan op basis van wat jij belangrijk vindt om bij te houden.',
-    icon: 'target-outline',
+    description: 'We passen de app aan op basis van wat jij belangrijk vindt.',
+    icon: 'checkmark-done-outline',
     iconColor: '#2196F3',
     key: 'tracking_goals',
     options: [
       {
-        id: 'period_prediction',
-        title: 'Menstruatie voorspelling',
-        subtitle: 'Voor je volgende cyclus',
-        description: 'Ontvang meldingen voordat je menstruatie begint',
-        icon: 'calendar-outline',
-        recommended: true
+        id: 'health_fitness',
+        title: 'Gezondheid & Fitness',
+        subtitle: 'Stappen, workouts, gezondheid',
+        description: 'Volg je dagelijkse activiteit en sportprestaties',
+        icon: 'fitness-outline',
+        recommended: true,
+        badge: 'Populair'
       },
       {
-        id: 'fertility_tracking',
-        title: 'Vruchtbaarheid volgen',
-        subtitle: 'Voor zwangerschap of anticonceptie',
-        description: 'Identificeer je meest vruchtbare dagen',
-        icon: 'heart-outline',
+        id: 'life_patterns',
+        title: 'Levenspatronen',
+        subtitle: 'Locaties en dagelijkse routines',
+        description: 'Ontdek patronen in je dagelijkse leven',
+        icon: 'location-outline',
         recommended: false
       },
       {
-        id: 'symptom_tracking',
-        title: 'Symptomen registreren',
-        subtitle: 'Stemming, pijn en klachten',
-        description: 'Houd fysieke en emotionele symptomen bij',
-        icon: 'medkit-outline',
+        id: 'digital_wellness',
+        title: 'Digital Wellness',
+        subtitle: 'App gebruik tracking',
+        description: 'Begrijp je telefoongebruik en schermtijd',
+        icon: 'phone-portrait-outline',
         recommended: false
       }
     ]
@@ -131,36 +144,72 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     id: 'permissions',
     type: 'permission',
     title: 'Toestemmingen',
-    subtitle: 'Laat ons je helpen met meldingen en locatie',
-    description: 'Deze toestemmingen helpen ons je beter te ondersteunen met accurate voorspellingen en tijdige meldingen.',
+    subtitle: 'Geef de app toegang tot belangrijke functies',
+    description: 'Deze toestemmingen helpen ons je activiteiten nauwkeurig bij te houden en persoonlijke inzichten te geven.',
     icon: 'shield-checkmark-outline',
     iconColor: '#4CAF50',
     key: 'permissions',
-    required: true,
+    required: false,
     permissions: [
       {
-        permission: 'notifications',
-        title: 'Meldingen',
-        subtitle: 'Herinneringen voor je cyclus',
-        description: 'Stuur je herinneringen voor je menstruatie en vruchtbare dagen',
-        icon: 'notifications-outline',
-        required: true
+        permission: 'android.permission.ACTIVITY_RECOGNITION',
+        title: 'Activiteit Herkenning',
+        subtitle: 'Detecteer beweging en activiteit',
+        description: 'Herkent automatisch lopen, fietsen en andere activiteiten',
+        icon: 'walk-outline',
+        required: false,
+        androidOnly: true
       },
       {
-        permission: 'location',
+        permission: 'android.permission.ACCESS_FINE_LOCATION',
         title: 'Locatie',
-        subtitle: 'Verbeterde voorspellingen',
-        description: 'Gebruik je locatie voor nauwkeurigere voorspellingen op basis van weer en locatie',
+        subtitle: 'Bezochte plaatsen bijhouden',
+        description: 'Houd bezochte locaties bij voor je dagboek',
         icon: 'location-outline',
         required: false
       },
       {
-        permission: 'health',
-        title: 'Gezondheidsdata',
-        subtitle: 'Gegevens synchronisatie',
-        description: 'Synchroniseer met Apple Health of Google Fit',
-        icon: 'heart-pulse-outline',
+        permission: 'android.permission.READ_CALL_LOG',
+        title: 'Telefoongeschiedenis',
+        subtitle: 'Optioneel voor dagboek context',
+        description: 'Voeg telefoonactiviteit toe aan je dagelijkse verhaal',
+        icon: 'call-outline',
         required: false
+      },
+      {
+        permission: 'android.permission.POST_NOTIFICATIONS',
+        title: 'Notificaties',
+        subtitle: 'Dagelijkse herinneringen',
+        description: 'Ontvang herinneringen voor je dagboek',
+        icon: 'notifications-outline',
+        required: false
+      },
+      {
+        permission: 'android.permission.health.READ_STEPS',
+        title: 'Health Connect - Stappen',
+        subtitle: 'Stappen data lezen',
+        description: 'Lees je stappen van Health Connect',
+        icon: 'footsteps-outline',
+        required: false,
+        androidOnly: true
+      },
+      {
+        permission: 'android.permission.health.READ_DISTANCE',
+        title: 'Health Connect - Afstand',
+        subtitle: 'Afstand data lezen',
+        description: 'Lees afgelegde afstand van Health Connect',
+        icon: 'map-outline',
+        required: false,
+        androidOnly: true
+      },
+      {
+        permission: 'android.permission.health.READ_ACTIVE_CALORIES_BURNED',
+        title: 'Health Connect - Calorieën',
+        subtitle: 'Verbrande calorieën',
+        description: 'Lees verbrande calorieën van Health Connect',
+        icon: 'flame-outline',
+        required: false,
+        androidOnly: true
       }
     ]
   },
@@ -169,7 +218,7 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     type: 'info',
     title: 'Je bent klaar!',
     subtitle: 'Welkom bij Minakami',
-    description: 'Je hebt de onboarding voltooid. We gaan je helpen je cyclus beter te begrijpen en je gezondheid te optimaliseren.',
+    description: 'Je hebt de onboarding voltooid. Begin vandaag nog met het automatisch genereren van je persoonlijke dagboeken!',
     icon: 'checkmark-circle-outline',
     iconColor: '#4CAF50',
     key: 'onboarding_completed'
