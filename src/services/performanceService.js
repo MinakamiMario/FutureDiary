@@ -13,7 +13,7 @@ class PerformanceService {
       }
     };
     this.isMonitoring = false;
-    this.slowQueryThreshold = 1000; // 1 second
+    this.slowQueryThreshold = 2000; // 2 seconds (increased for complex queries)
     this.maxStoredMetrics = 100; // Keep last 100 measurements
   }
 
