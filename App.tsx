@@ -2,17 +2,21 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StatusBar, StyleSheet, Platform} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import DashboardScreen from './src/screens/dashboardScreen.js';
 import JournalScreen from './src/screens/journalScreen.js';
 import StatsScreen from './src/screens/statsScreen.js';
 import SettingsScreen from './src/screens/settingsScreen.js';
-import OnboardingScreen from './src/screens/onBoardingScreen.js';
+import OnboardingScreen from './src/screens/onboarding';
 import HealthDataService from './src/services/healthDataService';
 import {AppProvider} from './src/utils/appContext';
 import {ThemeProvider} from './src/utils/themeContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import './src/utils/onboardingTestUtils'; // Load test utils in development
+
+// Load test utils only in development
+if (__DEV__) {
+  require('./src/utils/onboardingTestUtils');
+}
 
 // Font configuration for better text rendering
 const defaultFontFamily = Platform.select({
@@ -157,7 +161,7 @@ function AppContent() {
             iconName = focused ? 'settings' : 'settings-outline';
           }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Icon name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#4a90e2',
         tabBarInactiveTintColor: '#8e8e93',
