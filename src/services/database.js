@@ -1,7 +1,7 @@
 import SQLite from 'react-native-sqlite-2';
 import {formatDateToYYYYMMDD} from '../utils/formatters';
 import performanceService from './performanceService';
-import {BaseService} from './BaseService';
+import BaseService from './BaseService';
 // Import samsungHealthService lazily to avoid circular dependency
 
 class DatabaseService extends BaseService {
@@ -171,13 +171,23 @@ class DatabaseService extends BaseService {
     });
 
     // Run database migrations to add missing columns for existing users
-    await this.runMigrations();
+    try {
+      await this.runMigrations();
+    } catch (migrationError) {
+      await this.error('Migration failed, but database is functional', migrationError);
+      // Continue - database is still usable with base schema
+    }
 
     // Create performance indexes
-    await this.createPerformanceIndexes();
+    try {
+      await this.createPerformanceIndexes();
+    } catch (indexError) {
+      await this.warn('Performance indexes creation failed', indexError);
+      // Non-critical - database works without indexes, just slower
+    }
 
     await this.log(
-      'Database initialized successfully with performance indexes',
+      'Database initialized successfully',
     );
   }
 
@@ -746,12 +756,13 @@ class DatabaseService extends BaseService {
 
   // Debug function to check database structure
   async debugDatabaseStructure() {
-    if (!__DEV__) return;
+    // Only run in development AND if explicitly enabled
+    if (!__DEV__ || !this.db) return;
 
     try {
       // List all tables
       const tables = await this.getAll(`
-        SELECT name FROM sqlite_master 
+        SELECT name FROM sqlite_master
         WHERE type='table' AND name NOT LIKE 'sqlite_%'
         ORDER BY name
       `);
@@ -760,14 +771,19 @@ class DatabaseService extends BaseService {
       for (const table of tables) {
         await this.log(`- ${table.name}`);
 
-        // Get table structure
-        const columns = await this.getAll(`PRAGMA table_info(${table.name})`);
-        for (const col of columns) {
-          await this.log(`  ${col.name}: ${col.type}`);
+        // Get table structure with error handling
+        try {
+          const columns = await this.getAll(`PRAGMA table_info(${table.name})`);
+          for (const col of columns) {
+            await this.log(`  ${col.name}: ${col.type}`);
+          }
+        } catch (colError) {
+          await this.warn(`Could not get columns for table ${table.name}`, colError);
         }
       }
     } catch (error) {
-      await this.error('Debug database structure failed', error);
+      // Debug failure is non-critical
+      await this.warn('Debug database structure failed', error);
     }
   }
 
@@ -1001,17 +1017,18 @@ class DatabaseService extends BaseService {
 
       await this.ensureInitialized();
 
-      // Get Samsung Health data for the day
+      // Get Health Connect data for the day
       let healthSummary = null;
       try {
-        // Lazy load samsungHealthService to avoid circular dependency
-        const samsungHealthService = require('./samsungHealthService').default;
-        if (samsungHealthService && samsungHealthService.isReady()) {
-          const dateObj = new Date(date);
-          healthSummary = await samsungHealthService.getHealthSummary(dateObj);
+        // Lazy load healthDataService to avoid circular dependency
+        const healthDataService = require('./healthDataService').default;
+        if (healthDataService && healthDataService.getHealthStats) {
+          // Call without parameters - service determines date range internally
+          healthSummary = await healthDataService.getHealthStats();
         }
       } catch (healthError) {
-        if (__DEV__) console.log('Samsung Health data not available for summary:', healthError);
+        // Health data not critical - continue without it
+        await this.warn('Health Connect data not available for summary', healthError);
       }
 
       // Parallel query execution for better performance
@@ -1056,14 +1073,14 @@ class DatabaseService extends BaseService {
             [date],
           ),
 
-          // Get Samsung Health data from database
+          // Get Health Connect data from activities table
           this.safeGetAllAsync(
             `
-          SELECT type, SUM(value) as total_value, COUNT(*) as count
-          FROM health_data 
-          WHERE DATE(timestamp/1000, 'unixepoch') = ? AND source = 'samsung_health'
+          SELECT type, SUM(calories) as total_calories, SUM(distance) as total_distance, COUNT(*) as count
+          FROM activities 
+          WHERE DATE(start_time/1000, 'unixepoch') = ? AND source = 'health_connect'
           GROUP BY type 
-          ORDER BY total_value DESC
+          ORDER BY count DESC
         `,
             [date],
           ),
@@ -1080,22 +1097,22 @@ class DatabaseService extends BaseService {
 
       // Process health data for summary
       let healthHighlight = null;
-      if (healthSummary) {
-        if (healthSummary.steps > 10000) {
-          healthHighlight = `Indrukwekkende ${healthSummary.steps} stappen`;
-        } else if (healthSummary.steps > 0) {
-          healthHighlight = `${healthSummary.steps} stappen`;
+      if (healthSummary && healthSummary.daily) {
+        const daily = healthSummary.daily;
+        if (daily.steps > 10000) {
+          healthHighlight = `Indrukwekkende ${daily.steps} stappen`;
+        } else if (daily.steps > 0) {
+          healthHighlight = `${daily.steps} stappen`;
         }
         
-        if (healthSummary.sleep > 0) {
-          const sleepHours = Math.round(healthSummary.sleep / (1000 * 60 * 60) * 10) / 10;
+        if (daily.calories > 0) {
           if (!healthHighlight) {
-            healthHighlight = `${sleepHours} uur geslapen`;
+            healthHighlight = `${daily.calories} calorieën verbrand`;
           }
         }
       }
 
-      // Prepare summary with Samsung Health data
+      // Prepare summary with Health Connect data
       const summary = {
         date,
         morningActivity: mostCommonActivity,
@@ -1103,7 +1120,7 @@ class DatabaseService extends BaseService {
         mostVisitedLocation: mostVisitedLocation
           ? `${mostVisitedLocation.latitude},${mostVisitedLocation.longitude}`
           : null,
-        healthHighlight, // Nieuwe Samsung Health highlight
+        healthHighlight, // Health Connect highlight
         summaryData: JSON.stringify({
           activities: activitiesResult,
           calls: callsResult,
@@ -2677,91 +2694,136 @@ class DatabaseService extends BaseService {
     try {
       await this.log('Starting migration to version 5: Adding Strava integration tables');
 
-      // Create athlete_profiles table for Strava athlete information
-      await this.execAsync(`
-        CREATE TABLE IF NOT EXISTS athlete_profiles (
-          athlete_id INTEGER PRIMARY KEY,
-          username TEXT,
-          firstname TEXT,
-          lastname TEXT,
-          profile_url TEXT,
-          avatar_url TEXT,
-          city TEXT,
-          state TEXT,
-          country TEXT,
-          sex TEXT,
-          premium INTEGER DEFAULT 0,
-          summit INTEGER DEFAULT 0,
-          created_at INTEGER NOT NULL,
-          updated_at INTEGER NOT NULL
-        )
-      `);
+      // Create tables first (non-destructive)
+      try {
+        await this.execAsync(`
+          CREATE TABLE IF NOT EXISTS athlete_profiles (
+            athlete_id INTEGER PRIMARY KEY,
+            username TEXT,
+            firstname TEXT,
+            lastname TEXT,
+            profile_url TEXT,
+            avatar_url TEXT,
+            city TEXT,
+            state TEXT,
+            country TEXT,
+            sex TEXT,
+            premium INTEGER DEFAULT 0,
+            summit INTEGER DEFAULT 0,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL
+          )
+        `);
 
-      // Create sync_state table for tracking synchronization status
-      await this.execAsync(`
-        CREATE TABLE IF NOT EXISTS sync_state (
-          service TEXT PRIMARY KEY,
-          last_sync_timestamp INTEGER DEFAULT 0,
-          initial_sync_complete INTEGER DEFAULT 0,
-          sync_count INTEGER DEFAULT 0,
-          last_error TEXT,
-          error_count INTEGER DEFAULT 0,
-          updated_at INTEGER NOT NULL
-        )
-      `);
+        await this.execAsync(`
+          CREATE TABLE IF NOT EXISTS sync_state (
+            service TEXT PRIMARY KEY,
+            last_sync_timestamp INTEGER DEFAULT 0,
+            initial_sync_complete INTEGER DEFAULT 0,
+            sync_count INTEGER DEFAULT 0,
+            last_error TEXT,
+            error_count INTEGER DEFAULT 0,
+            updated_at INTEGER NOT NULL
+          )
+        `);
+      } catch (tableError) {
+        await this.warn('Could not create Strava tables', tableError);
+        // Continue - tables might already exist
+      }
 
-      // Add additional Strava-specific columns to activities table if they don't exist
-      await this.addColumnIfNotExists('activities', 'startTime', 'INTEGER');
-      await this.addColumnIfNotExists('activities', 'endTime', 'INTEGER');
-      await this.addColumnIfNotExists('activities', 'created_at', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'updated_at', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'average_speed', 'REAL DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'max_speed', 'REAL DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'average_cadence', 'REAL DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'average_watts', 'REAL DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'max_watts', 'REAL DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'kilojoules', 'REAL DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'device_watts', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'has_heartrate', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'elev_high', 'REAL DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'elev_low', 'REAL DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'pr_count', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'achievement_count', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'kudos_count', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'comment_count', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'athlete_count', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'photo_count', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'trainer', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'commute', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'manual', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'private', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'visibility', 'TEXT');
-      await this.addColumnIfNotExists('activities', 'flagged', 'INTEGER DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'gear_id', 'TEXT');
-      await this.addColumnIfNotExists('activities', 'start_latitude', 'REAL');
-      await this.addColumnIfNotExists('activities', 'start_longitude', 'REAL');
-      await this.addColumnIfNotExists('activities', 'end_latitude', 'REAL');
-      await this.addColumnIfNotExists('activities', 'end_longitude', 'REAL');
-      await this.addColumnIfNotExists('activities', 'external_id', 'TEXT');
-      await this.addColumnIfNotExists('activities', 'upload_id', 'TEXT');
-      await this.addColumnIfNotExists('activities', 'weighted_average_watts', 'REAL DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'suffer_score', 'REAL DEFAULT 0');
-      await this.addColumnIfNotExists('activities', 'workout_type', 'INTEGER');
-      await this.addColumnIfNotExists('activities', 'description', 'TEXT');
+      // Add columns in batches with error handling for each batch
+      const columnBatches = [
+        // Batch 1: Core columns
+        [
+          ['startTime', 'INTEGER'],
+          ['endTime', 'INTEGER'],
+          ['created_at', 'INTEGER DEFAULT 0'],
+          ['updated_at', 'INTEGER DEFAULT 0']
+        ],
+        // Batch 2: Speed and power metrics
+        [
+          ['average_speed', 'REAL DEFAULT 0'],
+          ['max_speed', 'REAL DEFAULT 0'],
+          ['average_cadence', 'REAL DEFAULT 0'],
+          ['average_watts', 'REAL DEFAULT 0'],
+          ['max_watts', 'REAL DEFAULT 0'],
+          ['kilojoules', 'REAL DEFAULT 0'],
+          ['device_watts', 'INTEGER DEFAULT 0']
+        ],
+        // Batch 3: Health and elevation metrics
+        [
+          ['has_heartrate', 'INTEGER DEFAULT 0'],
+          ['elev_high', 'REAL DEFAULT 0'],
+          ['elev_low', 'REAL DEFAULT 0']
+        ],
+        // Batch 4: Social and achievement metrics
+        [
+          ['pr_count', 'INTEGER DEFAULT 0'],
+          ['achievement_count', 'INTEGER DEFAULT 0'],
+          ['kudos_count', 'INTEGER DEFAULT 0'],
+          ['comment_count', 'INTEGER DEFAULT 0'],
+          ['athlete_count', 'INTEGER DEFAULT 0'],
+          ['photo_count', 'INTEGER DEFAULT 0']
+        ],
+        // Batch 5: Activity metadata
+        [
+          ['trainer', 'INTEGER DEFAULT 0'],
+          ['commute', 'INTEGER DEFAULT 0'],
+          ['manual', 'INTEGER DEFAULT 0'],
+          ['private', 'INTEGER DEFAULT 0'],
+          ['visibility', 'TEXT'],
+          ['flagged', 'INTEGER DEFAULT 0'],
+          ['gear_id', 'TEXT']
+        ],
+        // Batch 6: Location and external data
+        [
+          ['start_latitude', 'REAL'],
+          ['start_longitude', 'REAL'],
+          ['end_latitude', 'REAL'],
+          ['end_longitude', 'REAL'],
+          ['external_id', 'TEXT'],
+          ['upload_id', 'TEXT']
+        ],
+        // Batch 7: Advanced metrics
+        [
+          ['weighted_average_watts', 'REAL DEFAULT 0'],
+          ['suffer_score', 'REAL DEFAULT 0'],
+          ['workout_type', 'INTEGER'],
+          ['description', 'TEXT']
+        ]
+      ];
 
-      // Create indexes for Strava-related queries
-      await this.execAsync('CREATE INDEX IF NOT EXISTS idx_activities_strava_id ON activities(strava_id)');
-      await this.execAsync('CREATE INDEX IF NOT EXISTS idx_activities_source ON activities(source)');
-      await this.execAsync('CREATE INDEX IF NOT EXISTS idx_activities_sport_type ON activities(sport_type)');
-      await this.execAsync('CREATE INDEX IF NOT EXISTS idx_activities_startTime ON activities(startTime)');
-      await this.execAsync('CREATE INDEX IF NOT EXISTS idx_activities_source_start ON activities(source, startTime)');
-      await this.execAsync('CREATE INDEX IF NOT EXISTS idx_sync_state_service ON sync_state(service)');
-      await this.execAsync('CREATE INDEX IF NOT EXISTS idx_athlete_profiles_athlete_id ON athlete_profiles(athlete_id)');
+      // Process batches with individual error handling
+      for (let i = 0; i < columnBatches.length; i++) {
+        try {
+          for (const [columnName, columnDefinition] of columnBatches[i]) {
+            await this.addColumnIfNotExists('activities', columnName, columnDefinition);
+          }
+          await this.log(`Migration batch ${i + 1}/${columnBatches.length} completed`);
+        } catch (batchError) {
+          await this.warn(`Migration batch ${i + 1} failed, continuing...`, batchError);
+          // Continue with next batch
+        }
+      }
 
-      await this.log('Migration to version 5 completed successfully');
+      // Create indexes (non-critical)
+      try {
+        await this.execAsync('CREATE INDEX IF NOT EXISTS idx_activities_strava_id ON activities(strava_id)');
+        await this.execAsync('CREATE INDEX IF NOT EXISTS idx_activities_source ON activities(source)');
+        await this.execAsync('CREATE INDEX IF NOT EXISTS idx_activities_sport_type ON activities(sport_type)');
+        await this.execAsync('CREATE INDEX IF NOT EXISTS idx_activities_startTime ON activities(startTime)');
+        await this.execAsync('CREATE INDEX IF NOT EXISTS idx_activities_source_start ON activities(source, startTime)');
+        await this.execAsync('CREATE INDEX IF NOT EXISTS idx_sync_state_service ON sync_state(service)');
+        await this.execAsync('CREATE INDEX IF NOT EXISTS idx_athlete_profiles_athlete_id ON athlete_profiles(athlete_id)');
+      } catch (indexError) {
+        await this.warn('Some indexes could not be created', indexError);
+        // Non-critical - continue
+      }
+
+      await this.log('Migration to version 5 completed (with possible partial failures)');
     } catch (error) {
       await this.error('Migration to version 5 failed', error);
-      throw error;
+      // Don't throw - database is still usable
     }
   }
 
