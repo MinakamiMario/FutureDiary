@@ -6,7 +6,7 @@ import locationService from './locationService';
 import callLogService from './callLogService';
 // import appUsageService from './appUsageService'; // TEMPORARILY DISABLED - causes import error
 import databaseService from './database';
-import samsungHealthService from './samsungHealthService';
+// import samsungHealthService from './samsungHealthService'; // REMOVED - Only using Health Connect
 import { getContactName } from '../utils/contactsHelper';
 import { formatDuration, formatHours } from '../utils/formatters';
 import {
@@ -54,60 +54,11 @@ const getDailyActivities = async (date) => {
     const startTimestamp = startOfDay.getTime();
     const endTimestamp = endOfDay.getTime();
     
-    // Probeer eerst Samsung Health data te krijgen
+    // Get activities from database (includes Health Connect data)
     let activities = await databaseService.getActivities(startTimestamp, endTimestamp);
     
-    // Voeg Samsung Health gezondheidsdata toe als beschikbaar
-    if (samsungHealthService.isReady()) {
-      try {
-        const healthSummary = await samsungHealthService.getHealthSummary(date);
-        if (healthSummary) {
-          // Voeg gezondheidsactiviteiten toe aan de lijst
-          if (healthSummary.steps > 0) {
-            activities.push({
-              activity_type: 'steps',
-              value: healthSummary.steps,
-              timestamp: startTimestamp,
-              source: 'samsung_health',
-              details: `${healthSummary.steps} stappen`
-            });
-          }
-          
-          if (healthSummary.calories > 0) {
-            activities.push({
-              activity_type: 'calories',
-              value: healthSummary.calories,
-              timestamp: startTimestamp,
-              source: 'samsung_health',
-              details: `${healthSummary.calories} calorieën verbrand`
-            });
-          }
-          
-          if (healthSummary.sleep > 0) {
-            const sleepHours = Math.round(healthSummary.sleep / (1000 * 60 * 60) * 10) / 10;
-            activities.push({
-              activity_type: 'sleep',
-              value: healthSummary.sleep,
-              timestamp: startTimestamp,
-              source: 'samsung_health',
-              details: `${sleepHours} uur geslapen`
-            });
-          }
-          
-          if (healthSummary.heartRate > 0) {
-            activities.push({
-              activity_type: 'heart_rate',
-              value: healthSummary.heartRate,
-              timestamp: startTimestamp,
-              source: 'samsung_health',
-              details: `Gemiddelde hartslag: ${healthSummary.heartRate} bpm`
-            });
-          }
-        }
-      } catch (healthError) {
-        if (__DEV__) console.log('Samsung Health data not available for activities:', healthError);
-      }
-    }
+    // Samsung Health integration removed - now using Health Connect only
+    // Health data will be collected through healthDataService and stored in database
     
     return activities;
   } catch (error) {

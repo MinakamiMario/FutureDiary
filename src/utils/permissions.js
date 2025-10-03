@@ -63,6 +63,55 @@ const requestPreciseLocationSettings = async () => {
   });
 };
 
+// SUPER SAFE location permission - speciaal voor onboarding grijze scherm probleem
+export const requestLocationPermissionsSafe = async () => {
+  console.log('[PERMISSIONS] Starting SAFE location permission request');
+  
+  try {
+    // Stap 1: Check huidige status
+    const fineLocationResult = await check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+    const coarseLocationResult = await check(PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION);
+    
+    console.log(`[PERMISSIONS] Current status - Fine: ${fineLocationResult}, Coarse: ${coarseLocationResult}`);
+    
+    // Als alles al granted is, return direct
+    if (fineLocationResult === RESULTS.GRANTED || coarseLocationResult === RESULTS.GRANTED) {
+      console.log('[PERMISSIONS] Location permission already granted');
+      return { 
+        [PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION]: fineLocationResult,
+        [PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION]: coarseLocationResult
+      };
+    }
+    
+    // Stap 2: Gebruik requestMultiple voor atomische permission requests
+    console.log('[PERMISSIONS] Requesting both location permissions simultaneously');
+    
+    // Wacht even voordat we het systeem UI laten verschijnen - voorkomt race conditions
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    const results = await requestMultiple([
+      PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+      PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION
+    ]);
+    
+    console.log('[PERMISSIONS] Location permission results:', results);
+    
+    // Wacht even na permission request - laat systeem UI weer verdwijnen
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    return results;
+    
+  } catch (error) {
+    console.error('[PERMISSIONS] CRITICAL ERROR in safe location permission:', error);
+    
+    // Return een safe fallback
+    return {
+      [PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION]: RESULTS.DENIED,
+      [PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION]: RESULTS.DENIED
+    };
+  }
+};
+
 // Location permissions (fine and coarse) - met exacte locatie ondersteuning
 export const requestLocationPermissions = async () => {
   try {
@@ -194,26 +243,17 @@ export const requestActivityRecognitionPermission = async () => {
   }
 };
 
-// Notification permission (Android 13+)
+// Notification permission (Android 13+) - SAFE VERSION zonder Alert
 export const requestNotificationPermission = async () => {
   try {
     if (Platform.Version >= 33) {
       const result = await check(PERMISSIONS.ANDROID.POST_NOTIFICATIONS);
       
       if (result === RESULTS.DENIED) {
-        return new Promise((resolve) => {
-          Alert.alert(
-            'Notificaties',
-            'Voor het ontvangen van dagelijkse samenvattingen en herinneringen hebben we toestemming nodig voor notificaties.',
-            [
-              { text: 'Weiger', style: 'cancel', onPress: () => resolve(RESULTS.DENIED) },
-              { text: 'Toestaan', onPress: async () => {
-                const requestResult = await request(PERMISSIONS.ANDROID.POST_NOTIFICATIONS);
-                resolve(requestResult);
-              }}
-            ]
-          );
-        });
+        console.log('[PERMISSIONS] Requesting notification permission without Alert');
+        const requestResult = await request(PERMISSIONS.ANDROID.POST_NOTIFICATIONS);
+        console.log(`[PERMISSIONS] Notification permission result: ${requestResult}`);
+        return requestResult;
       }
       
       return result;
