@@ -13,7 +13,7 @@ import {
   Alert,
   Dimensions
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import databaseService from '../services/database';
 
 const { width, height } = Dimensions.get('window');
@@ -92,7 +92,7 @@ const FloatingNoteButton = ({ date, onNoteAdded }) => {
           onPress={handleButtonPress}
           activeOpacity={0.8}
         >
-          <Ionicons name="add" size={24} color="#fff" />
+          <Icon name="add" size={24} color="#fff" />
         </TouchableOpacity>
       </Animated.View>
 
@@ -116,7 +116,7 @@ const FloatingNoteButton = ({ date, onNoteAdded }) => {
                   style={styles.closeButton}
                   onPress={handleCancel}
                 >
-                  <Ionicons name="close" size={24} color="#666" />
+                  <Icon name="close" size={24} color="#666" />
                 </TouchableOpacity>
               </View>
 

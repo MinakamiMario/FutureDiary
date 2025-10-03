@@ -1,7 +1,7 @@
 // src/components/ActivityList.js
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import databaseService from '../services/database';
 import errorHandler from '../services/errorLogger';
 
@@ -167,7 +167,7 @@ const ActivityList = ({ limit = 10 }) => {
     return (
       <View style={styles.activityItem}>
         <View style={styles.activityIconContainer}>
-          <Ionicons 
+          <Icon 
             name={getActivityIcon(activity.type)} 
             size={24} 
             color="#4F8EF7" 
@@ -219,7 +219,7 @@ const ActivityList = ({ limit = 10 }) => {
   if (activities.length === 0) {
     return (
       <View style={styles.emptyContainer}>
-        <Ionicons name="walk-outline" size={48} color="#B8C2CC" />
+        <Icon name="walk-outline" size={48} color="#B8C2CC" />
         <Text style={styles.emptyText}>Geen activiteiten geregistreerd vandaag</Text>
       </View>
     );

@@ -14,7 +14,7 @@ import {
   Linking,
   ActivityIndicator
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { useAppContext } from '../utils/appContext';
 import { Colors, Spacing, BorderRadius } from '../styles/designSystem';
 
@@ -429,7 +429,7 @@ const PermissionsManager = () => {
                 <View key={category.id} style={styles.overviewItem}>
                   <View style={[styles.statusIndicator, { backgroundColor: statusStyle.color }]} />
                   <Text style={styles.overviewText}>{category.name}</Text>
-                  <Ionicons name={statusStyle.icon} size={16} color={statusStyle.color} />
+                  <Icon name={statusStyle.icon} size={16} color={statusStyle.color} />
                 </View>
               );
             })}
@@ -452,7 +452,7 @@ const PermissionsManager = () => {
               <View key={category.id} style={styles.permissionCard}>
                 <View style={styles.permissionHeader}>
                   <View style={styles.permissionInfo}>
-                    <Ionicons name={category.icon} size={24} color={statusStyle.color} />
+                    <Icon name={category.icon} size={24} color={statusStyle.color} />
                     <View style={styles.permissionText}>
                       <Text style={styles.permissionName}>{category.name}</Text>
                       <Text style={styles.permissionDescription}>{category.description}</Text>
@@ -485,17 +485,17 @@ const PermissionsManager = () => {
         {/* Quick Actions */}
         <View style={styles.actionsSection}>
           <TouchableOpacity style={styles.actionButton} onPress={checkAllPermissions}>
-            <Ionicons name="refresh" size={20} color="#4CAF50" />
+            <Icon name="refresh" size={20} color="#4CAF50" />
             <Text style={styles.actionButtonText}>Status vernieuwen</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.actionButton} onPress={openAppSettings}>
-            <Ionicons name="settings" size={20} color="#2196F3" />
+            <Icon name="settings" size={20} color="#2196F3" />
             <Text style={styles.actionButtonText}>App Instellingen</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={[styles.actionButton, styles.resetButton]} onPress={resetAllPermissions}>
-            <Ionicons name="refresh-circle" size={20} color="#F44336" />
+            <Icon name="refresh-circle" size={20} color="#F44336" />
             <Text style={[styles.actionButtonText, styles.resetButtonText]}>Alles resetten</Text>
           </TouchableOpacity>
         </View>
@@ -504,19 +504,19 @@ const PermissionsManager = () => {
         <View style={styles.infoSection}>
           <Text style={styles.infoTitle}>Waarom machtigingen?</Text>
           <View style={styles.infoItem}>
-            <Ionicons name="shield-checkmark" size={16} color="#4CAF50" />
+            <Icon name="shield-checkmark" size={16} color="#4CAF50" />
             <Text style={styles.infoText}>
               Je hebt volledige controle over welke data de app mag gebruiken
             </Text>
           </View>
           <View style={styles.infoItem}>
-            <Ionicons name="lock-closed" size={16} color="#2196F3" />
+            <Icon name="lock-closed" size={16} color="#2196F3" />
             <Text style={styles.infoText}>
               Alle data wordt lokaal opgeslagen en versleuteld
             </Text>
           </View>
           <View style={styles.infoItem}>
-            <Ionicons name="information-circle" size={16} color="#FF9800" />
+            <Icon name="information-circle" size={16} color="#FF9800" />
             <Text style={styles.infoText}>
               Je kunt machtigingen op elk moment aanpassen in de app instellingen
             </Text>

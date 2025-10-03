@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import DashboardScreen from './src/screens/dashboardScreen.js';
 import JournalScreen from './src/screens/journalScreen.js';
 import StatsScreen from './src/screens/statsScreen.js';
-import SettingsScreen from './src/screens/settingsScreen.js';
+import SettingsNavigator from './src/screens/settingsScreen.js';
 import OnboardingScreen from './src/screens/onboarding';
 import HealthDataService from './src/services/healthDataService';
 import {AppProvider} from './src/utils/appContext';
@@ -201,7 +201,7 @@ function AppContent() {
       />
       <Tab.Screen
         name="Instellingen"
-        component={SettingsScreen}
+        component={SettingsNavigator}
         options={{tabBarLabel: 'Instellingen'}}
       />
     </Tab.Navigator>

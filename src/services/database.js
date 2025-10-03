@@ -589,9 +589,9 @@ class DatabaseService extends BaseService {
           await this.execAsync(
             `ALTER TABLE activities ADD COLUMN timestamp INTEGER`,
           );
-          // Copy date values to timestamp column for existing records
+          // Copy start_time values to timestamp column for existing records
           await this.execAsync(
-            `UPDATE activities SET timestamp = date WHERE timestamp IS NULL`,
+            `UPDATE activities SET timestamp = start_time WHERE timestamp IS NULL`,
           );
           await this.log('Added timestamp column to activities table');
         } catch (alterError) {

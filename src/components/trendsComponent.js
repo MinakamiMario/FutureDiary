@@ -1,7 +1,7 @@
 // src/components/TrendsComponent.js
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const TrendsComponent = ({ trends }) => {
   if (!trends) {
@@ -20,11 +20,11 @@ const TrendsComponent = ({ trends }) => {
   // Bereken de trendpijl op basis van veranderingspercentage
   const getTrendIcon = (changePercentage) => {
     if (changePercentage > 5) {
-      return <Ionicons name="arrow-up" size={16} color="#4CAF50" />;
+      return <Icon name="arrow-up" size={16} color="#4CAF50" />;
     } else if (changePercentage < -5) {
-      return <Ionicons name="arrow-down" size={16} color="#F44336" />;
+      return <Icon name="arrow-down" size={16} color="#F44336" />;
     } else {
-      return <Ionicons name="remove" size={16} color="#FFC107" />;
+      return <Icon name="remove" size={16} color="#FFC107" />;
     }
   };
 
@@ -156,7 +156,7 @@ const TrendsComponent = ({ trends }) => {
             {Object.entries(trends.activityTypes).map(([type, count]) => (
               <View key={type} style={styles.activityItem}>
                 <View style={styles.activityIconContainer}>
-                  <Ionicons
+                  <Icon
                     name={
                       type === 'walking'
                         ? 'walk-outline'

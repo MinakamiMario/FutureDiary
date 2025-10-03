@@ -10,7 +10,7 @@ import {
   ScrollView,
   SafeAreaView
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const NARRATIVE_STYLES = {
@@ -136,11 +136,11 @@ const NarrativeStyleScreen = ({ navigation }) => {
               disabled={saving}
             >
               <View style={styles.optionHeader}>
-                <Ionicons name={option.icon} size={24} color="#4F8EF7" />
+                <Icon name={option.icon} size={24} color="#4F8EF7" />
                 <Text style={styles.optionTitle}>{option.name}</Text>
                 {selectedStyle === option.id && (
                   <View style={styles.selectedIndicator}>
-                    <Ionicons name="checkmark-circle" size={24} color="#4F8EF7" />
+                    <Icon name="checkmark-circle" size={24} color="#4F8EF7" />
                   </View>
                 )}
               </View>
@@ -157,7 +157,7 @@ const NarrativeStyleScreen = ({ navigation }) => {
         
         <View style={styles.infoContainer}>
           <View style={styles.infoHeader}>
-            <Ionicons name="information-circle-outline" size={20} color="#4F8EF7" />
+            <Icon name="information-circle-outline" size={20} color="#4F8EF7" />
             <Text style={styles.infoHeaderText}>Over verhalende stijlen</Text>
           </View>
           <Text style={styles.infoText}>

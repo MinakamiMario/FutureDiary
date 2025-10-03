@@ -1,0 +1,16 @@
+
+> MinakamiAppFinal@0.0.1 start
+> react-native start
+
+error listen EADDRINUSE: address already in use :::8081.
+Error: listen EADDRINUSE: address already in use :::8081
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at /Users/oussama/MinakamiApp/MinakamiAppFinal/node_modules/metro/src/index.flow.js:368:14
+    at new Promise (<anonymous>)
+    at earlyPortCheck (/Users/oussama/MinakamiApp/MinakamiAppFinal/node_modules/metro/src/index.flow.js:364:11)
+    at exports.runServer (/Users/oussama/MinakamiApp/MinakamiAppFinal/node_modules/metro/src/index.flow.js:145:9)
+    at Object.runServer [as func] (/Users/oussama/MinakamiApp/MinakamiAppFinal/node_modules/@react-native-community/cli-plugin-metro/build/commands/start/runServer.js:100:49)
+    at async Command.handleAction (/Users/oussama/MinakamiApp/MinakamiAppFinal/node_modules/@react-native-community/cli/build/index.js:111:9)
+info Run CLI with --verbose flag for more details.

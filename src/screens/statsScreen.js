@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
   Dimensions
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { useAppContext } from '../utils/appContext';
 import { formatHours } from '../utils/formatters';
 
@@ -332,7 +332,7 @@ const StatsScreen = () => {
         style={[styles.tab, activeTab === 'health' && styles.activeTab]}
         onPress={() => setActiveTab('health')}
       >
-        <Ionicons
+        <Icon
           name="fitness-outline"
           size={20}
           color={activeTab === 'health' ? '#4F8EF7' : '#7F8C8D'}
@@ -351,7 +351,7 @@ const StatsScreen = () => {
         style={[styles.tab, activeTab === 'digital' && styles.activeTab]}
         onPress={() => setActiveTab('digital')}
       >
-        <Ionicons
+        <Icon
           name="phone-portrait-outline"
           size={20}
           color={activeTab === 'digital' ? '#4F8EF7' : '#7F8C8D'}
@@ -370,7 +370,7 @@ const StatsScreen = () => {
         style={[styles.tab, activeTab === 'location' && styles.activeTab]}
         onPress={() => setActiveTab('location')}
       >
-        <Ionicons
+        <Icon
           name="location-outline"
           size={20}
           color={activeTab === 'location' ? '#4F8EF7' : '#7F8C8D'}
@@ -389,7 +389,7 @@ const StatsScreen = () => {
         style={[styles.tab, activeTab === 'overview' && styles.activeTab]}
         onPress={() => setActiveTab('overview')}
       >
-        <Ionicons
+        <Icon
           name="analytics-outline"
           size={20}
           color={activeTab === 'overview' ? '#4F8EF7' : '#7F8C8D'}
@@ -459,19 +459,19 @@ const StatsScreen = () => {
       {/* Key Metrics Row */}
       <View style={styles.metricsRow}>
         <View style={[styles.metricCard, { backgroundColor: healthStats.steps > 0 ? '#E8F5E8' : '#F5F5F5' }]}>
-          <Ionicons name="footsteps" size={24} color={healthStats.steps > 0 ? "#2E7D32" : "#9E9E9E"} />
+          <Icon name="footsteps" size={24} color={healthStats.steps > 0 ? "#2E7D32" : "#9E9E9E"} />
           <Text style={[styles.metricValue, { color: healthStats.steps > 0 ? "#2E7D32" : "#9E9E9E" }]}>
             {healthStats.steps > 0 ? healthStats.steps.toLocaleString() : '-'}
           </Text>
           <Text style={styles.metricLabel}>Stappen</Text>
         </View>
         <View style={[styles.metricCard, { backgroundColor: '#E3F2FD' }]}>
-          <Ionicons name="location" size={24} color="#1565C0" />
+          <Icon name="location" size={24} color="#1565C0" />
           <Text style={[styles.metricValue, { color: '#1565C0' }]}>{healthStats.distance} km</Text>
           <Text style={styles.metricLabel}>Afstand</Text>
         </View>
         <View style={[styles.metricCard, { backgroundColor: '#FFF3E0' }]}>
-          <Ionicons name="flame" size={24} color="#E65100" />
+          <Icon name="flame" size={24} color="#E65100" />
           <Text style={[styles.metricValue, { color: '#E65100' }]}>{healthStats.calories}</Text>
           <Text style={styles.metricLabel}>Calorieën</Text>
         </View>
@@ -481,11 +481,11 @@ const StatsScreen = () => {
       <View style={styles.card}>
         <View style={styles.cardHeader}>
           <Text style={styles.cardTitle}>Recente Trainingen</Text>
-          <Ionicons name="fitness-outline" size={20} color="#4F8EF7" />
+          <Icon name="fitness-outline" size={20} color="#4F8EF7" />
         </View>
         {healthStats.workouts.length === 0 ? (
           <View style={styles.emptyState}>
-            <Ionicons name="barbell-outline" size={48} color="#B8C2CC" />
+            <Icon name="barbell-outline" size={48} color="#B8C2CC" />
             <Text style={styles.emptyStateText}>
               {healthStats.hasRealData === false ? 
                 'Start activiteitenmonitoring in instellingen om trainingsdata te verzamelen' : 
@@ -497,7 +497,7 @@ const StatsScreen = () => {
           healthStats.workouts.map((workout, index) => (
             <View key={`workout-${index}`} style={styles.workoutItem}>
               <View style={styles.workoutIcon}>
-                <Ionicons name="fitness" size={20} color="#4F8EF7" />
+                <Icon name="fitness" size={20} color="#4F8EF7" />
               </View>
               <View style={styles.workoutDetails}>
                 <Text style={styles.workoutType}>{workout.sport_type || 'Training'}</Text>
@@ -518,17 +518,17 @@ const StatsScreen = () => {
         <Text style={styles.cardTitle}>Gezondheidswaarden</Text>
         <View style={styles.healthMetrics}>
           <View style={styles.healthMetric}>
-            <Ionicons name="heart" size={16} color="#E91E63" />
+            <Icon name="heart" size={16} color="#E91E63" />
             <Text style={styles.healthMetricLabel}>Hartslag</Text>
             <Text style={styles.healthMetricValue}>{healthStats.heartRate.avg} bpm</Text>
           </View>
           <View style={styles.healthMetric}>
-            <Ionicons name="moon" size={16} color="#673AB7" />
+            <Icon name="moon" size={16} color="#673AB7" />
             <Text style={styles.healthMetricLabel}>Slaap</Text>
             <Text style={styles.healthMetricValue}>{formatHours(healthStats.sleep.hours)}</Text>
           </View>
           <View style={styles.healthMetric}>
-            <Ionicons name="time" size={16} color="#FF9800" />
+            <Icon name="time" size={16} color="#FF9800" />
             <Text style={styles.healthMetricLabel}>Actief</Text>
             <Text style={styles.healthMetricValue}>{healthStats.activeMinutes}min</Text>
           </View>
@@ -543,17 +543,17 @@ const StatsScreen = () => {
       {/* Screen Time Overview */}
       <View style={styles.metricsRow}>
         <View style={[styles.metricCard, { backgroundColor: '#FFF3E0' }]}>
-          <Ionicons name="phone-portrait" size={24} color="#E65100" />
+          <Icon name="phone-portrait" size={24} color="#E65100" />
           <Text style={[styles.metricValue, { color: '#E65100' }]}>{digitalWellnessStats.screenTime}u</Text>
           <Text style={styles.metricLabel}>Schermtijd</Text>
         </View>
         <View style={[styles.metricCard, { backgroundColor: '#E8F5E8' }]}>
-          <Ionicons name="refresh" size={24} color="#2E7D32" />
+          <Icon name="refresh" size={24} color="#2E7D32" />
           <Text style={[styles.metricValue, { color: '#2E7D32' }]}>{digitalWellnessStats.pickups}</Text>
           <Text style={styles.metricLabel}>Keer opgepakt</Text>
         </View>
         <View style={[styles.metricCard, { backgroundColor: '#E3F2FD' }]}>
-          <Ionicons name="notifications" size={24} color="#1565C0" />
+          <Icon name="notifications" size={24} color="#1565C0" />
           <Text style={[styles.metricValue, { color: '#1565C0' }]}>{digitalWellnessStats.notifications}</Text>
           <Text style={styles.metricLabel}>Meldingen</Text>
         </View>
@@ -563,11 +563,11 @@ const StatsScreen = () => {
       <View style={styles.card}>
         <View style={styles.cardHeader}>
           <Text style={styles.cardTitle}>Meest gebruikte apps</Text>
-          <Ionicons name="apps-outline" size={20} color="#4F8EF7" />
+          <Icon name="apps-outline" size={20} color="#4F8EF7" />
         </View>
         {digitalWellnessStats.topApps.length === 0 ? (
           <View style={styles.emptyState}>
-            <Ionicons name="apps-outline" size={48} color="#B8C2CC" />
+            <Icon name="apps-outline" size={48} color="#B8C2CC" />
             <Text style={styles.emptyStateText}>
               {digitalWellnessStats.hasRealData === false ? 
                 'Activeer app-gebruik tracking om digitale wellness data te verzamelen' : 
@@ -579,7 +579,7 @@ const StatsScreen = () => {
           digitalWellnessStats.topApps.map((app, index) => (
             <View key={`app-${index}`} style={styles.appItem}>
               <View style={styles.appIcon}>
-                <Ionicons name="phone-portrait" size={20} color="#4F8EF7" />
+                <Icon name="phone-portrait" size={20} color="#4F8EF7" />
               </View>
               <View style={styles.appDetails}>
                 <Text style={styles.appName}>{app.app_name}</Text>
@@ -598,14 +598,14 @@ const StatsScreen = () => {
         <Text style={styles.cardTitle}>Focus & Balans</Text>
         <View style={styles.focusMetrics}>
           <View style={styles.focusItem}>
-            <Ionicons name="time-outline" size={20} color="#4CAF50" />
+            <Icon name="time-outline" size={20} color="#4CAF50" />
             <Text style={styles.focusLabel}>Focus tijd</Text>
             <Text style={[styles.focusValue, { color: '#4CAF50' }]}>
               {digitalWellnessStats.focusTime}u
             </Text>
           </View>
           <View style={styles.focusItem}>
-            <Ionicons name="moon-outline" size={20} color="#9C27B0" />
+            <Icon name="moon-outline" size={20} color="#9C27B0" />
             <Text style={styles.focusLabel}>Rust voor bedtijd</Text>
             <Text style={[styles.focusValue, { color: '#9C27B0' }]}>30min</Text>
           </View>
@@ -620,12 +620,12 @@ const StatsScreen = () => {
       {/* Mobility Overview */}
       <View style={styles.metricsRowTwo}>
         <View style={[styles.metricCard, { backgroundColor: '#E3F2FD' }]}>
-          <Ionicons name="location" size={24} color="#1565C0" />
+          <Icon name="location" size={24} color="#1565C0" />
           <Text style={[styles.metricValue, { color: '#1565C0' }]}>{mobilityStats.placesVisited}</Text>
           <Text style={styles.metricLabel}>Plekken bezocht</Text>
         </View>
         <View style={[styles.metricCard, { backgroundColor: '#E8F5E8' }]}>
-          <Ionicons name="car" size={24} color="#2E7D32" />
+          <Icon name="car" size={24} color="#2E7D32" />
           <Text style={[styles.metricValue, { color: '#2E7D32' }]}>{mobilityStats.distanceTraveled} km</Text>
           <Text style={styles.metricLabel}>Afgelegd</Text>
         </View>
@@ -636,21 +636,21 @@ const StatsScreen = () => {
         <Text style={styles.cardTitle}>Tijd verdeling</Text>
         <View style={styles.timeDistribution}>
           <View style={styles.timeItem}>
-            <Ionicons name="home" size={20} color="#4CAF50" />
+            <Icon name="home" size={20} color="#4CAF50" />
             <Text style={styles.timeLabel}>Thuis</Text>
             <Text style={[styles.timeValue, { color: '#4CAF50' }]}>
               {mobilityStats.timeAtHome}u
             </Text>
           </View>
           <View style={styles.timeItem}>
-            <Ionicons name="business" size={20} color="#FF9800" />
+            <Icon name="business" size={20} color="#FF9800" />
             <Text style={styles.timeLabel}>Werk</Text>
             <Text style={[styles.timeValue, { color: '#FF9800' }]}>
               {mobilityStats.timeAtWork}u
             </Text>
           </View>
           <View style={styles.timeItem}>
-            <Ionicons name="speedometer" size={20} color="#2196F3" />
+            <Icon name="speedometer" size={20} color="#2196F3" />
             <Text style={styles.timeLabel}>Gem. snelheid</Text>
             <Text style={[styles.timeValue, { color: '#2196F3' }]}>
               {mobilityStats.averageSpeed} km/u
@@ -663,11 +663,11 @@ const StatsScreen = () => {
       <View style={styles.card}>
         <View style={styles.cardHeader}>
           <Text style={styles.cardTitle}>Favoriete locaties</Text>
-          <Ionicons name="heart-outline" size={20} color="#4F8EF7" />
+          <Icon name="heart-outline" size={20} color="#4F8EF7" />
         </View>
         {locationStats.length === 0 ? (
           <View style={styles.emptyState}>
-            <Ionicons name="location-outline" size={48} color="#B8C2CC" />
+            <Icon name="location-outline" size={48} color="#B8C2CC" />
             <Text style={styles.emptyStateText}>
               Geen locatiegegevens beschikbaar
             </Text>
@@ -676,7 +676,7 @@ const StatsScreen = () => {
           locationStats.slice(0, 5).map((location, index) => (
             <View key={`location-${index}`} style={styles.locationItem}>
               <View style={styles.locationIconContainer}>
-                <Ionicons name="location" size={20} color="#4F8EF7" />
+                <Icon name="location" size={20} color="#4F8EF7" />
               </View>
               <View style={styles.locationDetails}>
                 <Text style={styles.locationName}>
@@ -713,22 +713,22 @@ const StatsScreen = () => {
           <Text style={styles.cardTitle}>Week overzicht</Text>
           <View style={styles.summaryGrid}>
             <View style={styles.summaryItem}>
-              <Ionicons name="fitness" size={24} color="#4CAF50" />
+              <Icon name="fitness" size={24} color="#4CAF50" />
               <Text style={styles.summaryValue}>{healthStats.steps.toLocaleString()}</Text>
               <Text style={styles.summaryLabel}>Stappen deze week</Text>
             </View>
             <View style={styles.summaryItem}>
-              <Ionicons name="phone-portrait" size={24} color="#FF9800" />
+              <Icon name="phone-portrait" size={24} color="#FF9800" />
               <Text style={styles.summaryValue}>{digitalWellnessStats.screenTime}u</Text>
               <Text style={styles.summaryLabel}>Gemiddelde schermtijd</Text>
             </View>
             <View style={styles.summaryItem}>
-              <Ionicons name="location" size={24} color="#2196F3" />
+              <Icon name="location" size={24} color="#2196F3" />
               <Text style={styles.summaryValue}>{mobilityStats.placesVisited}</Text>
               <Text style={styles.summaryLabel}>Unieke locaties</Text>
             </View>
             <View style={styles.summaryItem}>
-              <Ionicons name="barbell" size={24} color="#9C27B0" />
+              <Icon name="barbell" size={24} color="#9C27B0" />
               <Text style={styles.summaryValue}>{healthStats.workouts.length}</Text>
               <Text style={styles.summaryLabel}>Trainingen</Text>
             </View>
@@ -773,15 +773,15 @@ const StatsScreen = () => {
           <Text style={styles.cardTitle}>Persoonlijke records</Text>
           <View style={styles.recordsList}>
             <View style={styles.recordItem}>
-              <Ionicons name="trophy" size={16} color="#FFD700" />
+              <Icon name="trophy" size={16} color="#FFD700" />
               <Text style={styles.recordText}>Meeste stappen: 15.420 (vorige week)</Text>
             </View>
             <View style={styles.recordItem}>
-              <Ionicons name="trophy" size={16} color="#C0C0C0" />
+              <Icon name="trophy" size={16} color="#C0C0C0" />
               <Text style={styles.recordText}>Langste training: 90 min (hardlopen)</Text>
             </View>
             <View style={styles.recordItem}>
-              <Ionicons name="trophy" size={16} color="#CD7F32" />
+              <Icon name="trophy" size={16} color="#CD7F32" />
               <Text style={styles.recordText}>Minste schermtijd: 4u (zondag)</Text>
             </View>
           </View>

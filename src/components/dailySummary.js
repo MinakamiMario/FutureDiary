@@ -1,7 +1,7 @@
 // src/components/DailySummary.js
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const DailySummary = ({ summary }) => {
   if (!summary) {
@@ -81,7 +81,7 @@ const DailySummary = ({ summary }) => {
         <View style={styles.activityPeriods}>
           <View style={styles.activityPeriod}>
             <View style={styles.activityIconContainer}>
-              <Ionicons 
+              <Icon 
                 name={getActivityIcon(summary.morning_activity)} 
                 size={24} 
                 color="#4F8EF7" 
@@ -95,7 +95,7 @@ const DailySummary = ({ summary }) => {
           
           <View style={styles.activityPeriod}>
             <View style={styles.activityIconContainer}>
-              <Ionicons 
+              <Icon 
                 name={getActivityIcon(summary.afternoon_activity)} 
                 size={24} 
                 color="#4F8EF7" 
@@ -109,7 +109,7 @@ const DailySummary = ({ summary }) => {
           
           <View style={styles.activityPeriod}>
             <View style={styles.activityIconContainer}>
-              <Ionicons 
+              <Icon 
                 name={getActivityIcon(summary.evening_activity)} 
                 size={24} 
                 color="#4F8EF7" 
@@ -129,20 +129,20 @@ const DailySummary = ({ summary }) => {
         
         <View style={styles.statsGrid}>
           <View style={styles.statItem}>
-            <Ionicons name="footsteps-outline" size={20} color="#4F8EF7" />
+            <Icon name="footsteps-outline" size={20} color="#4F8EF7" />
             <Text style={styles.statValue}>{summary.total_steps || 0}</Text>
             <Text style={styles.statLabel}>Stappen</Text>
           </View>
           
           <View style={styles.statItem}>
-            <Ionicons name="timer-outline" size={20} color="#4F8EF7" />
+            <Icon name="timer-outline" size={20} color="#4F8EF7" />
             <Text style={styles.statValue}>{formatDuration(summary.total_active_time)}</Text>
             <Text style={styles.statLabel}>Actieve tijd</Text>
           </View>
           
           {summary.most_called_contact && (
             <View style={styles.statItem}>
-              <Ionicons name="call-outline" size={20} color="#4F8EF7" />
+              <Icon name="call-outline" size={20} color="#4F8EF7" />
               <Text style={styles.statValue}>{summary.most_called_contact}</Text>
               <Text style={styles.statLabel}>Meest gebeld</Text>
             </View>

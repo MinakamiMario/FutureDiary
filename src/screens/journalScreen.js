@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { 
   View, 
+  Text,
   StyleSheet, 
   FlatList, 
   TouchableOpacity, 
@@ -11,7 +12,7 @@ import {
   Modal,
   Platform
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { useFocusEffect } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import NarrativeSummary from '../components/narrativeSummary';
@@ -173,7 +174,7 @@ const JournalScreen = ({ navigation }) => {
             >
               <View style={styles.narrativeHeader}>
                 <View style={styles.narrativeDateContainer}>
-                  <Ionicons 
+                  <Icon 
                     name={item.period ? 
                       (item.period === 'week' ? 'calendar' : 'grid') : 
                       'document-text'
@@ -206,7 +207,7 @@ const JournalScreen = ({ navigation }) => {
               {!item.period && (
                 <View style={styles.readMoreContainer}>
                   <Text style={styles.readMoreText}>Lees meer</Text>
-                  <Ionicons name="chevron-forward" size={16} color={Colors.primary[600]} />
+                  <Icon name="chevron-forward" size={16} color={Colors.primary[600]} />
                 </View>
               )}
             </TouchableOpacity>
@@ -218,7 +219,7 @@ const JournalScreen = ({ navigation }) => {
           ListEmptyComponent={
             <View style={styles.emptyContainer}>
               <View style={styles.emptyIconContainer}>
-                <Ionicons name="book-outline" size={64} color={Colors.gray[400]} />
+                <Icon name="book-outline" size={64} color={Colors.gray[400]} />
               </View>
               <Text style={styles.emptyText}>
                 Geen dagverhalen gevonden voor deze periode
@@ -237,7 +238,7 @@ const JournalScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerLeft}>
-          <Ionicons name="book" size={28} color={Colors.primary[600]} style={styles.headerIcon} />
+          <Icon name="book" size={28} color={Colors.primary[600]} style={styles.headerIcon} />
           <Text style={styles.title}>Mijn Dagboek</Text>
         </View>
         <View style={styles.viewModeContainer}>
@@ -248,7 +249,7 @@ const JournalScreen = ({ navigation }) => {
             ]}
             onPress={() => handleViewModeChange('day')}
           >
-            <Ionicons 
+            <Icon 
               name="today" 
               size={16} 
               color={viewMode === 'day' ? Colors.white : Colors.gray[600]} 
@@ -270,7 +271,7 @@ const JournalScreen = ({ navigation }) => {
             ]}
             onPress={() => handleViewModeChange('week')}
           >
-            <Ionicons 
+            <Icon 
               name="calendar" 
               size={16} 
               color={viewMode === 'week' ? Colors.white : Colors.gray[600]} 
@@ -292,7 +293,7 @@ const JournalScreen = ({ navigation }) => {
             ]}
             onPress={() => handleViewModeChange('month')}
           >
-            <Ionicons 
+            <Icon 
               name="grid" 
               size={16} 
               color={viewMode === 'month' ? Colors.white : Colors.gray[600]} 
@@ -317,7 +318,7 @@ const JournalScreen = ({ navigation }) => {
             style={styles.dateNavButton}
             onPress={goToPreviousDay}
           >
-            <Ionicons name="chevron-back" size={24} color="#0066cc" />
+            <Icon name="chevron-back" size={24} color="#0066cc" />
           </TouchableOpacity>
           
           <TouchableOpacity 
@@ -328,14 +329,14 @@ const JournalScreen = ({ navigation }) => {
             <Text style={styles.currentDateSubtext}>
               {selectedDate.toLocaleDateString('nl-NL', { weekday: 'long' })}
             </Text>
-            <Ionicons name="calendar-outline" size={16} color="#666666" style={styles.calendarIcon} />
+            <Icon name="calendar-outline" size={16} color="#666666" style={styles.calendarIcon} />
           </TouchableOpacity>
           
           <TouchableOpacity 
             style={styles.dateNavButton}
             onPress={goToNextDay}
           >
-            <Ionicons name="chevron-forward" size={24} color="#0066cc" />
+            <Icon name="chevron-forward" size={24} color="#0066cc" />
           </TouchableOpacity>
         </View>
         
@@ -363,7 +364,7 @@ const JournalScreen = ({ navigation }) => {
                   style={styles.closeButton}
                   onPress={() => setShowDatePicker(false)}
                 >
-                  <Ionicons name="close" size={24} color="#666666" />
+                  <Icon name="close" size={24} color="#666666" />
                 </TouchableOpacity>
               </View>
               
@@ -399,11 +400,11 @@ const JournalScreen = ({ navigation }) => {
       ) : error ? (
         <View style={styles.errorContainer}>
           <View style={styles.errorIconContainer}>
-            <Ionicons name="alert-circle" size={48} color={Colors.error[500]} />
+            <Icon name="alert-circle" size={48} color={Colors.error[500]} />
           </View>
           <Text style={styles.errorText}>{error}</Text>
           <TouchableOpacity style={styles.retryButton} onPress={loadNarratives}>
-            <Ionicons name="refresh" size={20} color={Colors.white} style={styles.retryIcon} />
+            <Icon name="refresh" size={20} color={Colors.white} style={styles.retryIcon} />
             <Text style={styles.retryButtonText}>Opnieuw proberen</Text>
           </TouchableOpacity>
         </View>

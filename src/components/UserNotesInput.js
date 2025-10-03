@@ -12,7 +12,7 @@ import {
   KeyboardAvoidingView,
   Platform
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import databaseService from '../services/database';
 import { formatDateToYYYYMMDD } from '../utils/formatters';
 
@@ -143,7 +143,7 @@ const UserNotesInput = ({ date, onNotesChange, style }) => {
           onPress={() => setIsExpanded(!isExpanded)}
         >
           <View style={styles.headerLeft}>
-            <Ionicons name="create-outline" size={20} color="#4a90e2" />
+            <Icon name="create-outline" size={20} color="#4a90e2" />
             <Text style={styles.headerTitle}>Persoonlijke notities</Text>
             {notes.length > 0 && (
               <View style={styles.notesBadge}>
@@ -151,7 +151,7 @@ const UserNotesInput = ({ date, onNotesChange, style }) => {
               </View>
             )}
           </View>
-          <Ionicons 
+          <Icon 
             name={isExpanded ? "chevron-up" : "chevron-down"} 
             size={20} 
             color="#666" 
@@ -185,7 +185,7 @@ const UserNotesInput = ({ date, onNotesChange, style }) => {
                   onPress={addNote}
                   disabled={!newNoteText.trim()}
                 >
-                  <Ionicons 
+                  <Icon 
                     name="add" 
                     size={20} 
                     color={newNoteText.trim() ? "#fff" : "#999"} 
@@ -223,13 +223,13 @@ const UserNotesInput = ({ date, onNotesChange, style }) => {
                               style={styles.editButton}
                               onPress={saveEdit}
                             >
-                              <Ionicons name="checkmark" size={18} color="#00aa00" />
+                              <Icon name="checkmark" size={18} color="#00aa00" />
                             </TouchableOpacity>
                             <TouchableOpacity 
                               style={styles.editButton}
                               onPress={cancelEdit}
                             >
-                              <Ionicons name="close" size={18} color="#ff6b6b" />
+                              <Icon name="close" size={18} color="#ff6b6b" />
                             </TouchableOpacity>
                           </View>
                         </View>
@@ -247,13 +247,13 @@ const UserNotesInput = ({ date, onNotesChange, style }) => {
                               style={styles.actionButton}
                               onPress={() => startEditing(note)}
                             >
-                              <Ionicons name="pencil" size={16} color="#4a90e2" />
+                              <Icon name="pencil" size={16} color="#4a90e2" />
                             </TouchableOpacity>
                             <TouchableOpacity 
                               style={styles.actionButton}
                               onPress={() => deleteNote(note.id)}
                             >
-                              <Ionicons name="trash" size={16} color="#ff6b6b" />
+                              <Icon name="trash" size={16} color="#ff6b6b" />
                             </TouchableOpacity>
                           </View>
                         </View>

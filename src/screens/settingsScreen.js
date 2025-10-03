@@ -9,7 +9,7 @@ import {
   Alert,
   SafeAreaView
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStackNavigator } from '@react-navigation/stack';
 import AISettingsScreen from './aiSettingsScreen';
@@ -339,7 +339,7 @@ const SettingsScreen = ({ navigation }) => {
         <View style={styles.header}>
           <View style={styles.headerContent}>
             <View style={styles.titleContainer}>
-              <Ionicons name="settings" size={32} color={Colors.primary[600]} style={styles.headerIcon} />
+              <Icon name="settings" size={32} color={Colors.primary[600]} style={styles.headerIcon} />
               <Typography variant="h1" color="text.primary" style={styles.mainTitle}>Instellingen</Typography>
             </View>
             <Typography variant="body1" color="text.secondary" style={styles.subtitle}>
@@ -351,7 +351,7 @@ const SettingsScreen = ({ navigation }) => {
         {/* Data Bronnen */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Ionicons name="analytics" size={20} color={Colors.primary[500]} style={styles.sectionIcon} />
+            <Icon name="analytics" size={20} color={Colors.primary[500]} style={styles.sectionIcon} />
             <Typography variant="h6" color="text.primary" style={styles.sectionTitle}>Data Bronnen</Typography>
           </View>
           <Typography variant="body2" color="text.secondary" style={styles.sectionDescription}>
@@ -361,14 +361,14 @@ const SettingsScreen = ({ navigation }) => {
           {/* Automatische tracking */}
           <Card variant="elevated" style={styles.cardMargin}>
             <View style={styles.cardHeader}>
-              <Ionicons name="pulse" size={20} color={Colors.success[500]} />
+              <Icon name="pulse" size={20} color={Colors.success[500]} />
               <Typography variant="h6" color="text.primary" style={styles.cardTitle}>
                 Automatische Tracking
               </Typography>
             </View>
             
             <TouchableOpacity style={styles.settingRow} onPress={() => toggleSetting('trackActivity', !settings.trackActivity)}>
-              <Ionicons name="walk-outline" size={24} color={Colors.success[500]} />
+              <Icon name="walk-outline" size={24} color={Colors.success[500]} />
               <View style={styles.settingContent}>
                 <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                   Activiteiten
@@ -388,7 +388,7 @@ const SettingsScreen = ({ navigation }) => {
             <View style={[styles.divider, { backgroundColor: theme.colors.border.primary }]} />
             
             <TouchableOpacity style={styles.settingRow} onPress={() => toggleSetting('trackLocation', !settings.trackLocation)}>
-              <Ionicons name="location-outline" size={24} color={Colors.secondary[500]} />
+              <Icon name="location-outline" size={24} color={Colors.secondary[500]} />
               <View style={styles.settingContent}>
                 <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                   Locaties
@@ -408,7 +408,7 @@ const SettingsScreen = ({ navigation }) => {
             <View style={[styles.divider, { backgroundColor: theme.colors.border.primary }]} />
             
             <TouchableOpacity style={styles.settingRow} onPress={() => toggleSetting('trackCalls', !settings.trackCalls)}>
-              <Ionicons name="call-outline" size={24} color={Colors.warning[500]} />
+              <Icon name="call-outline" size={24} color={Colors.warning[500]} />
               <View style={styles.settingContent}>
                 <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                   Oproepen
@@ -430,14 +430,14 @@ const SettingsScreen = ({ navigation }) => {
           {/* Health Connect (Android) */}
           <Card variant="elevated" style={styles.cardMargin}>
             <View style={styles.cardHeader}>
-              <Ionicons name="fitness" size={20} color={Colors.success[500]} />
+              <Icon name="fitness" size={20} color={Colors.success[500]} />
               <Typography variant="h6" color="text.primary" style={styles.cardTitle}>
                 Health Connect
               </Typography>
             </View>
             
             <TouchableOpacity style={styles.settingRow} onPress={() => toggleSetting('healthConnect', !settings.healthConnectEnabled)}>
-              <Ionicons name="heart-outline" size={24} color={Colors.success[500]} />
+              <Icon name="heart-outline" size={24} color={Colors.success[500]} />
               <View style={styles.settingContent}>
                 <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                   Enable Health Connect
@@ -459,7 +459,7 @@ const SettingsScreen = ({ navigation }) => {
                 <View style={[styles.divider, { backgroundColor: theme.colors.border.primary }]} />
                 
                 <TouchableOpacity style={styles.settingRow} onPress={() => toggleSetting('healthConnectAutoSync', !settings.healthConnectAutoSync)}>
-                  <Ionicons name="sync-outline" size={24} color={Colors.primary[500]} />
+                  <Icon name="sync-outline" size={24} color={Colors.primary[500]} />
                   <View style={styles.settingContent}>
                     <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                       Auto Sync
@@ -479,7 +479,7 @@ const SettingsScreen = ({ navigation }) => {
                 <View style={[styles.divider, { backgroundColor: theme.colors.border.primary }]} />
                 
                 <TouchableOpacity style={styles.settingRow} onPress={() => syncHealthConnectData()}>
-                  <Ionicons name="refresh-outline" size={24} color={Colors.warning[500]} />
+                  <Icon name="refresh-outline" size={24} color={Colors.warning[500]} />
                   <View style={styles.settingContent}>
                     <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                       Sync Now
@@ -488,7 +488,7 @@ const SettingsScreen = ({ navigation }) => {
                       Importeer laatste health data
                     </Typography>
                   </View>
-                  <Ionicons name="chevron-forward" size={20} color={Colors.gray[400]} />
+                  <Icon name="chevron-forward" size={20} color={Colors.gray[400]} />
                 </TouchableOpacity>
               </>
             )}
@@ -497,7 +497,7 @@ const SettingsScreen = ({ navigation }) => {
           {/* Externe Bronnen */}
           <Card variant="elevated">
             <View style={styles.cardHeader}>
-              <Ionicons name="link" size={20} color={Colors.primary[500]} />
+              <Icon name="link" size={20} color={Colors.primary[500]} />
               <Typography variant="h6" color="text.primary" style={styles.cardTitle}>
                 Externe Bronnen
               </Typography>
@@ -507,7 +507,7 @@ const SettingsScreen = ({ navigation }) => {
               style={styles.settingRow}
               onPress={() => navigation.navigate('DataImport')}
             >
-              <Ionicons name="heart-circle" size={24} color={Colors.secondary[500]} />
+              <Icon name="heart-circle" size={24} color={Colors.secondary[500]} />
               <View style={styles.settingContent}>
                 <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                   Legacy Health Data
@@ -516,7 +516,7 @@ const SettingsScreen = ({ navigation }) => {
                   Google Fit, Apple Health (oude API's)
                 </Typography>
               </View>
-              <Ionicons name="chevron-forward" size={20} color={Colors.gray[400]} />
+              <Icon name="chevron-forward" size={20} color={Colors.gray[400]} />
             </TouchableOpacity>
             
             <View style={[styles.divider, { backgroundColor: theme.colors.border.primary }]} />
@@ -525,7 +525,7 @@ const SettingsScreen = ({ navigation }) => {
               style={styles.settingRow}
               onPress={() => connectToStrava()}
             >
-              <Ionicons name="bicycle" size={24} color="#FC4C02" />
+              <Icon name="bicycle" size={24} color="#FC4C02" />
               <View style={styles.settingContent}>
                 <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                   Strava
@@ -534,7 +534,7 @@ const SettingsScreen = ({ navigation }) => {
                   Workouts, routes, prestaties
                 </Typography>
               </View>
-              <Ionicons name="chevron-forward" size={20} color={Colors.gray[400]} />
+              <Icon name="chevron-forward" size={20} color={Colors.gray[400]} />
             </TouchableOpacity>
           </Card>
         </View>
@@ -542,7 +542,7 @@ const SettingsScreen = ({ navigation }) => {
         {/* AI Verhaal Generator */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Ionicons name="sparkles" size={20} color={Colors.primary[500]} style={styles.sectionIcon} />
+            <Icon name="sparkles" size={20} color={Colors.primary[500]} style={styles.sectionIcon} />
             <Typography variant="h6" color="text.primary" style={styles.sectionTitle}>AI Verhaal Generator</Typography>
           </View>
           <Typography variant="body2" color="text.secondary" style={styles.sectionDescription}>
@@ -554,7 +554,7 @@ const SettingsScreen = ({ navigation }) => {
               style={styles.settingRow}
               onPress={() => navigation.navigate('AISettings')}
             >
-              <Ionicons name="bulb-outline" size={24} color={Colors.primary[500]} />
+              <Icon name="bulb-outline" size={24} color={Colors.primary[500]} />
               <View style={styles.settingContent}>
                 <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                   AI Model
@@ -566,7 +566,7 @@ const SettingsScreen = ({ navigation }) => {
                   </Typography>
                 </View>
               </View>
-              <Ionicons name="chevron-forward" size={20} color={Colors.gray[400]} />
+              <Icon name="chevron-forward" size={20} color={Colors.gray[400]} />
             </TouchableOpacity>
             
             <View style={[styles.divider, { backgroundColor: theme.colors.border.primary }]} />
@@ -575,7 +575,7 @@ const SettingsScreen = ({ navigation }) => {
               style={styles.settingRow}
               onPress={() => navigation.navigate('NarrativeStyle')}
             >
-              <Ionicons name="document-text-outline" size={24} color={Colors.secondary[500]} />
+              <Icon name="document-text-outline" size={24} color={Colors.secondary[500]} />
               <View style={styles.settingContent}>
                 <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                   Schrijfstijl
@@ -584,7 +584,7 @@ const SettingsScreen = ({ navigation }) => {
                   {getNarrativeStyleDisplayName(narrativeStyle)}
                 </Typography>
               </View>
-              <Ionicons name="chevron-forward" size={20} color={Colors.gray[400]} />
+              <Icon name="chevron-forward" size={20} color={Colors.gray[400]} />
             </TouchableOpacity>
           </Card>
         </View>
@@ -592,13 +592,13 @@ const SettingsScreen = ({ navigation }) => {
         {/* App Voorkeuren */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Ionicons name="cog" size={20} color={Colors.primary[500]} style={styles.sectionIcon} />
+            <Icon name="cog" size={20} color={Colors.primary[500]} style={styles.sectionIcon} />
             <Typography variant="h6" color="text.primary" style={styles.sectionTitle}>App Voorkeuren</Typography>
           </View>
           
           <Card variant="elevated">
             <TouchableOpacity style={styles.settingRow} onPress={() => toggleSetting('notifications', !settings.allowNotifications)}>
-              <Ionicons name="notifications-outline" size={24} color={Colors.primary[500]} />
+              <Icon name="notifications-outline" size={24} color={Colors.primary[500]} />
               <View style={styles.settingContent}>
                 <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                   Notificaties
@@ -618,7 +618,7 @@ const SettingsScreen = ({ navigation }) => {
             <View style={[styles.divider, { backgroundColor: theme.colors.border.primary }]} />
             
             <TouchableOpacity style={styles.settingRow} onPress={() => toggleSetting('darkMode', !settings.darkMode)}>
-              <Ionicons name="moon-outline" size={24} color={Colors.primary[500]} />
+              <Icon name="moon-outline" size={24} color={Colors.primary[500]} />
               <View style={styles.settingContent}>
                 <Typography variant="body1" color="text.primary" style={styles.settingTitle}>
                   Donkere modus
@@ -641,7 +641,7 @@ const SettingsScreen = ({ navigation }) => {
         {/* Footer */}
         <View style={styles.footer}>
           <View style={styles.footerLogo}>
-            <Ionicons name="analytics" size={24} color={Colors.primary[500]} />
+            <Icon name="analytics" size={24} color={Colors.primary[500]} />
             <Typography variant="h6" color="text.primary" style={styles.footerTitle}>MinakamiApp</Typography>
           </View>
           <Typography variant="body2" color="text.secondary" style={styles.footerSubtitle}>

@@ -10,7 +10,7 @@ import {
   Linking,
   TextInput
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 // Services
 import healthDataService from '../services/healthDataService';
@@ -363,7 +363,7 @@ const DataImportScreen = ({ navigation }) => {
           <Card variant="elevated" style={styles.cardMargin}>
             <View style={styles.sourceRow}>
               <View style={styles.sourceInfo}>
-                <Ionicons 
+                <Icon 
                   name="fitness-outline" 
                   size={24} 
                   color={healthDataAvailability.hasHealthAccess ? Colors.success[500] : Colors.gray[400]} 
@@ -457,7 +457,7 @@ const DataImportScreen = ({ navigation }) => {
             
             {importStatus.healthcare && (
               <View style={[styles.statusRow, { backgroundColor: theme.colors.background.secondary }]}>
-                <Ionicons 
+                <Icon 
                   name={importStatus.healthcare.success ? "checkmark-circle" : "alert-circle"} 
                   size={16} 
                   color={importStatus.healthcare.success ? Colors.success[500] : Colors.error[500]} 
@@ -484,7 +484,7 @@ const DataImportScreen = ({ navigation }) => {
           <Card variant="elevated">
             <View style={styles.sourceRow}>
               <View style={styles.sourceInfo}>
-                <Ionicons 
+                <Icon 
                   name="call-outline" 
                   size={24} 
                   color={availableSources.callLog?.available ? Colors.success[500] : Colors.gray[400]} 
@@ -512,7 +512,7 @@ const DataImportScreen = ({ navigation }) => {
             
             {importStatus.callLog && (
               <View style={[styles.statusRow, { backgroundColor: theme.colors.background.secondary }]}>
-                <Ionicons 
+                <Icon 
                   name={importStatus.callLog.success ? "checkmark-circle" : "alert-circle"} 
                   size={16} 
                   color={importStatus.callLog.success ? Colors.success[500] : Colors.error[500]} 
@@ -537,7 +537,7 @@ const DataImportScreen = ({ navigation }) => {
           <Card variant="elevated">
             <View style={styles.sourceRow}>
               <View style={styles.sourceInfo}>
-                <Ionicons 
+                <Icon 
                   name="bicycle" 
                   size={24} 
                   color={stravaStatus.connected ? "#FC4C02" : Colors.gray[400]} 
@@ -605,7 +605,7 @@ const DataImportScreen = ({ navigation }) => {
             
             {importStatus.strava && (
               <View style={[styles.statusRow, { backgroundColor: theme.colors.background.secondary }]}>
-                <Ionicons 
+                <Icon 
                   name={importStatus.strava.success ? "checkmark-circle" : "alert-circle"} 
                   size={16} 
                   color={importStatus.strava.success ? Colors.success[500] : Colors.error[500]} 
@@ -627,7 +627,7 @@ const DataImportScreen = ({ navigation }) => {
           <Card variant="elevated">
             <View style={styles.importAllSection}>
               <View style={styles.importAllHeader}>
-                <Ionicons name="download-outline" size={32} color={Colors.primary[500]} />
+                <Icon name="download-outline" size={32} color={Colors.primary[500]} />
                 <View style={styles.importAllText}>
                   <Typography variant="h6" color="text.primary">
                     Alles Importeren
@@ -653,7 +653,7 @@ const DataImportScreen = ({ navigation }) => {
         <View style={styles.section}>
           <Card variant="outlined">
             <View style={styles.infoSection}>
-              <Ionicons name="information-circle-outline" size={24} color={Colors.primary[500]} />
+              <Icon name="information-circle-outline" size={24} color={Colors.primary[500]} />
               <View style={styles.infoText}>
                 <Typography variant="body2" color="text.secondary">
                   <Typography variant="body2" color="text.primary" weight="500">Let op:</Typography> 

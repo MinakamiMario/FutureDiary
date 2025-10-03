@@ -2,6 +2,9 @@
 export { default as OnboardingScreen } from './OnboardingScreen';
 export { default as OnboardingScreenWithErrorBoundary } from './OnboardingScreenWithErrorBoundary';
 
+// Default export for backwards compatibility
+export { default } from './OnboardingScreenWithErrorBoundary';
+
 // Types
 export type {
   OnboardingStep as OnboardingStepType,

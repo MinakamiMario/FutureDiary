@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { Spacing, Typography as DesignTypography, BorderRadius } from '../../styles/designSystem';
 import { getSafeColor, SafeColors } from '../../utils/safeColors';
 
@@ -119,7 +119,7 @@ const ConfidenceIndicator = ({
       activeOpacity={0.7}
     >
       <View style={styles.indicatorHeader}>
-        <Ionicons 
+        <Icon 
           name={confidenceConfig.icon} 
           size={sizeConfig.iconSize} 
           color={confidenceConfig.color} 
@@ -169,7 +169,7 @@ export const DataCardWithConfidence = ({
     <View style={[styles.dataCard, style]}>
       <View style={styles.dataCardHeader}>
         <View style={styles.dataCardTitleContainer}>
-          {icon && <Ionicons name={icon} size={20} color={getSafeColor('primary.500')} />}
+          {icon && <Icon name={icon} size={20} color={getSafeColor('primary.500')} />}
           <Text style={styles.dataCardTitle}>{title}</Text>
         </View>
         <ConfidenceIndicator 
@@ -219,7 +219,7 @@ export const ConfidenceLegend = ({ visible, onClose }) => {
         <View style={styles.legendHeader}>
           <Text style={styles.legendTitle}>Betrouwbaarheid Indicator</Text>
           <TouchableOpacity onPress={onClose}>
-            <Ionicons name="close" size={24} color={getSafeColor('gray.600')} />
+            <Icon name="close" size={24} color={getSafeColor('gray.600')} />
           </TouchableOpacity>
         </View>
         

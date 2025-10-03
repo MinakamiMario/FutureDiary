@@ -12,7 +12,7 @@ import {
   TextInput,
   KeyboardAvoidingView
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { 
   getPreferredAIModel, 
   setPreferredAIModel,
@@ -163,7 +163,7 @@ const AISettingsScreen = ({ navigation }) => {
         >
           <View style={styles.modelHeader}>
             <View style={styles.modelTitleRow}>
-              <Ionicons name="document-text-outline" size={24} color={selectedModel === AI_MODEL_TYPES.TEMPLATE ? "#0066cc" : "#666"} />
+              <Icon name="document-text-outline" size={24} color={selectedModel === AI_MODEL_TYPES.TEMPLATE ? "#0066cc" : "#666"} />
               <Text style={[styles.modelTitle, selectedModel === AI_MODEL_TYPES.TEMPLATE && styles.selectedTitle]}>
                 Eenvoudige Sjablonen
               </Text>
@@ -172,7 +172,7 @@ const AISettingsScreen = ({ navigation }) => {
               </View>
             </View>
             <View style={styles.modelStatus}>
-              <Ionicons name="checkmark-circle" size={16} color="#00aa00" />
+              <Icon name="checkmark-circle" size={16} color="#00aa00" />
               <Text style={styles.statusText}>Altijd beschikbaar</Text>
             </View>
           </View>
@@ -188,7 +188,7 @@ const AISettingsScreen = ({ navigation }) => {
         >
           <View style={styles.modelHeader}>
             <View style={styles.modelTitleRow}>
-              <Ionicons name="hardware-chip-outline" size={24} color={selectedModel === AI_MODEL_TYPES.WEBLLM ? "#0066cc" : "#666"} />
+              <Icon name="hardware-chip-outline" size={24} color={selectedModel === AI_MODEL_TYPES.WEBLLM ? "#0066cc" : "#666"} />
               <Text style={[styles.modelTitle, selectedModel === AI_MODEL_TYPES.WEBLLM && styles.selectedTitle]}>
                 WebLLM (Lokale AI)
               </Text>
@@ -197,7 +197,7 @@ const AISettingsScreen = ({ navigation }) => {
               </View>
             </View>
             <View style={styles.modelStatus}>
-              <Ionicons name="checkmark-circle" size={16} color="#00aa00" />
+              <Icon name="checkmark-circle" size={16} color="#00aa00" />
               <Text style={styles.statusText}>{isBrowserContext() ? 'Geen API key nodig' : 'Lokaal via WebView'}</Text>
             </View>
           </View>
@@ -216,7 +216,7 @@ const AISettingsScreen = ({ navigation }) => {
         >
           <View style={styles.modelHeader}>
             <View style={styles.modelTitleRow}>
-              <Ionicons name="sparkles-outline" size={24} color={selectedModel === AI_MODEL_TYPES.CLAUDE ? "#0066cc" : "#666"} />
+              <Icon name="sparkles-outline" size={24} color={selectedModel === AI_MODEL_TYPES.CLAUDE ? "#0066cc" : "#666"} />
               <Text style={[styles.modelTitle, selectedModel === AI_MODEL_TYPES.CLAUDE && styles.selectedTitle]}>
                 Claude AI
               </Text>
@@ -227,12 +227,12 @@ const AISettingsScreen = ({ navigation }) => {
             <View style={styles.modelStatus}>
               {isClaudeAvailable ? (
                 <>
-                  <Ionicons name="checkmark-circle" size={16} color="#00aa00" />
+                  <Icon name="checkmark-circle" size={16} color="#00aa00" />
                   <Text style={styles.statusText}>Beschikbaar</Text>
                 </>
               ) : (
                 <>
-                  <Ionicons name="key-outline" size={16} color="#ff9900" />
+                  <Icon name="key-outline" size={16} color="#ff9900" />
                   <Text style={styles.statusText}>API key vereist</Text>
                 </>
               )}
@@ -250,7 +250,7 @@ const AISettingsScreen = ({ navigation }) => {
         >
           <View style={styles.modelHeader}>
             <View style={styles.modelTitleRow}>
-              <Ionicons name="chatbubbles-outline" size={24} color={selectedModel === AI_MODEL_TYPES.CHATGPT ? "#0066cc" : "#666"} />
+              <Icon name="chatbubbles-outline" size={24} color={selectedModel === AI_MODEL_TYPES.CHATGPT ? "#0066cc" : "#666"} />
               <Text style={[styles.modelTitle, selectedModel === AI_MODEL_TYPES.CHATGPT && styles.selectedTitle]}>
                 ChatGPT
               </Text>
@@ -259,7 +259,7 @@ const AISettingsScreen = ({ navigation }) => {
               </View>
             </View>
             <View style={styles.modelStatus}>
-              <Ionicons name="checkmark-circle" size={16} color="#00aa00" />
+              <Icon name="checkmark-circle" size={16} color="#00aa00" />
               <Text style={styles.statusText}>Beschikbaar</Text>
             </View>
           </View>
@@ -279,7 +279,7 @@ const AISettingsScreen = ({ navigation }) => {
           <Text style={styles.inputLabel}>OpenAI Integration</Text>
           <View style={styles.loggedInContainer}>
             <View style={styles.loggedInStatus}>
-              <Ionicons name="checkmark-circle" size={20} color="#00aa00" />
+              <Icon name="checkmark-circle" size={20} color="#00aa00" />
               <Text style={styles.loggedInText}>Automatisch geconfigureerd</Text>
             </View>
             <Text style={styles.statusDescription}>

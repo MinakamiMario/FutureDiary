@@ -1,7 +1,7 @@
 // components/narrativeSummary.js
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { getNarrativeSummary, regenerateNarrativeSummary } from '../services/summaryService';
 import { formatDateToReadable } from '../utils/formatters';
 import UserNotesInput from './UserNotesInput';
@@ -89,7 +89,7 @@ const NarrativeSummary = ({ date, onRefresh }) => {
   if (error) {
     return (
       <View style={styles.errorContainer}>
-        <Ionicons name="alert-circle-outline" size={32} color="#cc3300" />
+        <Icon name="alert-circle-outline" size={32} color="#cc3300" />
         <Text style={styles.errorText}>{error}</Text>
         <TouchableOpacity style={styles.retryButton} onPress={loadNarrative}>
           <Text style={styles.retryButtonText}>Opnieuw proberen</Text>
@@ -109,7 +109,7 @@ const NarrativeSummary = ({ date, onRefresh }) => {
         />
         
         <View style={styles.emptyContainer}>
-          <Ionicons name="book-outline" size={48} color="#999999" />
+          <Icon name="book-outline" size={48} color="#999999" />
           <Text style={styles.emptyText}>Er is nog geen dagverhaal beschikbaar voor deze dag.</Text>
           {userNotes.length > 0 && (
             <Text style={styles.notesHintText}>
@@ -155,7 +155,7 @@ const NarrativeSummary = ({ date, onRefresh }) => {
               <ActivityIndicator size="small" color="#ffffff" />
             ) : (
               <React.Fragment>
-                <Ionicons name="refresh-outline" size={18} color="#ffffff" />
+                <Icon name="refresh-outline" size={18} color="#ffffff" />
                 <Text style={styles.refreshButtonText}>
                   {userNotes.length > 0 ? 'Vernieuwen met notities' : 'Vernieuwen'}
                 </Text>

@@ -1,0 +1,2959 @@
+
+                        ▒▒▓▓▓▓▒▒
+                     ▒▓▓▓▒▒░░▒▒▓▓▓▒
+                  ▒▓▓▓▓░░░▒▒▒▒░░░▓▓▓▓▒
+                 ▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓
+                 ▓▓░░░░░▒▓▓▓▓▓▓▒░░░░░▓▓
+                 ▓▓░░▓▓▒░░░▒▒░░░▒▓▒░░▓▓
+                 ▓▓░░▓▓▓▓▓▒▒▒▒▓▓▓▓▒░░▓▓
+                 ▓▓░░▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▓▓
+                 ▓▓▒░░▒▒▓▓▓▓▓▓▓▓▒░░░▒▓▓
+                  ▒▓▓▓▒░░░▒▓▓▒░░░▒▓▓▓▒
+                     ▒▓▓▓▒░░░░▒▓▓▓▒
+                        ▒▒▓▓▓▓▒▒
+
+
+warning: the transform cache was reset.
+                Welcome to Metro v0.76.9
+              Fast - Scalable - Integrated
+
+
+ BUNDLE  ./index.js 
+
+ ERROR  Error: Requiring unknown module "undefined". If you are sure the module exists, try restarting Metro. You may also want to run `yarn` or `npm install`., js engine: hermes
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ ERROR  Invariant Violation: "MinakamiAppFinal" has not been registered. This can happen if:
+* Metro (the local dev server) is run from the wrong folder. Check if Metro is running, stop it and restart it in the current project.
+* A module failed to load due to an error and `AppRegistry.registerComponent` wasn't called., js engine: hermes
+ BUNDLE  ./index.js 
+
+ ERROR  Error: Requiring unknown module "undefined". If you are sure the module exists, try restarting Metro. You may also want to run `yarn` or `npm install`., js engine: hermes
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ ERROR  Invariant Violation: "MinakamiAppFinal" has not been registered. This can happen if:
+* Metro (the local dev server) is run from the wrong folder. Check if Metro is running, stop it and restart it in the current project.
+* A module failed to load due to an error and `AppRegistry.registerComponent` wasn't called., js engine: hermes
+ BUNDLE  ./index.js 
+
+ ERROR  Error: Requiring unknown module "undefined". If you are sure the module exists, try restarting Metro. You may also want to run `yarn` or `npm install`., js engine: hermes
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ ERROR  Invariant Violation: "MinakamiAppFinal" has not been registered. This can happen if:
+* Metro (the local dev server) is run from the wrong folder. Check if Metro is running, stop it and restart it in the current project.
+* A module failed to load due to an error and `AppRegistry.registerComponent` wasn't called., js engine: hermes
+ BUNDLE  ./index.js 
+
+ LOG  Running "MinakamiAppFinal" with {"rootTag":41}
+ BUNDLE  ./index.js 
+
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ ERROR  Error: Requiring unknown module "undefined". If you are sure the module exists, try restarting Metro. You may also want to run `yarn` or `npm install`., js engine: hermes
+ BUNDLE  ./index.js 
+
+ ERROR  Error: Requiring unknown module "undefined". If you are sure the module exists, try restarting Metro. You may also want to run `yarn` or `npm install`., js engine: hermes
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ ERROR  Invariant Violation: "MinakamiAppFinal" has not been registered. This can happen if:
+* Metro (the local dev server) is run from the wrong folder. Check if Metro is running, stop it and restart it in the current project.
+* A module failed to load due to an error and `AppRegistry.registerComponent` wasn't called., js engine: hermes
+ BUNDLE  ./index.js 
+
+ ERROR  Error: Requiring unknown module "undefined". If you are sure the module exists, try restarting Metro. You may also want to run `yarn` or `npm install`., js engine: hermes
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ ERROR  Invariant Violation: "MinakamiAppFinal" has not been registered. This can happen if:
+* Metro (the local dev server) is run from the wrong folder. Check if Metro is running, stop it and restart it in the current project.
+* A module failed to load due to an error and `AppRegistry.registerComponent` wasn't called., js engine: hermes
+ BUNDLE  ./index.js 
+
+ INFO  [EncryptionService] react-native-crypto not available, using CryptoJS fallback
+ INFO  [EncryptionService] react-native-keychain not available, using AsyncStorage fallback
+ INFO  react-native-call-log not available, using demo mode for compatibility: CallLog API methods not found
+ LOG  CallLogService: Running in demo mode - native package not available
+ LOG  🧪 Onboarding test utils available globally:
+ LOG     - global.resetOnboarding()
+ LOG     - global.completeOnboarding()
+ LOG     - global.checkOnboardingStatus()
+ LOG     - global.debugOnboardingStorage()
+ LOG  Running "MinakamiAppFinal" with {"rootTag":41}
+ LOG  Activity task setup complete - using direct monitoring
+ LOG  Platform Detection: {"deviceType": {"brand": "google", "model": "sdk_gphone64_arm64", "platform": "android", "type": "Handset"}, "isEmulator": true, "shouldUseMockData": true}
+ LOG  [NotificationService] Native notification service available
+ LOG  [ONBOARDING] Step changed to: 0, data: {"description": "Minakami helpt je inzicht te krijgen in je dagelijkse activiteiten en gezondheid. Laten we beginnen met het instellen van je voorkeuren.", "icon": "heart-outline", "iconColor": "#0087FF", "id": "welcome", "subtitle": "Jouw persoonlijke gezondheidsassistent", "title": "Welkom bij Minakami"}
+ LOG  Starting activity monitoring...
+ BUNDLE  ./index.js 
+
+ INFO  [EncryptionService] react-native-crypto not available, using CryptoJS fallback
+ INFO  [EncryptionService] react-native-keychain not available, using AsyncStorage fallback
+ INFO  react-native-call-log not available, using demo mode for compatibility: CallLog API methods not found
+ LOG  CallLogService: Running in demo mode - native package not available
+ LOG  🧪 Onboarding test utils available globally:
+ LOG     - global.resetOnboarding()
+ LOG     - global.completeOnboarding()
+ LOG     - global.checkOnboardingStatus()
+ LOG     - global.debugOnboardingStorage()
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ LOG  Activity task setup complete - using direct monitoring
+ LOG  Platform Detection: {"deviceType": {"brand": "google", "model": "sdk_gphone64_arm64", "platform": "android", "type": "Handset"}, "isEmulator": true, "shouldUseMockData": true}
+ LOG  [NotificationService] Native notification service available
+ LOG  [ONBOARDING] Step changed to: 0, data: {"description": "Minakami helpt je inzicht te krijgen in je dagelijkse activiteiten en gezondheid. Laten we beginnen met het instellen van je voorkeuren.", "icon": "heart-outline", "iconColor": "#0087FF", "id": "welcome", "subtitle": "Jouw persoonlijke gezondheidsassistent", "title": "Welkom bij Minakami"}
+ LOG  Starting activity monitoring...
+ WARN  Real accelerometer not available, using mock data: [Error: Native sensors not available]
+ LOG  Starting location tracking...
+ ERROR  [ONBOARDING] EMERGENCY: No render for 116975ms
+ INFO  [INFO] Current database version: 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database version updated to 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database migrations completed successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database tables:  {"service": "DatabaseService"}
+ INFO  [INFO] - activities  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   end_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   details: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   calories: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   distance: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   sport_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   strava_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_avg: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_max: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elevation_gain: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   startTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   endTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   average_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_cadence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   kilojoules: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   device_watts: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   has_heartrate: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_high: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_low: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   pr_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   achievement_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   kudos_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   comment_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   photo_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   trainer: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   commute: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   manual: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   private: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   visibility: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   flagged: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   gear_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   start_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   external_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   upload_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   weighted_average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   suffer_score: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   workout_type: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   description: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - android_metadata  {"service": "DatabaseService"}
+ INFO  [INFO]   locale: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - app_usage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   app_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   package_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   category: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   session_date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   usage_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - athlete_profiles  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   username: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   firstname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   lastname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   profile_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   avatar_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   city: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   state: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   country: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   sex: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   premium: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   summit: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - call_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   phone_number: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   contact_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_date: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   is_analyzed: BOOLEAN  {"service": "DatabaseService"}
+ INFO  [INFO] - confidence_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   lineage_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   boost_reasons: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - daily_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   morning_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   afternoon_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   evening_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   night_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   total_steps: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   total_active_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_visited_location: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_called_contact: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary_data: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   health_highlight: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - data_lineage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   contributors: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   transformations: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - database_version  {"service": "DatabaseService"}
+ INFO  [INFO]   version: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - event_correlations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   rule_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   events: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   strength: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - health_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   unit: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - locations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   accuracy: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   visit_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_visited: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - narrative_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] - shadow_validation_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   deviation: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   severity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - sync_state  {"service": "DatabaseService"}
+ INFO  [INFO]   service: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   last_sync_timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   initial_sync_complete: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   sync_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_error: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   error_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - user_daily_notes  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   note_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] Database optimization completed  {"service": "DatabaseService"}
+ INFO  [INFO] Performance indexes created successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database initialized successfully with performance indexes  {"service": "DatabaseService"}
+ INFO  [INFO] DatabaseService initialized successfully  {"service": "DatabaseService"}
+ LOG  Location saved: {"lat": "52.371382", "lng": "4.904716", "place": "Location 52.3714, 4.9047"}
+ LOG  Location tracking started with interval: 300000
+ BUNDLE  ./index.js 
+
+ INFO  [EncryptionService] react-native-crypto not available, using CryptoJS fallback
+ INFO  [EncryptionService] react-native-keychain not available, using AsyncStorage fallback
+ INFO  react-native-call-log not available, using demo mode for compatibility: CallLog API methods not found
+ LOG  CallLogService: Running in demo mode - native package not available
+ LOG  🧪 Onboarding test utils available globally:
+ LOG     - global.resetOnboarding()
+ LOG     - global.completeOnboarding()
+ LOG     - global.checkOnboardingStatus()
+ LOG     - global.debugOnboardingStorage()
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ LOG  Activity task setup complete - using direct monitoring
+ LOG  Platform Detection: {"deviceType": {"brand": "google", "model": "sdk_gphone64_arm64", "platform": "android", "type": "Handset"}, "isEmulator": true, "shouldUseMockData": true}
+ LOG  [NotificationService] Native notification service available
+ LOG  [ONBOARDING] Step changed to: 0, data: {"description": "Minakami helpt je inzicht te krijgen in je dagelijkse activiteiten en gezondheid. Laten we beginnen met het instellen van je voorkeuren.", "icon": "heart-outline", "iconColor": "#0087FF", "id": "welcome", "subtitle": "Jouw persoonlijke gezondheidsassistent", "title": "Welkom bij Minakami"}
+ LOG  Starting activity monitoring...
+ WARN  Real accelerometer not available, using mock data: [Error: Native sensors not available]
+ LOG  Starting location tracking...
+ INFO  [INFO] Current database version: 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database version updated to 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database migrations completed successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database tables:  {"service": "DatabaseService"}
+ INFO  [INFO] - activities  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   end_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   details: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   calories: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   distance: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   sport_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   strava_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_avg: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_max: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elevation_gain: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   startTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   endTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   average_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_cadence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   kilojoules: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   device_watts: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   has_heartrate: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_high: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_low: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   pr_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   achievement_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   kudos_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   comment_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   photo_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   trainer: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   commute: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   manual: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   private: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   visibility: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   flagged: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   gear_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   start_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   external_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   upload_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   weighted_average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   suffer_score: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   workout_type: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   description: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - android_metadata  {"service": "DatabaseService"}
+ INFO  [INFO]   locale: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - app_usage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   app_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   package_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   category: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   session_date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   usage_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - athlete_profiles  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   username: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   firstname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   lastname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   profile_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   avatar_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   city: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   state: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   country: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   sex: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   premium: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   summit: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - call_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   phone_number: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   contact_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_date: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   is_analyzed: BOOLEAN  {"service": "DatabaseService"}
+ INFO  [INFO] - confidence_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   lineage_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   boost_reasons: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - daily_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   morning_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   afternoon_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   evening_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   night_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   total_steps: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   total_active_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_visited_location: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_called_contact: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary_data: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   health_highlight: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - data_lineage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   contributors: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   transformations: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - database_version  {"service": "DatabaseService"}
+ INFO  [INFO]   version: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - event_correlations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   rule_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   events: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   strength: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - health_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   unit: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - locations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   accuracy: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   visit_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_visited: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - narrative_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] - shadow_validation_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   deviation: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   severity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - sync_state  {"service": "DatabaseService"}
+ INFO  [INFO]   service: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   last_sync_timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   initial_sync_complete: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   sync_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_error: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   error_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - user_daily_notes  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   note_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] Database optimization completed  {"service": "DatabaseService"}
+ INFO  [INFO] Performance indexes created successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database initialized successfully with performance indexes  {"service": "DatabaseService"}
+ INFO  [INFO] DatabaseService initialized successfully  {"service": "DatabaseService"}
+ LOG  Location saved: {"lat": "52.371604", "lng": "4.905925", "place": "Location 52.3716, 4.9059"}
+ LOG  Location tracking started with interval: 300000
+ ERROR  [ONBOARDING] EMERGENCY: No render for 77830ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 82831ms
+ LOG  [ONBOARDING] Emergency UI recovery triggered
+ LOG  [ONBOARDING] Step changed to: 1, data: {"description": "Selecteer de AI-service die je verhalen en inzichten zal genereren.", "icon": "sparkles-outline", "iconColor": "#FF8C8C", "id": "ai-model", "options": [{"description": "Gebruikt voorgedefinieerde sjablonen voor snelle verhalen", "icon": "document-text-outline", "id": "template", "recommended": true, "subtitle": "Snel en offline", "title": "Eenvoudige Sjablonen"}, {"badge": "Premium", "description": "Premium AI voor uitgebreide en gepersonaliseerde verhalen", "icon": "sparkles-outline", "id": "claude", "subtitle": "Geavanceerd", "title": "Claude AI"}, {"badge": "Premium", "description": "OpenAI's ChatGPT voor creatieve en gedetailleerde verhalen", "icon": "chatbubbles-outline", "id": "chatgpt", "subtitle": "Intelligent", "title": "ChatGPT"}], "setting": "preferredAIModel", "subtitle": "Hoe wil je dat je verhalen worden gegenereerd?", "title": "Kies je AI-assistent", "type": "selection"}
+ ERROR  Warning: Each child in a list should have a unique "key" prop.
+
+Check the render method of `OnboardingScreen`. See https://reactjs.org/link/warning-keys for more information.
+    at TouchableOpacity
+    in OnboardingScreen (created by AppContent)
+    in AppContent (created by App)
+    in EnsureSingleNavigator
+    in BaseNavigationContainer
+    in ThemeProvider
+    in NavigationContainerInner (created by App)
+    in ThemeProvider (created by App)
+    in AppProvider (created by App)
+    in App
+    in RCTView (created by View)
+    in View (created by AppContainer)
+    in RCTView (created by View)
+    in View (created by AppContainer)
+    in AppContainer
+    in MinakamiAppFinal(RootComponent)
+ LOG  [ONBOARDING] Step changed to: 2, data: {"description": "Kies een stijl die bij jou past voor je dagelijkse samenvattingen.", "icon": "brush-outline", "iconColor": "#9C27B0", "id": "narrative-style", "options": [{"description": "Eenvoudige en duidelijke verhalen", "icon": "document-outline", "id": "standaard", "recommended": true, "subtitle": "Helder en direct", "title": "Standaard"}, {"description": "Informele en toegankelijke verhalen", "icon": "happy-outline", "id": "casual", "subtitle": "Vriendelijk en ontspannen", "title": "Casual"}, {"description": "Uitvoerige verhalen met veel context", "icon": "list-outline", "id": undefined, "subtitle": "Uitgebreid en informatief", "title": "Gedetailleerd"}], "setting": "narrativeStyle", "subtitle": "Hoe wil je dat je verhalen klinken?", "title": "Jouw vertelstijl", "type": "selection"}
+ LOG  [ONBOARDING] Step changed to: 3, data: {"description": "Kies welke informatie Minakami mag gebruiken om jouw verhaal te vertellen. Je kunt dit later altijd wijzigen.", "icon": "shield-checkmark-outline", "iconColor": "#008C00", "id": "permissions", "permissions": [{"description": "Toestaan om je dagelijkse activiteiten bij te houden", "icon": "walk-outline", "key": "trackActivity", "permission": "activity", "subtitle": "Stappen, beweging en activiteiten", "title": "Activiteit tracking"}, {"description": "Helpt bij het herkennen van patronen in je dagelijkse routine. Je wordt naar de systeem instellingen gebracht.", "icon": "location-outline", "key": "trackLocation", "permission": "location", "subtitle": "Waar je de meeste tijd doorbrengt", "title": "Locatie tracking"}, {"androidOnly": true, "description": "Alleen duur en aantal, geen inhoud of contacten", "icon": "call-outline", "key": "trackCalls", "permission": "calls", "subtitle": "Gespreksduur en frequentie", "title": "Oproep statistieken"}, {"description": "Ontvang dagelijkse inzichten over je activiteiten", "icon": "notifications-outline", "key": "allowNotifications", "permission": "notifications", "subtitle": "Samenvattingen en herinneringen", "title": "Dagelijkse meldingen"}], "subtitle": "Welke gegevens wil je delen?", "title": "Toestemmingen instellen", "type": "permissions"}
+ LOG  [ONBOARDING] Permission toggle started: trackCalls (calls)
+ LOG  [ONBOARDING] Setting loading state for trackCalls
+ LOG  [ONBOARDING] Requesting permission: calls
+ LOG  [ONBOARDING] Permission result for calls: false
+ LOG  [ONBOARDING] Permission denied for calls
+ LOG  [ONBOARDING] Cleaning up loading state for trackCalls
+ LOG  [ONBOARDING] Permission toggle completed: trackCalls
+ LOG  [ONBOARDING] Step changed to: 4, data: {"description": "Je persoonlijke gezondheidsassistent is klaar voor gebruik. Begin vandaag nog met het ontdekken van je dagelijkse patronen.", "icon": "checkmark-circle-outline", "iconColor": "#008C00", "id": "complete", "subtitle": "Minakami is ingesteld", "title": "Je bent klaar!"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 30013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 35014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 40011ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 45014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 50014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 55014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 60013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 65012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 70013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 75012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 80013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 85012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 90012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 95012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 100013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 105012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 110012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 115012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 120012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 125014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 130013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 135012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 140013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 145011ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 150013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 155014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 160013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 165012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 170012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 175011ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 180014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 185012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 190013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 195013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 200013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 205012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 210014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 215013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 220013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 225013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 230012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 235013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 240013ms
+ LOG  Location saved: {"lat": "52.370636", "lng": "4.907047", "place": "Location 52.3706, 4.9070"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 245013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 250014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 255013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 260014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 265013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 270012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 275014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 280012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 285013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 290014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 295013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 300012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 305013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 310013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 315013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 320013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 325013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 330012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 335013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 340013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 345012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 350013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 355013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 360013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 365012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 370013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 375012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 380012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 385012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 390013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 395012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 400013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 405013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 410012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 415012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 420016ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 425014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 430012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 435013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 440012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 445014ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 450012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 455012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 460012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 465013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 470012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 475012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 480012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 485013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 490013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 495012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 500012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 505012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 510012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 515012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 520013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 525012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 530013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 535013ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 540012ms
+ LOG  Location saved: {"lat": "52.365479", "lng": "4.901613", "place": "Location 52.3655, 4.9016"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 545012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 550012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 555012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 560012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 565012ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 570066ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 575045ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 580046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 585046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 590046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 595045ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 600047ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 605046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 610046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 615046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 620046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 625046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 630046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 635045ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 640047ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 645046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 650046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 655047ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 660046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 665047ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 670046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 675046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 680047ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 685045ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 690047ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 695046ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 700047ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 705063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 710064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 715062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 720062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 725064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 730064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 735062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 740062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 745062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 750062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 755063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 760062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 765062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 770063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 775062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 780063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 785062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 790063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 795062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 800062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 805063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 810062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 815063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 820062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 825061ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 830062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 835062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 840062ms
+ LOG  Location saved: {"lat": "52.370680", "lng": "4.908180", "place": "Location 52.3707, 4.9082"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 845063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 850063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 855063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 860062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 865063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 870062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 875063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 880062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 885062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 890063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 895063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 900063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 905062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 910063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 915063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 920063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 925063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 930063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 935063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 940063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 945062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 950062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 955062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 960063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 965062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 970062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 975062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 980062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 985063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 990063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 995064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1000063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1005063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1010062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1015063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1020062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1025063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1030063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1035063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1040063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1045063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1050063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1055063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1060063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1065063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1070063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1075063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1080063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1085062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1090063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1095062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1100063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1105062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1110062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1115063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1120063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1125063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1130061ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1135062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1140062ms
+ LOG  Location saved: {"lat": "52.369493", "lng": "4.902170", "place": "Location 52.3695, 4.9022"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1145062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1150062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1155062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1160061ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1165063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1170063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1175062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1180062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1185063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1190063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1195062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1200062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1205062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1210062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1215063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1220062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1225063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1230063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1235063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1240063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1245062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1250063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1255064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1260062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1265062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1270062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1275062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1280062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1285063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1290063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1295063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1300062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1305062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1310063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1315063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1320066ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1325063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1330062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1335062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1340063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1345063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1350063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1355064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1360062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1365063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1370064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1375063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1380063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1385062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1390064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1395063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1400062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1405063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1410063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1415063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1420063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1425062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1430063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1435063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1440063ms
+ LOG  Location saved: {"lat": "52.362948", "lng": "4.903007", "place": "Location 52.3629, 4.9030"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1445063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1450062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1455065ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1460063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1465062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1470062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1475064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1480064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1485062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1490062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1495064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1500063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1505063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1510062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1515062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1520062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1525062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1530063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1535061ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1540063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1545062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1550062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1555065ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1560062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1565062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1570063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1575063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1580063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1585062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1590062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1595062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1600063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1605064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1610063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1615074ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1620066ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1625063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1630062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1635063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1640063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1645065ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1650064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1655063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1660063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1665063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1670063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1675063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1680063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1685062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1690063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1695062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1700063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1705062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1710063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1715064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1720065ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1725063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1730063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1735064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1740063ms
+ LOG  Location saved: {"lat": "52.371958", "lng": "4.903648", "place": "Location 52.3720, 4.9036"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1745063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1750063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1755063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1760063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1765062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1770063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1775062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1780063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1785062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1790063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1795064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1800064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1805063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1810062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1815063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1820063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1825064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1830063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1835063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1840063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1845062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1850063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1855063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1860063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1865063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1870063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1875064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1880062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1885062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1890063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1895063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1900063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1905062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1910063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1915064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1920064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1925062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1930064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1935063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1940063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1945064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1950063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1955063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1960064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1965062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1970061ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1975067ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1980063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1985063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1990063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1995064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2000063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2005063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2010063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2015061ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2020063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2025062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2030063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2035063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2040063ms
+ LOG  Location saved: {"lat": "52.370894", "lng": "4.908663", "place": "Location 52.3709, 4.9087"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2045062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2050063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2055062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2060063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2065063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2070063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2075063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2080062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2085062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2090063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2095062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2100064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2105063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2110064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2115065ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2120063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2125062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2130065ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2135062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2140063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2145063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2150063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2155062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2160063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2165062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2170063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2175063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2180063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2185063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2190063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2195062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2200062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2205062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2210062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2215062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2220062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2225062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2230062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2235062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2240064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2245062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2250063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2255062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2260063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2265063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2270062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2275063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2280063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2285063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2290063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2295062ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2300064ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2305063ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2312379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2317380ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2322379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2327379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2332379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2337378ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2342379ms
+ LOG  Location saved: {"lat": "52.366807", "lng": "4.907068", "place": "Location 52.3668, 4.9071"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2347379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2352379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2357380ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2362379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2367380ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2372379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2377379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2382380ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2387379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2392379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2397380ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2402381ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2407379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2412379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2417380ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2422380ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2427378ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2432379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2437380ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2442379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2447379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2452379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2457381ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2462380ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2467379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2472379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2477379ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 2482378ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 3506544ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4551522ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4714657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4719657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4724659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4729657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4734656ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4739658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4744656ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4749659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4754659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4759661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4764658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4769658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4774658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4779657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4784658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4789658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4794659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4799659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4804659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4809657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4814658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4819659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4824658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4829659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4834657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4839660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4844658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4849659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4854659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4859656ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4864658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4869657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4874658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4879658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4884657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4889658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4894658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4899657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4904658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4909659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4914658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4919660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4924657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4929662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4934660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4939657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4944659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4949659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4954657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4959659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4964657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4969658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4974659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4979658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4984657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4989658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4994658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 4999657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5004660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5009659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5014658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5019658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5024659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5029656ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5034659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5039657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5044658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5049657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5054660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5059659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5064660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5069658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5074660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5079659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5084658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5089658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5094659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5099658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5104658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5109662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5114658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5119657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5124657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5129658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5134659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5139660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5144660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5149657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5154660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5159661ms
+ LOG  Location saved: {"lat": "52.363492", "lng": "4.906128", "place": "Location 52.3635, 4.9061"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5164659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5169658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5174658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5179657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5184659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5189657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5194657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5199658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5204659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5209659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5214658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5219657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5224657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5229669ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5234657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5239657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5244658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5249658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5254661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5259657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5264658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5269658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5274662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5279662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5284661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5289660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5294658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5299661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5304658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5309659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5314662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5319661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5324660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5329658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5334661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5339661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5344659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5349658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5354659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5359658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5364657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5369658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5374662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5379661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5384658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5389657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5394663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5399660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5404661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5409661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5414658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5419662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5424659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5429659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5434658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5439658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5444659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5449659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5454657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5459660ms
+ LOG  Location saved: {"lat": "52.363134", "lng": "4.909082", "place": "Location 52.3631, 4.9091"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5464658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5469657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5474659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5479656ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5484659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5489658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5494658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5499658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5504659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5509657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5514658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5519661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5524658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5529661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5534657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5539660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5544660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5549660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5554657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5559657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5564656ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5569658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5574658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5579660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5584658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5589658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5594660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5599662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5604657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5609659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5614658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5619662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5624658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5629658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5634660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5639658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5644658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5649658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5654665ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5659660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5664661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5669662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5674659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5679659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5684659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5689657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5694659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5699657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5704658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5709657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5714658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5719658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5724659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5729657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5734658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5739659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5744659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5749658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5754658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5759661ms
+ LOG  Location saved: {"lat": "52.370401", "lng": "4.900867", "place": "Location 52.3704, 4.9009"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5764662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5769658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5774660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5779659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5784660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5789658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5794658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5799660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5804662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5809659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5814659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5819661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5824659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5829662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5834663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5839659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5844664ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5849658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5854658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5859657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5864658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5869657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5874658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5879657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5884658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5889659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5894658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5899656ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5904657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5909657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5914659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5919661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5924660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5929658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5934660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5939659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5944659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5949658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5954657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5959657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5964658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5969657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5974657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5979657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5984660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5989657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5994657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 5999659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6004658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6009658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6014657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6019658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6024658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6029658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6034658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6039657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6044657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6049659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6054659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6059657ms
+ LOG  Location saved: {"lat": "52.365850", "lng": "4.899722", "place": "Location 52.3659, 4.8997"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6064658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6069657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6074660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6079659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6084658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6089657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6094657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6099658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6104658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6109658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6114658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6119658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6124657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6129657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6134659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6139657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6144658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6149658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6154657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6159657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6164657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6169657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6174658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6179659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6184658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6189661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6194657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6199663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6204659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6209658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6214659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6219658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6224661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6229659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6234658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6239660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6244659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6249660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6254658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6259663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6264658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6269658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6274663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6279658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6284659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6289662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6294662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6299659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6304659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6309657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6314661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6319659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6324659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6329659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6334659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6339659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6344659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6349658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6354660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6359658ms
+ LOG  Location saved: {"lat": "52.371425", "lng": "4.901968", "place": "Location 52.3714, 4.9020"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6364661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6369660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6374657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6379657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6384659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6389661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6394660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6399661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6404662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6409658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6414660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6419658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6424658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6429658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6434661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6439659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6444660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6449659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6454659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6459657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6464658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6469658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6474658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6479659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6484657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6489659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6494659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6499657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6504662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6509657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6514661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6519660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6524662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6529659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6534659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6539661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6544662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6549658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6554657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6559660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6564658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6569658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6574659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6579658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6584658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6589657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6594659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6599658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6604657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6609658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6614659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6619658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6624659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6629657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6634661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6639658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6644661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6649657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6654657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6659659ms
+ LOG  Location saved: {"lat": "52.367255", "lng": "4.907970", "place": "Location 52.3673, 4.9080"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6664657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6669658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6674661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6679660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6684657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6689658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6694660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6699658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6704661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6709658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6714659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6719658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6724658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6729658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6734659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6739658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6744657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6749658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6754657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6759657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6764658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6769658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6774660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6779663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6784657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6789663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6794661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6799658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6804663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6809658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6814659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6819661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6824662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6829662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6834657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6839658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6844662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6849664ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6854658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6859659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6864664ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6869660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6874657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6879659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6884657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6889658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6894663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6899659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6904657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6909661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6914661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6919661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6924662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6929659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6934658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6939658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6944663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6949658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6954657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6959663ms
+ LOG  Location saved: {"lat": "52.363056", "lng": "4.905145", "place": "Location 52.3631, 4.9051"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6964663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6969663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6974658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6979661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6984659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6989661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6994661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 6999658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7004658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7009663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7014662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7019659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7024663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7029657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7034657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7039657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7044660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7049658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7054660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7059658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7064658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7069658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7074658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7079658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7084660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7089658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7094658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7099659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7104658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7109663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7114663ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7119657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7124658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7129657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7134657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7139659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7144662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7149662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7154658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7159658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7164662ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7169657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7174659ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7179658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7184660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7189658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7194658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7199658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7204658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7209657ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7214660ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7219661ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7224658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7229658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7234658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7239658ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 7244656ms
+ BUNDLE  ./index.js 
+
+ INFO  [EncryptionService] react-native-crypto not available, using CryptoJS fallback
+ INFO  [EncryptionService] react-native-keychain not available, using AsyncStorage fallback
+ INFO  react-native-call-log not available, using demo mode for compatibility: CallLog API methods not found
+ LOG  CallLogService: Running in demo mode - native package not available
+ LOG  🧪 Onboarding test utils available globally:
+ LOG     - global.resetOnboarding()
+ LOG     - global.completeOnboarding()
+ LOG     - global.checkOnboardingStatus()
+ LOG     - global.debugOnboardingStorage()
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ LOG  Activity task setup complete - using direct monitoring
+ LOG  Platform Detection: {"deviceType": {"brand": "google", "model": "sdk_gphone64_arm64", "platform": "android", "type": "Handset"}, "isEmulator": true, "shouldUseMockData": true}
+ LOG  [NotificationService] Native notification service available
+ LOG  [ONBOARDING] Step changed to: 0, data: {"description": "Minakami helpt je inzicht te krijgen in je dagelijkse activiteiten en gezondheid. Laten we beginnen met het instellen van je voorkeuren.", "icon": "heart-outline", "iconColor": "#0087FF", "id": "welcome", "subtitle": "Jouw persoonlijke gezondheidsassistent", "title": "Welkom bij Minakami"}
+ LOG  Starting activity monitoring...
+ WARN  Real accelerometer not available, using mock data: [Error: Native sensors not available]
+ LOG  Starting location tracking...
+ INFO  [INFO] Current database version: 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database version updated to 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database migrations completed successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database tables:  {"service": "DatabaseService"}
+ INFO  [INFO] - activities  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   end_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   details: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   calories: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   distance: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   sport_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   strava_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_avg: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_max: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elevation_gain: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   startTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   endTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   average_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_cadence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   kilojoules: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   device_watts: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   has_heartrate: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_high: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_low: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   pr_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   achievement_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   kudos_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   comment_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   photo_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   trainer: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   commute: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   manual: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   private: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   visibility: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   flagged: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   gear_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   start_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   external_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   upload_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   weighted_average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   suffer_score: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   workout_type: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   description: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - android_metadata  {"service": "DatabaseService"}
+ INFO  [INFO]   locale: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - app_usage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   app_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   package_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   category: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   session_date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   usage_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - athlete_profiles  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   username: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   firstname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   lastname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   profile_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   avatar_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   city: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   state: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   country: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   sex: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   premium: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   summit: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - call_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   phone_number: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   contact_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_date: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   is_analyzed: BOOLEAN  {"service": "DatabaseService"}
+ INFO  [INFO] - confidence_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   lineage_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   boost_reasons: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - daily_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   morning_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   afternoon_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   evening_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   night_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   total_steps: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   total_active_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_visited_location: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_called_contact: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary_data: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   health_highlight: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - data_lineage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   contributors: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   transformations: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - database_version  {"service": "DatabaseService"}
+ INFO  [INFO]   version: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - event_correlations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   rule_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   events: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   strength: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - health_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   unit: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - locations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   accuracy: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   visit_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_visited: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - narrative_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] - shadow_validation_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   deviation: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   severity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - sync_state  {"service": "DatabaseService"}
+ INFO  [INFO]   service: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   last_sync_timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   initial_sync_complete: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   sync_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_error: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   error_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - user_daily_notes  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   note_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] Database optimization completed  {"service": "DatabaseService"}
+ INFO  [INFO] Performance indexes created successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database initialized successfully with performance indexes  {"service": "DatabaseService"}
+ INFO  [INFO] DatabaseService initialized successfully  {"service": "DatabaseService"}
+ LOG  Location saved: {"lat": "52.366131", "lng": "4.900599", "place": "Location 52.3661, 4.9006"}
+ LOG  Location tracking started with interval: 300000
+ ERROR  [ONBOARDING] EMERGENCY: No render for 39806ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 549525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 554525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 559525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 564525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 569525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 574526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 579525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 584524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 589529ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 594526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 599525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 604526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 609525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 614525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 619527ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 624525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 629526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 634525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 639526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 644527ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 649528ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 654526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 659530ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 664525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 669529ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 674525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 679524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 684526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 689526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 694524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 699525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 704525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 709527ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 714525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 719524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 724525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 729524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 734524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 739525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 744526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 749526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 754527ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 759526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 764525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 769525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 774525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 779525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 784528ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 789528ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 794525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 799526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 804525ms
+ LOG  Location saved: {"lat": "52.369805", "lng": "4.899901", "place": "Location 52.3698, 4.8999"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 809529ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 814525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 819525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 824523ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 829528ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 834524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 839524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 844526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 849527ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 854524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 859529ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 864526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 869525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 874526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 879530ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 884528ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 889525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 894525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 899524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 904526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 909528ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 914525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 919527ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 924526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 929527ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 934524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 939525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 944527ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 949528ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 954524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 959525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 964524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 969525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 974526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 979525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 984525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 989524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 994525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 999524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1004525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1009525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1014525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1019525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1024526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1029524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1034526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1039526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1044526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1049525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1054525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1059524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1064525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1069524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1074526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1079525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1084526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1089525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1094529ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1099525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1104524ms
+ LOG  Location saved: {"lat": "52.362695", "lng": "4.906575", "place": "Location 52.3627, 4.9066"}
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1109525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1114527ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1119526ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1124529ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1129523ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1134530ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1139527ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1144525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1149525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1154529ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1159529ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1164528ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1169528ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1174528ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1179525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1184525ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1189524ms
+ ERROR  [ONBOARDING] EMERGENCY: No render for 1194528ms
+ BUNDLE  ./index.js 
+
+ INFO  [EncryptionService] react-native-crypto not available, using CryptoJS fallback
+ INFO  [EncryptionService] react-native-keychain not available, using AsyncStorage fallback
+ INFO  react-native-call-log not available, using demo mode for compatibility: CallLog API methods not found
+ LOG  CallLogService: Running in demo mode - native package not available
+ LOG  🧪 Onboarding test utils available globally:
+ LOG     - global.resetOnboarding()
+ LOG     - global.completeOnboarding()
+ LOG     - global.checkOnboardingStatus()
+ LOG     - global.debugOnboardingStorage()
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ LOG  Activity task setup complete - using direct monitoring
+ LOG  Platform Detection: {"deviceType": {"brand": "google", "model": "sdk_gphone64_arm64", "platform": "android", "type": "Handset"}, "isEmulator": true, "shouldUseMockData": true}
+ LOG  [NotificationService] Native notification service available
+ LOG  [ONBOARDING] Step changed to: 0, data: {"description": "Minakami helpt je inzicht te krijgen in je dagelijkse activiteiten en gezondheid. Laten we beginnen met het instellen van je voorkeuren.", "icon": "heart-outline", "iconColor": "#0087FF", "id": "welcome", "subtitle": "Jouw persoonlijke gezondheidsassistent", "title": "Welkom bij Minakami"}
+ LOG  Starting activity monitoring...
+ WARN  Real accelerometer not available, using mock data: [Error: Native sensors not available]
+ LOG  Starting location tracking...
+ INFO  [INFO] Current database version: 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database version updated to 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database migrations completed successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database tables:  {"service": "DatabaseService"}
+ INFO  [INFO] - activities  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   end_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   details: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   calories: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   distance: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   sport_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   strava_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_avg: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_max: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elevation_gain: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   startTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   endTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   average_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_cadence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   kilojoules: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   device_watts: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   has_heartrate: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_high: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_low: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   pr_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   achievement_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   kudos_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   comment_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   photo_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   trainer: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   commute: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   manual: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   private: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   visibility: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   flagged: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   gear_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   start_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   external_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   upload_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   weighted_average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   suffer_score: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   workout_type: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   description: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - android_metadata  {"service": "DatabaseService"}
+ INFO  [INFO]   locale: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - app_usage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   app_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   package_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   category: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   session_date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   usage_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - athlete_profiles  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   username: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   firstname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   lastname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   profile_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   avatar_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   city: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   state: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   country: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   sex: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   premium: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   summit: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - call_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   phone_number: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   contact_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_date: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   is_analyzed: BOOLEAN  {"service": "DatabaseService"}
+ INFO  [INFO] - confidence_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   lineage_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   boost_reasons: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - daily_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   morning_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   afternoon_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   evening_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   night_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   total_steps: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   total_active_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_visited_location: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_called_contact: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary_data: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   health_highlight: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - data_lineage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   contributors: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   transformations: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - database_version  {"service": "DatabaseService"}
+ INFO  [INFO]   version: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - event_correlations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   rule_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   events: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   strength: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - health_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   unit: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - locations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   accuracy: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   visit_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_visited: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - narrative_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] - shadow_validation_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   deviation: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   severity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - sync_state  {"service": "DatabaseService"}
+ INFO  [INFO]   service: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   last_sync_timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   initial_sync_complete: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   sync_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_error: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   error_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - user_daily_notes  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   note_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] Database optimization completed  {"service": "DatabaseService"}
+ INFO  [INFO] Performance indexes created successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database initialized successfully with performance indexes  {"service": "DatabaseService"}
+ INFO  [INFO] DatabaseService initialized successfully  {"service": "DatabaseService"}
+ LOG  Location saved: {"lat": "52.371808", "lng": "4.904567", "place": "Location 52.3718, 4.9046"}
+ LOG  Location tracking started with interval: 300000
+ LOG  [ONBOARDING] Step changed to: 1, data: {"description": "Selecteer de AI-service die je verhalen en inzichten zal genereren.", "icon": "sparkles-outline", "iconColor": "#FF8C8C", "id": "ai-model", "options": [{"description": "Gebruikt voorgedefinieerde sjablonen voor snelle verhalen", "icon": "document-text-outline", "id": "template", "recommended": true, "subtitle": "Snel en offline", "title": "Eenvoudige Sjablonen"}, {"badge": "Premium", "description": "Premium AI voor uitgebreide en gepersonaliseerde verhalen", "icon": "sparkles-outline", "id": "claude", "subtitle": "Geavanceerd", "title": "Claude AI"}, {"badge": "Premium", "description": "OpenAI's ChatGPT voor creatieve en gedetailleerde verhalen", "icon": "chatbubbles-outline", "id": "chatgpt", "subtitle": "Intelligent", "title": "ChatGPT"}], "setting": "preferredAIModel", "subtitle": "Hoe wil je dat je verhalen worden gegenereerd?", "title": "Kies je AI-assistent", "type": "selection"}
+ ERROR  Warning: Each child in a list should have a unique "key" prop.
+
+Check the render method of `OnboardingScreen`. See https://reactjs.org/link/warning-keys for more information.
+    at TouchableOpacity
+    in OnboardingScreen (created by AppContent)
+    in AppContent (created by App)
+    in EnsureSingleNavigator
+    in BaseNavigationContainer
+    in ThemeProvider
+    in NavigationContainerInner (created by App)
+    in ThemeProvider (created by App)
+    in AppProvider (created by App)
+    in App
+    in RCTView (created by View)
+    in View (created by AppContainer)
+    in RCTView (created by View)
+    in View (created by AppContainer)
+    in AppContainer
+    in MinakamiAppFinal(RootComponent)
+ LOG  [ONBOARDING] Step changed to: 2, data: {"description": "Kies een stijl die bij jou past voor je dagelijkse samenvattingen.", "icon": "brush-outline", "iconColor": "#9C27B0", "id": "narrative-style", "options": [{"description": "Eenvoudige en duidelijke verhalen", "icon": "document-outline", "id": "standaard", "recommended": true, "subtitle": "Helder en direct", "title": "Standaard"}, {"description": "Informele en toegankelijke verhalen", "icon": "happy-outline", "id": "casual", "subtitle": "Vriendelijk en ontspannen", "title": "Casual"}, {"description": "Uitvoerige verhalen met veel context", "icon": "list-outline", "id": undefined, "subtitle": "Uitgebreid en informatief", "title": "Gedetailleerd"}], "setting": "narrativeStyle", "subtitle": "Hoe wil je dat je verhalen klinken?", "title": "Jouw vertelstijl", "type": "selection"}
+ LOG  [ONBOARDING] Step changed to: 1, data: {"description": "Selecteer de AI-service die je verhalen en inzichten zal genereren.", "icon": "sparkles-outline", "iconColor": "#FF8C8C", "id": "ai-model", "options": [{"description": "Gebruikt voorgedefinieerde sjablonen voor snelle verhalen", "icon": "document-text-outline", "id": "template", "recommended": true, "subtitle": "Snel en offline", "title": "Eenvoudige Sjablonen"}, {"badge": "Premium", "description": "Premium AI voor uitgebreide en gepersonaliseerde verhalen", "icon": "sparkles-outline", "id": "claude", "subtitle": "Geavanceerd", "title": "Claude AI"}, {"badge": "Premium", "description": "OpenAI's ChatGPT voor creatieve en gedetailleerde verhalen", "icon": "chatbubbles-outline", "id": "chatgpt", "subtitle": "Intelligent", "title": "ChatGPT"}], "setting": "preferredAIModel", "subtitle": "Hoe wil je dat je verhalen worden gegenereerd?", "title": "Kies je AI-assistent", "type": "selection"}
+ LOG  [ONBOARDING] Step changed to: 2, data: {"description": "Kies een stijl die bij jou past voor je dagelijkse samenvattingen.", "icon": "brush-outline", "iconColor": "#9C27B0", "id": "narrative-style", "options": [{"description": "Eenvoudige en duidelijke verhalen", "icon": "document-outline", "id": "standaard", "recommended": true, "subtitle": "Helder en direct", "title": "Standaard"}, {"description": "Informele en toegankelijke verhalen", "icon": "happy-outline", "id": "casual", "subtitle": "Vriendelijk en ontspannen", "title": "Casual"}, {"description": "Uitvoerige verhalen met veel context", "icon": "list-outline", "id": undefined, "subtitle": "Uitgebreid en informatief", "title": "Gedetailleerd"}], "setting": "narrativeStyle", "subtitle": "Hoe wil je dat je verhalen klinken?", "title": "Jouw vertelstijl", "type": "selection"}
+ LOG  [ONBOARDING] Step changed to: 3, data: {"description": "Kies welke informatie Minakami mag gebruiken om jouw verhaal te vertellen. Je kunt dit later altijd wijzigen.", "icon": "shield-checkmark-outline", "iconColor": "#008C00", "id": "permissions", "permissions": [{"description": "Toestaan om je dagelijkse activiteiten bij te houden", "icon": "walk-outline", "key": "trackActivity", "permission": "activity", "subtitle": "Stappen, beweging en activiteiten", "title": "Activiteit tracking"}, {"description": "Helpt bij het herkennen van patronen in je dagelijkse routine. Je wordt naar de systeem instellingen gebracht.", "icon": "location-outline", "key": "trackLocation", "permission": "location", "subtitle": "Waar je de meeste tijd doorbrengt", "title": "Locatie tracking"}, {"androidOnly": true, "description": "Alleen duur en aantal, geen inhoud of contacten", "icon": "call-outline", "key": "trackCalls", "permission": "calls", "subtitle": "Gespreksduur en frequentie", "title": "Oproep statistieken"}, {"description": "Ontvang dagelijkse inzichten over je activiteiten", "icon": "notifications-outline", "key": "allowNotifications", "permission": "notifications", "subtitle": "Samenvattingen en herinneringen", "title": "Dagelijkse meldingen"}], "subtitle": "Welke gegevens wil je delen?", "title": "Toestemmingen instellen", "type": "permissions"}
+ LOG  [ONBOARDING] Permission toggle started: allowNotifications (notifications)
+ LOG  [ONBOARDING] Setting loading state for allowNotifications
+ LOG  [ONBOARDING] Requesting permission: notifications
+ LOG  [PERMISSIONS] Requesting notification permission without Alert
+ LOG  [PERMISSIONS] Notification permission result: granted
+ LOG  [ONBOARDING] Permission result for notifications: true
+ LOG  [ONBOARDING] Updating state for allowNotifications to true
+ LOG  [ONBOARDING] Cleaning up loading state for allowNotifications
+ LOG  [ONBOARDING] Permission toggle completed: allowNotifications
+ LOG  [ONBOARDING] Permission toggle started: trackCalls (calls)
+ LOG  [ONBOARDING] Setting loading state for trackCalls
+ LOG  [ONBOARDING] Requesting permission: calls
+ LOG  [ONBOARDING] Permission result for calls: true
+ LOG  [ONBOARDING] Updating state for trackCalls to true
+ LOG  [ONBOARDING] Cleaning up loading state for trackCalls
+ LOG  [ONBOARDING] Permission toggle completed: trackCalls
+ LOG  [ONBOARDING] Permission toggle started: trackLocation (location)
+ LOG  [ONBOARDING] Setting loading state for trackLocation
+ LOG  [ONBOARDING] Requesting permission: location
+ LOG  [ONBOARDING] Using SYSTEM SETTINGS approach for location permission
+ LOG  [ONBOARDING] Opening system location settings
+ LOG  [ONBOARDING] System settings opened successfully
+ LOG  [ONBOARDING] System settings opened for location
+ LOG  [ONBOARDING] Cleaning up loading state for trackLocation
+ LOG  [ONBOARDING] Permission toggle completed: trackLocation
+ LOG  [ONBOARDING] Permission toggle started: trackActivity (activity)
+ LOG  [ONBOARDING] Setting loading state for trackActivity
+ LOG  [ONBOARDING] Requesting permission: activity
+ LOG  [ONBOARDING] Permission result for activity: true
+ LOG  [ONBOARDING] Updating state for trackActivity to true
+ LOG  [ONBOARDING] Cleaning up loading state for trackActivity
+ LOG  [ONBOARDING] Permission toggle completed: trackActivity
+ LOG  [ONBOARDING] Step changed to: 4, data: {"description": "Je persoonlijke gezondheidsassistent is klaar voor gebruik. Begin vandaag nog met het ontdekken van je dagelijkse patronen.", "icon": "checkmark-circle-outline", "iconColor": "#008C00", "id": "complete", "subtitle": "Minakami is ingesteld", "title": "Je bent klaar!"}
+ INFO  [EncryptionService] Using fallback crypto generation (Expo Go/Development mode)
+ INFO  [EncryptionService] Generated fallback key with enhanced entropy
+ INFO  [EncryptionService] Cleaning corrupted encrypted data...
+ LOG  [EncryptionService] No corrupted data found
+ INFO  [EncryptionService] Checking for legacy data to migrate...
+ INFO  [INFO] EncryptionService initialized successfully  {"service": "EncryptionService"}
+ INFO  [EncryptionService] Using simplified AES-CBC encryption (Expo Go/Development mode)
+ LOG  Loading basic dashboard stats...
+ BUNDLE  ./index.js 
+
+ INFO  [EncryptionService] react-native-crypto not available, using CryptoJS fallback
+ INFO  [EncryptionService] react-native-keychain not available, using AsyncStorage fallback
+ INFO  react-native-call-log not available, using demo mode for compatibility: CallLog API methods not found
+ LOG  CallLogService: Running in demo mode - native package not available
+ LOG  🧪 Onboarding test utils available globally:
+ LOG     - global.resetOnboarding()
+ LOG     - global.completeOnboarding()
+ LOG     - global.checkOnboardingStatus()
+ LOG     - global.debugOnboardingStorage()
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ LOG  Activity task setup complete - using direct monitoring
+ LOG  Platform Detection: {"deviceType": {"brand": "google", "model": "sdk_gphone64_arm64", "platform": "android", "type": "Handset"}, "isEmulator": true, "shouldUseMockData": true}
+ LOG  Loading basic dashboard stats...
+ INFO  [EncryptionService] Cleaning corrupted encrypted data...
+ LOG  [EncryptionService] No corrupted data found
+ INFO  [EncryptionService] Checking for legacy data to migrate...
+ INFO  [INFO] EncryptionService initialized successfully  {"service": "EncryptionService"}
+ INFO  [EncryptionService] Decrypting CBC data (development mode)
+ LOG  Starting activity monitoring...
+ INFO  [INFO] Current database version: 5  {"service": "DatabaseService"}
+ WARN  Real accelerometer not available, using mock data: [Error: Native sensors not available]
+ LOG  Starting location tracking...
+ INFO  [INFO] Database version updated to 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database migrations completed successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database tables:  {"service": "DatabaseService"}
+ INFO  [INFO] - activities  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   end_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   details: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   calories: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   distance: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   sport_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   strava_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_avg: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_max: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elevation_gain: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   startTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   endTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   average_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_cadence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   kilojoules: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   device_watts: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   has_heartrate: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_high: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_low: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   pr_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   achievement_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   kudos_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   comment_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   photo_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   trainer: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   commute: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   manual: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   private: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   visibility: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   flagged: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   gear_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   start_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   external_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   upload_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   weighted_average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   suffer_score: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   workout_type: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   description: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - android_metadata  {"service": "DatabaseService"}
+ INFO  [INFO]   locale: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - app_usage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   app_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   package_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   category: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   session_date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   usage_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - athlete_profiles  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   username: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   firstname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   lastname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   profile_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   avatar_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   city: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   state: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   country: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   sex: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   premium: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   summit: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - call_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   phone_number: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   contact_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_date: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   is_analyzed: BOOLEAN  {"service": "DatabaseService"}
+ INFO  [INFO] - confidence_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   lineage_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   boost_reasons: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - daily_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   morning_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   afternoon_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   evening_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   night_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   total_steps: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   total_active_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_visited_location: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_called_contact: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary_data: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   health_highlight: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - data_lineage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   contributors: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   transformations: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - database_version  {"service": "DatabaseService"}
+ INFO  [INFO]   version: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - event_correlations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   rule_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   events: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   strength: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - health_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   unit: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - locations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   accuracy: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   visit_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_visited: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - narrative_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] - shadow_validation_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   deviation: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   severity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - sync_state  {"service": "DatabaseService"}
+ INFO  [INFO]   service: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   last_sync_timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   initial_sync_complete: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   sync_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_error: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   error_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - user_daily_notes  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   note_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] Database optimization completed  {"service": "DatabaseService"}
+ INFO  [INFO] Performance indexes created successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database initialized successfully with performance indexes  {"service": "DatabaseService"}
+ INFO  [INFO] DatabaseService initialized successfully  {"service": "DatabaseService"}
+ LOG  Location saved: {"lat": "52.371376", "lng": "4.905066", "place": "Location 52.3714, 4.9051"}
+ LOG  Location tracking started with interval: 300000
+ LOG  Initializing Health Connect...
+ INFO  [INFO] Initializing Health Connect service...  {"service": "HealthDataService"}
+ INFO  [INFO] Health Connect service initialized successfully  {"service": "HealthDataService"}
+ INFO  [INFO] HealthDataService initialized successfully  {"service": "HealthDataService"}
+ LOG  Starting Health Connect auto-sync...
+ INFO  [INFO] Starting health data import for steps, heart_rate, exercise, sleep  {"service": "HealthDataService"}
+ ERROR  [ERROR] Failed to fetch steps data {"error": "Steps permission not granted", "service": "HealthDataService"} {}
+ ERROR  [ERROR] Failed to import steps {"error": "Steps permission not granted", "service": "HealthDataService"} {}
+ ERROR  [ERROR] Failed to fetch heart rate data {"error": "Heart rate permission not granted", "service": "HealthDataService"} {}
+ ERROR  [ERROR] Failed to import heart_rate {"error": "Heart rate permission not granted", "service": "HealthDataService"} {}
+ ERROR  [ERROR] Failed to fetch exercise data {"error": "Exercise permission not granted", "service": "HealthDataService"} {}
+ ERROR  [ERROR] Failed to import exercise {"error": "Exercise permission not granted", "service": "HealthDataService"} {}
+ ERROR  [ERROR] Failed to fetch sleep data {"error": "Sleep permission not granted", "service": "HealthDataService"} {}
+ ERROR  [ERROR] Failed to import sleep {"error": "Sleep permission not granted", "service": "HealthDataService"} {}
+ INFO  [INFO] Health data import completed: 0 records imported, 4 errors  {"service": "HealthDataService"}
+ INFO  [EncryptionService] Using simplified AES-CBC encryption (Expo Go/Development mode)
+ INFO  [INFO] Health Connect availability: false  {"service": "HealthDataService"}
+ INFO  [INFO] Health Connect availability: false  {"service": "HealthDataService"}
+info Opening /Users/oussama/MinakamiApp/MinakamiAppFinal/node_modules/@babel/runtime/helpers/asyncToGenerator.js with vi
+Vim: Warning: Output is not to a terminal
+Vim: Warning: Input is not from a terminal
+[?1049h[>4;2m[?1h=[?2004h[?1004h[1;24r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?2004l[>4;m[?2004h[>4;2m[?25l[24;1H<App/MinakamiAppFinal/node_modules/@babel/runtime/helpers/asyncToGenerator.js"<nal/node_modules/@babel/runtime/helpers/asyncToGenerator.js" [noeol] 26L, 701B[1;1Hfunction asyncGeneratorStep(n, t, e, r, o, a, c) {
+  try {
+    var i = n[a](c),[4;7Hu = i.value;
+  } catch (n) {
+    return void e(n);
+  }
+  i.done ? t(u) : Promise.resolve(u).then(r, o);
+}
+function _asyncToGenerator(n) {
+  return function () {
+    var t = this,[13;7He = arguments;
+    return new Promise(function (r, o) {[15;7Hvar a = n.apply(t, e);[16;7Hfunction _next(n) {[17;9HasyncGeneratorStep(a, r, o, _next, _throw, "next", n);[18;7H}[19;7Hfunction _throw(n) {[20;9HasyncGeneratorStep(a, r, o, _next, _throw, "throw", n);[21;7H}[22;7H_next(void 0);
+    });[1;1H[?25h[?4m BUNDLE  ./index.js 
+
+ INFO  [EncryptionService] react-native-crypto not available, using CryptoJS fallback
+ INFO  [EncryptionService] react-native-keychain not available, using AsyncStorage fallback
+ INFO  react-native-call-log not available, using demo mode for compatibility: CallLog API methods not found
+ LOG  CallLogService: Running in demo mode - native package not available
+ LOG  🧪 Onboarding test utils available globally:
+ LOG     - global.resetOnboarding()
+ LOG     - global.completeOnboarding()
+ LOG     - global.checkOnboardingStatus()
+ LOG     - global.debugOnboardingStorage()
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ LOG  Activity task setup complete - using direct monitoring
+ LOG  Platform Detection: {"deviceType": {"brand": "google", "model": "sdk_gphone64_arm64", "platform": "android", "type": "Handset"}, "isEmulator": true, "shouldUseMockData": true}
+ LOG  Loading basic dashboard stats...
+ INFO  [EncryptionService] Cleaning corrupted encrypted data...
+ LOG  [EncryptionService] No corrupted data found
+ INFO  [EncryptionService] Checking for legacy data to migrate...
+ INFO  [INFO] EncryptionService initialized successfully  {"service": "EncryptionService"}
+ INFO  [EncryptionService] Decrypting CBC data (development mode)
+ LOG  Starting activity monitoring...
+ WARN  Real accelerometer not available, using mock data: [Error: Native sensors not available]
+ LOG  Starting location tracking...
+ INFO  [INFO] Current database version: 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database version updated to 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database migrations completed successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database tables:  {"service": "DatabaseService"}
+ INFO  [INFO] - activities  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   end_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   details: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   calories: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   distance: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   sport_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   strava_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_avg: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_max: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elevation_gain: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   startTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   endTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   average_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_cadence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   kilojoules: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   device_watts: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   has_heartrate: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_high: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_low: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   pr_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   achievement_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   kudos_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   comment_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   photo_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   trainer: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   commute: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   manual: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   private: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   visibility: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   flagged: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   gear_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   start_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   external_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   upload_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   weighted_average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   suffer_score: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   workout_type: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   description: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - android_metadata  {"service": "DatabaseService"}
+ INFO  [INFO]   locale: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - app_usage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   app_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   package_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   category: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   session_date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   usage_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - athlete_profiles  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   username: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   firstname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   lastname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   profile_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   avatar_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   city: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   state: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   country: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   sex: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   premium: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   summit: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - call_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   phone_number: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   contact_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_date: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   is_analyzed: BOOLEAN  {"service": "DatabaseService"}
+ INFO  [INFO] - confidence_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   lineage_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   boost_reasons: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - daily_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   morning_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   afternoon_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   evening_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   night_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   total_steps: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   total_active_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_visited_location: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_called_contact: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary_data: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   health_highlight: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - data_lineage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   contributors: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   transformations: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - database_version  {"service": "DatabaseService"}
+ INFO  [INFO]   version: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - event_correlations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   rule_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   events: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   strength: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - health_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   unit: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - locations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   accuracy: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   visit_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_visited: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - narrative_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] - shadow_validation_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   deviation: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   severity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - sync_state  {"service": "DatabaseService"}
+ INFO  [INFO]   service: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   last_sync_timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   initial_sync_complete: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   sync_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_error: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   error_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - user_daily_notes  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   note_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] Database optimization completed  {"service": "DatabaseService"}
+ INFO  [INFO] Performance indexes created successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database initialized successfully with performance indexes  {"service": "DatabaseService"}
+ INFO  [INFO] DatabaseService initialized successfully  {"service": "DatabaseService"}
+ LOG  Location saved: {"lat": "52.367908", "lng": "4.906934", "place": "Location 52.3679, 4.9069"}
+ LOG  Location tracking started with interval: 300000
+ ERROR  ReferenceError: Property 'Text' doesn't exist
+
+This error is located at:
+    in JournalScreen (created by SceneView)
+    in StaticContainer
+    in EnsureSingleNavigator (created by SceneView)
+    in SceneView (created by BottomTabView)
+    in RCTView (created by View)
+    in View (created by Screen)
+    in RCTView (created by View)
+    in View (created by Background)
+    in Background (created by Screen)
+    in Screen (created by BottomTabView)
+    in RNSScreen
+    in Unknown (created by InnerScreen)
+    in Suspender (created by Freeze)
+    in Suspense (created by Freeze)
+    in Freeze (created by DelayedFreeze)
+    in DelayedFreeze (created by InnerScreen)
+    in InnerScreen (created by Screen)
+    in Screen (created by MaybeScreen)
+    in MaybeScreen (created by BottomTabView)
+    in RNSScreenContainer (created by ScreenContainer)
+    in ScreenContainer (created by MaybeScreenContainer)
+    in MaybeScreenContainer (created by BottomTabView)
+    in RNCSafeAreaProvider (created by SafeAreaProvider)
+    in SafeAreaProvider (created by SafeAreaProviderCompat)
+    in SafeAreaProviderCompat (created by BottomTabView)
+    in BottomTabView (created by BottomTabNavigator)
+    in PreventRemoveProvider (created by NavigationContent)
+    in NavigationContent
+    in Unknown (created by BottomTabNavigator)
+    in BottomTabNavigator (created by AppContent)
+    in AppContent (created by App)
+    in EnsureSingleNavigator
+    in BaseNavigationContainer
+    in ThemeProvider
+    in NavigationContainerInner (created by App)
+    in ThemeProvider (created by App)
+    in AppProvider (created by App)
+    in App
+    in RCTView (created by View)
+    in View (created by AppContainer)
+    in RCTView (created by View)
+    in View (created by AppContainer)
+    in AppContainer
+    in MinakamiAppFinal(RootComponent), js engine: hermes
+ ERROR  ReferenceError: Property 'Text' doesn't exist
+
+This error is located at:
+    in JournalScreen (created by SceneView)
+    in StaticContainer
+    in EnsureSingleNavigator (created by SceneView)
+    in SceneView (created by BottomTabView)
+    in RCTView (created by View)
+    in View (created by Screen)
+    in RCTView (created by View)
+    in View (created by Background)
+    in Background (created by Screen)
+    in Screen (created by BottomTabView)
+    in RNSScreen
+    in Unknown (created by InnerScreen)
+    in Suspender (created by Freeze)
+    in Suspense (created by Freeze)
+    in Freeze (created by DelayedFreeze)
+    in DelayedFreeze (created by InnerScreen)
+    in InnerScreen (created by Screen)
+    in Screen (created by MaybeScreen)
+    in MaybeScreen (created by BottomTabView)
+    in RNSScreenContainer (created by ScreenContainer)
+    in ScreenContainer (created by MaybeScreenContainer)
+    in MaybeScreenContainer (created by BottomTabView)
+    in RNCSafeAreaProvider (created by SafeAreaProvider)
+    in SafeAreaProvider (created by SafeAreaProviderCompat)
+    in SafeAreaProviderCompat (created by BottomTabView)
+    in BottomTabView (created by BottomTabNavigator)
+    in PreventRemoveProvider (created by NavigationContent)
+    in NavigationContent
+    in Unknown (created by BottomTabNavigator)
+    in BottomTabNavigator (created by AppContent)
+    in AppContent (created by App)
+    in EnsureSingleNavigator
+    in BaseNavigationContainer
+    in ThemeProvider
+    in NavigationContainerInner (created by App)
+    in ThemeProvider (created by App)
+    in AppProvider (created by App)
+    in App
+    in RCTView (created by View)
+    in View (created by AppContainer)
+    in RCTView (created by View)
+    in View (created by AppContainer)
+    in AppContainer
+    in MinakamiAppFinal(RootComponent), js engine: hermes
+ LOG  Loading basic dashboard stats...
+ INFO  [EncryptionService] Decrypting CBC data (development mode)
+ LOG  Starting activity monitoring...
+ LOG  Starting location tracking...
+ LOG  Location tracking already active
+ BUNDLE  ./index.js 
+
+ INFO  [EncryptionService] react-native-crypto not available, using CryptoJS fallback
+ INFO  [EncryptionService] react-native-keychain not available, using AsyncStorage fallback
+ INFO  react-native-call-log not available, using demo mode for compatibility: CallLog API methods not found
+ LOG  CallLogService: Running in demo mode - native package not available
+ LOG  🧪 Onboarding test utils available globally:
+ LOG     - global.resetOnboarding()
+ LOG     - global.completeOnboarding()
+ LOG     - global.checkOnboardingStatus()
+ LOG     - global.debugOnboardingStorage()
+ LOG  Running "MinakamiAppFinal" with {"rootTag":11}
+ LOG  Activity task setup complete - using direct monitoring
+ LOG  Platform Detection: {"deviceType": {"brand": "google", "model": "sdk_gphone64_arm64", "platform": "android", "type": "Handset"}, "isEmulator": true, "shouldUseMockData": true}
+ LOG  Loading basic dashboard stats...
+ INFO  [EncryptionService] Cleaning corrupted encrypted data...
+ LOG  [EncryptionService] No corrupted data found
+ INFO  [EncryptionService] Checking for legacy data to migrate...
+ INFO  [INFO] EncryptionService initialized successfully  {"service": "EncryptionService"}
+ INFO  [EncryptionService] Decrypting CBC data (development mode)
+ LOG  Starting activity monitoring...
+ WARN  Real accelerometer not available, using mock data: [Error: Native sensors not available]
+ LOG  Starting location tracking...
+ INFO  [INFO] Current database version: 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database version updated to 5  {"service": "DatabaseService"}
+ INFO  [INFO] Database migrations completed successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database tables:  {"service": "DatabaseService"}
+ INFO  [INFO] - activities  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   end_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   details: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   calories: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   distance: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   sport_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   strava_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_avg: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   heart_rate_max: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elevation_gain: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   startTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   endTime: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   average_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_speed: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_cadence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   max_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   kilojoules: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   device_watts: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   has_heartrate: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_high: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   elev_low: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   pr_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   achievement_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   kudos_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   comment_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   photo_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   trainer: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   commute: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   manual: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   private: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   visibility: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   flagged: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   gear_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   start_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   start_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   end_longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   external_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   upload_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   weighted_average_watts: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   suffer_score: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   workout_type: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   description: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - android_metadata  {"service": "DatabaseService"}
+ INFO  [INFO]   locale: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - app_usage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   app_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   package_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   category: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   session_date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   usage_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - athlete_profiles  {"service": "DatabaseService"}
+ INFO  [INFO]   athlete_id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   username: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   firstname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   lastname: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   profile_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   avatar_url: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   city: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   state: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   country: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   sex: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   premium: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   summit: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - call_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   phone_number: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   contact_name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   call_date: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   duration: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   is_analyzed: BOOLEAN  {"service": "DatabaseService"}
+ INFO  [INFO] - confidence_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   lineage_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   boost_reasons: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - daily_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   morning_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   afternoon_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   evening_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   night_activity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   total_steps: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   total_active_time: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_visited_location: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   most_called_contact: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary_data: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   health_highlight: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - data_lineage  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   data_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   contributors: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   transformations: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - database_version  {"service": "DatabaseService"}
+ INFO  [INFO]   version: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - event_correlations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   rule_id: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   events: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   confidence: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   strength: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   narrative_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - health_data  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   type: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   unit: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   metadata: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO] - locations  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   latitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   longitude: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   accuracy: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   name: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   visit_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_visited: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - narrative_summaries  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   summary: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] - shadow_validation_logs  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   primary_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_source: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   shadow_value: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   deviation: REAL  {"service": "DatabaseService"}
+ INFO  [INFO]   severity: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - sync_state  {"service": "DatabaseService"}
+ INFO  [INFO]   service: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   last_sync_timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   initial_sync_complete: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   sync_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   last_error: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   error_count: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO] - user_daily_notes  {"service": "DatabaseService"}
+ INFO  [INFO]   id: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   date: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   note_text: TEXT  {"service": "DatabaseService"}
+ INFO  [INFO]   timestamp: INTEGER  {"service": "DatabaseService"}
+ INFO  [INFO]   created_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO]   updated_at: TIMESTAMP  {"service": "DatabaseService"}
+ INFO  [INFO] Database optimization completed  {"service": "DatabaseService"}
+ INFO  [INFO] Performance indexes created successfully  {"service": "DatabaseService"}
+ INFO  [INFO] Database initialized successfully with performance indexes  {"service": "DatabaseService"}
+ INFO  [INFO] DatabaseService initialized successfully  {"service": "DatabaseService"}
+ LOG  Location saved: {"lat": "52.364040", "lng": "4.905407", "place": "Location 52.3640, 4.9054"}
+ LOG  Location tracking started with interval: 300000
+ LOG  Refreshing health stats...
+ LOG  Using development mock data for emulator
+ LOG  [NotificationService] Native notification service available
+ LOG  [AI Narrative] Using style: standaard {"length": "kort", "maxTokens": 600, "temperature": 0.2, "tone": "factual"}
+ LOG  [isApiKeyAvailable] OpenAI key check: NO KEY
+ INFO  [ChatGPT] OAuth token not available, trying API key
+ INFO  [ChatGPT] No API key available, using demo mode with template method
+ INFO  [INFO] Falling back to template method after failed chatgpt generation  {}
+ LOG  Location saved: {"lat": "52.367799", "lng": "4.899674", "place": "Location 52.3678, 4.8997"}
+ LOG  Location saved: {"lat": "52.362822", "lng": "4.903189", "place": "Location 52.3628, 4.9032"}
+ LOG  Location saved: {"lat": "52.364707", "lng": "4.906900", "place": "Location 52.3647, 4.9069"}
+ LOG  Location saved: {"lat": "52.364846", "lng": "4.905300", "place": "Location 52.3648, 4.9053"}
+ LOG  Location saved: {"lat": "52.369294", "lng": "4.904832", "place": "Location 52.3693, 4.9048"}
+ LOG  Location saved: {"lat": "52.368892", "lng": "4.899509", "place": "Location 52.3689, 4.8995"}
+ LOG  Location saved: {"lat": "52.364317", "lng": "4.903102", "place": "Location 52.3643, 4.9031"}
+ LOG  Location saved: {"lat": "52.369715", "lng": "4.904782", "place": "Location 52.3697, 4.9048"}
+ LOG  Location saved: {"lat": "52.372449", "lng": "4.902381", "place": "Location 52.3724, 4.9024"}
+ LOG  Location saved: {"lat": "52.365573", "lng": "4.908888", "place": "Location 52.3656, 4.9089"}
+ LOG  Location saved: {"lat": "52.364317", "lng": "4.905068", "place": "Location 52.3643, 4.9051"}
+ LOG  Location saved: {"lat": "52.367614", "lng": "4.904941", "place": "Location 52.3676, 4.9049"}
+ LOG  Location saved: {"lat": "52.365963", "lng": "4.901100", "place": "Location 52.3660, 4.9011"}
+ LOG  Location saved: {"lat": "52.363233", "lng": "4.906677", "place": "Location 52.3632, 4.9067"}
+ LOG  Location saved: {"lat": "52.365884", "lng": "4.907798", "place": "Location 52.3659, 4.9078"}
+ LOG  Location saved: {"lat": "52.366424", "lng": "4.902647", "place": "Location 52.3664, 4.9026"}
+ LOG  Location saved: {"lat": "52.371853", "lng": "4.905829", "place": "Location 52.3719, 4.9058"}
+ LOG  Location saved: {"lat": "52.366384", "lng": "4.908344", "place": "Location 52.3664, 4.9083"}

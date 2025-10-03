@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
   Alert,
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { useFocusEffect } from '@react-navigation/native';
 
 // Services
@@ -230,7 +230,7 @@ const AppUsageScreen = () => {
   const renderScreenTimeOverview = () => (
     <Card style={styles.overviewCard}>
       <View style={styles.screenTimeHeader}>
-        <Ionicons 
+        <Icon 
           name="phone-portrait" 
           size={24} 
           color={getScreenTimeColor(usageData.totalScreenTime)} 
@@ -276,7 +276,7 @@ const AppUsageScreen = () => {
   const renderTopApps = () => (
     <Card style={styles.topAppsCard}>
       <View style={styles.sectionHeader}>
-        <Ionicons name="apps" size={20} color={theme.colors.primary} />
+        <Icon name="apps" size={20} color={theme.colors.primary} />
         <Typography variant="h6" style={styles.sectionTitle}>
           {selectedPeriod === 'today' ? 'Meest Gebruikt Vandaag' : 'Top Apps'}
         </Typography>
@@ -284,7 +284,7 @@ const AppUsageScreen = () => {
 
       {usageData.topApps.length === 0 ? (
         <View style={styles.emptyState}>
-          <Ionicons name="phone-portrait-outline" size={48} color={theme.colors.text.secondary} />
+          <Icon name="phone-portrait-outline" size={48} color={theme.colors.text.secondary} />
           <Typography variant="body2" style={{ color: theme.colors.text.secondary, textAlign: 'center', marginTop: 8 }}>
             Geen app gebruik data beschikbaar
           </Typography>
@@ -294,7 +294,7 @@ const AppUsageScreen = () => {
           <View key={`${app.appName || app.app_name}-${index}`} style={styles.appItem}>
             <View style={styles.appInfo}>
               <View style={[styles.appIcon, { backgroundColor: theme.colors?.primary + '20' || '#4F8EF720' }]}>
-                <Ionicons 
+                <Icon 
                   name="phone-portrait" 
                   size={20} 
                   color={theme.colors.primary} 
@@ -328,7 +328,7 @@ const AppUsageScreen = () => {
     return (
       <Card style={styles.categoriesCard}>
         <View style={styles.sectionHeader}>
-          <Ionicons name="grid" size={20} color={theme.colors.primary} />
+          <Icon name="grid" size={20} color={theme.colors.primary} />
           <Typography variant="h6" style={styles.sectionTitle}>
             Categorieën
           </Typography>
@@ -359,7 +359,7 @@ const AppUsageScreen = () => {
     return (
       <Card style={styles.dataSourceCard}>
         <View style={styles.sectionHeader}>
-          <Ionicons 
+          <Icon 
             name={dataSource.trackingAvailable ? "checkmark-circle" : "information-circle"} 
             size={20} 
             color={dataSource.trackingAvailable ? theme.colors.success : theme.colors.warning} 
@@ -388,7 +388,7 @@ const AppUsageScreen = () => {
             style={[styles.importButton, { backgroundColor: theme.colors.primary }]}
             onPress={importHistoricalData}
           >
-            <Ionicons name="download" size={16} color="#FFFFFF" />
+            <Icon name="download" size={16} color="#FFFFFF" />
             <Typography variant="body2" style={{ color: '#FFFFFF', marginLeft: 8 }}>
               Historische Data Importeren
             </Typography>

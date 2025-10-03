@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   SafeAreaView
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { useAppContext } from '../utils/appContext';
 
 // Components
@@ -115,14 +115,14 @@ const DashboardScreen = () => {
             </Typography>
           </View>
           <TouchableOpacity style={styles.profileButton}>
-            <Ionicons name="person-circle" size={32} color={Colors.primary[500]} />
+            <Icon name="person-circle" size={32} color={Colors.primary[500]} />
           </TouchableOpacity>
         </View>
 
         {/* Current Activity Card */}
         <Card style={styles.currentActivityCard}>
           <View style={styles.activityHeader}>
-            <Ionicons 
+            <Icon 
               name={getActivityIcon(activityStats.currentActivity)} 
               size={32} 
               color={Colors.primary[500]} 
@@ -147,7 +147,7 @@ const DashboardScreen = () => {
           <View style={styles.statsRow}>
             <Card style={styles.statCard}>
               <View style={styles.statHeader}>
-                <Ionicons name="footsteps-outline" size={24} color={Colors.primary[500]} />
+                <Icon name="footsteps-outline" size={24} color={Colors.primary[500]} />
                 <Typography variant="body1" color="text.secondary" style={styles.statLabel}>
                   Stappen
                 </Typography>
@@ -172,7 +172,7 @@ const DashboardScreen = () => {
 
             <Card style={styles.statCard}>
               <View style={styles.statHeader}>
-                <Ionicons name="timer-outline" size={24} color={Colors.success[500]} />
+                <Icon name="timer-outline" size={24} color={Colors.success[500]} />
                 <Typography variant="body1" color="text.secondary" style={styles.statLabel}>
                   Actieve tijd
                 </Typography>
@@ -247,7 +247,7 @@ const DashboardScreen = () => {
                   { icon: 'close', label: 'Gemist', value: callStats.callSummary.totalMissed || 0, color: Colors.error[500] },
                 ].map((stat, index) => (
                   <View key={index} style={styles.callStatItem}>
-                    <Ionicons name={`${stat.icon}-outline`} size={20} color={stat.color} />
+                    <Icon name={`${stat.icon}-outline`} size={20} color={stat.color} />
                     <Typography variant="h5" color="text.primary" style={styles.callStatValue}>
                       {stat.value}
                     </Typography>

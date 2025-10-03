@@ -10,7 +10,7 @@ import {
   Dimensions
 } from 'react-native';
 import { WebView } from 'react-native-webview';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Typography from './ui/Typography';
 import Button from './ui/Button';
 import { Colors, Spacing } from '../styles/designSystem';
@@ -234,11 +234,11 @@ const StravaAuthWebView = ({
             onPress={handleCancel}
             disabled={isExchangingToken}
           >
-            <Ionicons name="close" size={24} color={Colors.gray[900]} />
+            <Icon name="close" size={24} color={Colors.gray[900]} />
           </TouchableOpacity>
           
           <View style={styles.headerContent}>
-            <Ionicons name="bicycle" size={24} color="#FC4C02" />
+            <Icon name="bicycle" size={24} color="#FC4C02" />
             <Typography variant="h6" color="text.primary" style={styles.headerTitle}>
               Verbinden met Strava
             </Typography>
@@ -261,7 +261,7 @@ const StravaAuthWebView = ({
         {authError && (
           <View style={styles.errorContainer}>
             <View style={styles.errorContent}>
-              <Ionicons name="alert-circle" size={48} color={Colors.error[500]} />
+              <Icon name="alert-circle" size={48} color={Colors.error[500]} />
               <Typography variant="h6" color="error" style={styles.errorTitle}>
                 Autorisatie Mislukt
               </Typography>
