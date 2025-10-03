@@ -41,6 +41,8 @@ export interface UserSettings {
   allowNotifications: boolean;
   preferredAIModel: string;
   narrativeStyle: string;
+  // Allow dynamic keys for flexibility
+  [key: string]: string | boolean | number;
 }
 
 export interface PermissionStatus {

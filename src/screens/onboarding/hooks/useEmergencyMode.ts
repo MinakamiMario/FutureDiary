@@ -1,31 +1,26 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { useOnboardingState } from './useOnboardingState';
 
+/**
+ * Emergency Mode Hook
+ *
+ * ONLY triggers on CRITICAL errors:
+ * - Network timeout (> 30s)
+ * - Permission request hangs
+ * - Navigation complete failure
+ *
+ * NOT for normal errors:
+ * - User denied permission
+ * - Validation failures
+ * - UI errors
+ */
 export const useEmergencyMode = () => {
   const { setEmergencyMode: setOnboardingEmergencyMode, resetOnboarding } = useOnboardingState();
   const [emergencyMode, setEmergencyMode] = useState(false);
-  const [lastRenderTime, setLastRenderTime] = useState(Date.now());
-
-  // Update render time on each render
-  useEffect(() => {
-    setLastRenderTime(Date.now());
-  });
-
-  // Emergency mode detection - als UI niet meer update
-  useEffect(() => {
-    const emergencyTimer = setInterval(() => {
-      const timeSinceLastRender = Date.now() - lastRenderTime;
-      if (timeSinceLastRender > 30000) { // 30 seconden zonder render
-        console.error(`[ONBOARDING] EMERGENCY: No render for ${timeSinceLastRender}ms`);
-        setEmergencyMode(true);
-      }
-    }, 5000); // Check elke 5 seconden
-
-    return () => clearInterval(emergencyTimer);
-  }, [lastRenderTime]);
+  const [lastRenderTime] = useState(Date.now());
 
   const triggerEmergencyMode = useCallback(() => {
-    console.log('[ONBOARDING] Triggering emergency mode');
+    console.error('[ONBOARDING] CRITICAL ERROR: Triggering emergency mode');
     setEmergencyMode(true);
     setOnboardingEmergencyMode(true);
   }, [setOnboardingEmergencyMode]);
@@ -34,17 +29,7 @@ export const useEmergencyMode = () => {
     console.log('[ONBOARDING] Recovering from emergency mode');
     setEmergencyMode(false);
     setOnboardingEmergencyMode(false);
-    setLastRenderTime(Date.now());
   }, [setOnboardingEmergencyMode]);
-
-  const triggerUIReset = useCallback(() => {
-    console.log('[ONBOARDING] Triggering UI reset from emergency mode');
-    setLastRenderTime(Date.now());
-    // Force a re-render by updating the time
-    setTimeout(() => {
-      setLastRenderTime(Date.now());
-    }, 100);
-  }, []);
 
   const skipOnboarding = useCallback(() => {
     console.log('[ONBOARDING] Skipping onboarding from emergency mode');
@@ -54,10 +39,9 @@ export const useEmergencyMode = () => {
 
   return {
     isEmergencyMode: emergencyMode,
-    lastRenderTime,
+    lastRenderTime, // Keep for backward compatibility
     triggerEmergencyMode,
     recoverFromEmergency,
     skipOnboarding,
-    triggerUIReset,
   };
 };

@@ -1,5 +1,5 @@
-import React, { memo, useEffect, useCallback } from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, StatusBar, Platform } from 'react-native';
+import React, { memo, useEffect, useCallback, useMemo, useRef, useState } from 'react';
+import { View, StyleSheet, ScrollView, SafeAreaView, StatusBar, Platform, Alert, useColorScheme } from 'react-native';
 import { Colors, Spacing } from '../../styles/designSystem';
 import { useOnboardingState } from './hooks/useOnboardingState';
 import { usePermissionHandler } from './hooks/usePermissionHandler';
@@ -16,6 +16,9 @@ interface OnboardingScreenProps {
 }
 
 const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
+  // Track mounted state for cleanup
+  const isMounted = useRef(true);
+
   // Centralized state management
   const {
     currentStep,
@@ -36,7 +39,7 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
     openSystemSettings
   } = usePermissionHandler();
 
-  // Emergency mode detection and recovery
+  // Emergency mode detection and recovery (ONLY for critical crashes)
   const {
     isEmergencyMode,
     lastRenderTime,
@@ -49,20 +52,16 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
   const totalSteps = ONBOARDING_STEPS.length;
   const isLastStep = currentStep === totalSteps - 1;
 
-  // Emergency mode effect
-  useEffect(() => {
-    if (!isEmergencyMode) {
-      const timer = setTimeout(() => {
-        // Check if UI is responsive by monitoring render time
-        const timeSinceLastRender = Date.now() - lastRenderTime;
-        if (timeSinceLastRender > 30000) { // 30 seconds
-          triggerEmergencyMode();
-        }
-      }, 30000);
+  // Get color scheme for dynamic StatusBar
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
 
-      return () => clearTimeout(timer);
-    }
-  }, [isEmergencyMode, lastRenderTime, triggerEmergencyMode]);
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   // Handle step completion and navigation
   const handleNext = useCallback(async () => {
@@ -74,9 +73,21 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
       // Validate current step before proceeding
       if (currentStepData.type === 'permission') {
         const allPermissionsGranted = await checkAllPermissions();
+
         if (!allPermissionsGranted && currentStepData.required) {
-          console.warn('Required permissions not granted');
-          setIsLoading(false);
+          // Show user-friendly alert instead of silent console.warn
+          Alert.alert(
+            'Permissies Vereist',
+            'Deze permissies zijn nodig om verder te gaan. Open instellingen om ze toe te staan.',
+            [
+              { text: 'Annuleren', style: 'cancel' },
+              { text: 'Open Instellingen', onPress: openSystemSettings }
+            ]
+          );
+
+          if (isMounted.current) {
+            setIsLoading(false);
+          }
           return;
         }
       }
@@ -85,23 +96,33 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
         // Complete onboarding
         console.log('Onboarding completed:', userData);
 
-        // Call onComplete callback if provided
+        // Call onComplete callback if provided (await if async)
         if (onComplete) {
-          onComplete();
+          await Promise.resolve(onComplete());
         }
-        return;
+
+        // Fall through to finally block to ensure loading state is reset
+      } else {
+        // Proceed to next step
+        if (isMounted.current) {
+          setCurrentStep(currentStep + 1);
+        }
       }
 
-      // Proceed to next step
-      setCurrentStep(currentStep + 1);
-      
     } catch (error) {
       console.error('Error navigating to next step:', error);
-      triggerEmergencyMode();
+
+      // Show user-friendly error instead of emergency mode for normal errors
+      Alert.alert('Oeps', 'Er ging iets mis. Probeer opnieuw.');
+
+      // Only trigger emergency mode for CRITICAL errors (network timeout, app freeze, etc)
+      // Normal navigation errors should NOT trigger emergency mode
     } finally {
-      setIsLoading(false);
+      if (isMounted.current) {
+        setIsLoading(false);
+      }
     }
-  }, [currentStep, isLastStep, currentStepData, isLoading, userData, setCurrentStep, setIsLoading, checkAllPermissions, triggerEmergencyMode, onComplete]);
+  }, [currentStep, isLastStep, currentStepData, isLoading, userData, setCurrentStep, setIsLoading, checkAllPermissions, onComplete, openSystemSettings]);
 
   const handlePrevious = useCallback(() => {
     if (currentStep > 0) {
@@ -109,29 +130,30 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
     }
   }, [currentStep, setCurrentStep]);
 
-  // Handle option selection
+  // Handle option selection with proper typing (NO 'any' casts!)
   const handleOptionSelect = useCallback((value: string) => {
     if (currentStepData.key) {
-      const newData = {
-        ...userData,
-        [currentStepData.key]: value
-      };
-      (setUserData as any)(newData);
+      // setUserData accepts both key-value and object format
+      setUserData(currentStepData.key, value);
     }
-  }, [userData, currentStepData.key, setUserData]);
+  }, [currentStepData.key, setUserData]);
 
-  // Handle permission toggle
+  // Handle permission toggle with per-permission loading state
   const handlePermissionToggleLocal = useCallback(async (permissionKey: string) => {
+    // Prevent concurrent toggles on same permission
+    if (permissionLoading[permissionKey]) return;
+
     try {
-      setIsLoading(true);
       await handlePermissionToggle(permissionKey);
     } catch (error) {
       console.error('Error toggling permission:', error);
-      triggerEmergencyMode();
-    } finally {
-      setIsLoading(false);
+
+      // Show user-friendly error instead of emergency mode
+      Alert.alert('Oeps', 'Kon permissie niet wijzigen. Probeer opnieuw.');
+
+      // Permission toggle errors are NORMAL - don't trigger emergency mode
     }
-  }, [handlePermissionToggle, setIsLoading, triggerEmergencyMode]);
+  }, [handlePermissionToggle, permissionLoading]);
 
   // Emergency recovery handlers
   const handleEmergencyRecovery = useCallback(() => {
@@ -147,18 +169,18 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
     }
   }, [skipOnboarding, onComplete]);
 
-  // Render different step types
-  const renderStepContent = () => {
+  // Memoize step content rendering for performance
+  const renderStepContent = useMemo(() => {
     switch (currentStepData.type) {
       case 'selection':
         return (
           <StepSelection
             options={currentStepData.options || []}
-            currentValue={currentStepData.key ? (userData as any)[currentStepData.key] || '' : ''}
+            currentValue={currentStepData.key ? userData[currentStepData.key as keyof typeof userData] as string || '' : ''}
             onSelect={handleOptionSelect}
           />
         );
-      
+
       case 'permission':
         return (
           <View style={styles.permissionsContainer}>
@@ -173,7 +195,7 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
             ))}
           </View>
         );
-      
+
       case 'info':
       default:
         return (
@@ -184,13 +206,13 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
           />
         );
     }
-  };
+  }, [currentStepData, userData, permissionStatus, handleOptionSelect, handlePermissionToggleLocal, permissionLoading, currentStep, totalSteps]);
 
-  // Emergency mode rendering
+  // Emergency mode rendering (ONLY for critical crashes, not normal errors)
   if (isEmergencyMode) {
     return (
       <SafeAreaView style={styles.container}>
-        <StatusBar barStyle="dark-content" backgroundColor={Colors.background.primary} />
+        <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} backgroundColor={Colors.background.primary} />
         <EmergencyMode
           lastRenderTime={lastRenderTime}
           onRecovery={handleEmergencyRecovery}
@@ -202,8 +224,8 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.background.primary} />
-      
+      <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} backgroundColor={Colors.background.primary} />
+
       {/* Main Content */}
       <ScrollView
         style={styles.scrollView}
@@ -212,7 +234,7 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.contentContainer}>
-          {renderStepContent()}
+          {renderStepContent}
         </View>
       </ScrollView>
 
