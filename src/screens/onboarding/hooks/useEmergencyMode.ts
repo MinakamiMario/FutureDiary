@@ -13,11 +13,15 @@ import { useOnboardingState } from './useOnboardingState';
  * - User denied permission
  * - Validation failures
  * - UI errors
+ *
+ * ✅ REMOVED: 30-second UI freeze detection
+ * Why: If React stops rendering, the timer also stops running
+ * Emergency mode now only triggered manually for critical errors
  */
 export const useEmergencyMode = () => {
   const { setEmergencyMode: setOnboardingEmergencyMode, resetOnboarding } = useOnboardingState();
   const [emergencyMode, setEmergencyMode] = useState(false);
-  const [lastRenderTime] = useState(Date.now());
+  const [lastRenderTime] = useState(Date.now()); // Keep for backward compatibility
 
   const triggerEmergencyMode = useCallback(() => {
     console.error('[ONBOARDING] CRITICAL ERROR: Triggering emergency mode');

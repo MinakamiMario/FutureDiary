@@ -173,10 +173,15 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
   const renderStepContent = useMemo(() => {
     switch (currentStepData.type) {
       case 'selection':
+        // Get current value without type casting (userData has index signature)
+        const selectionValue = currentStepData.key && currentStepData.key in userData
+          ? String(userData[currentStepData.key])
+          : '';
+
         return (
           <StepSelection
             options={currentStepData.options || []}
-            currentValue={currentStepData.key ? userData[currentStepData.key as keyof typeof userData] as string || '' : ''}
+            currentValue={selectionValue}
             onSelect={handleOptionSelect}
           />
         );

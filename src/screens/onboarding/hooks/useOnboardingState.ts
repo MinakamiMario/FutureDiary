@@ -117,7 +117,7 @@ export const useOnboardingState = () => {
     emergencyMode: state.emergencyMode,
     permissionLoading: state.permissionLoading,
     setCurrentStep,
-    setUserData: updateSetting,
+    setUserData, // Export the flexible setUserData(key, value) or setUserData(object) function
     setIsLoading: setLoading,
     updatePermission,
     setPermissionLoading,
