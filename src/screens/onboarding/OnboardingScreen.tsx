@@ -93,8 +93,35 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
       }
 
       if (isLastStep) {
-        // Complete onboarding
+        // Complete onboarding - SAVE settings to AsyncStorage!
         console.log('Onboarding completed:', userData);
+
+        // Save all onboarding settings to AsyncStorage
+        try {
+          const AsyncStorage = require('@react-native-async-storage/async-storage').default;
+
+          // Save AI model preference
+          if (userData.preferredAIModel) {
+            await AsyncStorage.setItem('preferredAIModel', userData.preferredAIModel);
+            console.log('✅ Saved AI Model:', userData.preferredAIModel);
+          }
+
+          // Save narrative style preference
+          if (userData.narrativeStyle) {
+            await AsyncStorage.setItem('narrativeStyle', userData.narrativeStyle);
+            console.log('✅ Saved Narrative Style:', userData.narrativeStyle);
+          }
+
+          // Save tracking goals if selected
+          if (userData.tracking_goals) {
+            await AsyncStorage.setItem('tracking_goals', userData.tracking_goals);
+            console.log('✅ Saved Tracking Goals:', userData.tracking_goals);
+          }
+
+          console.log('✅ All onboarding settings saved successfully');
+        } catch (saveError) {
+          console.error('❌ Failed to save onboarding settings:', saveError);
+        }
 
         // Call onComplete callback if provided (await if async)
         if (onComplete) {

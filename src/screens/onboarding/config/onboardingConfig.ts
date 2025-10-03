@@ -24,36 +24,27 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     key: 'preferredAIModel',
     options: [
       {
-        id: AI_MODEL_TYPES.GPT35,
-        title: 'ChatGPT 3.5',
-        subtitle: 'Snel & Efficiënt',
-        description: 'Snelle dagboekgeneratie met goede kwaliteit',
+        id: AI_MODEL_TYPES.CHATGPT,
+        title: 'ChatGPT (GPT-4o)',
+        subtitle: 'Jouw Werkende API',
+        description: 'Gebruik je eigen OpenAI API key voor dagboeken',
         icon: 'flash-outline',
         recommended: true,
-        badge: 'Populair'
-      },
-      {
-        id: AI_MODEL_TYPES.GPT4,
-        title: 'ChatGPT 4',
-        subtitle: 'Premium Kwaliteit',
-        description: 'Hoogste kwaliteit verhalen met diepere inzichten',
-        icon: 'star-outline',
-        recommended: false,
-        badge: 'Premium'
+        badge: 'Configured'
       },
       {
         id: AI_MODEL_TYPES.CLAUDE,
         title: 'Claude AI',
-        subtitle: 'Natuurlijke Stijl',
-        description: 'Natuurlijk schrijvende AI voor vloeiende verhalen',
+        subtitle: 'Alternatief AI Model',
+        description: 'Natuurlijk schrijvende AI (vereist Claude API key)',
         icon: 'document-text-outline',
         recommended: false
       },
       {
         id: AI_MODEL_TYPES.TEMPLATE,
         title: 'Template Modus',
-        subtitle: 'Geen AI',
-        description: 'Gebruik vaste templates zonder AI (gratis)',
+        subtitle: 'Geen AI - Gratis',
+        description: 'Gebruik vaste templates zonder API kosten',
         icon: 'list-outline',
         recommended: false
       }
