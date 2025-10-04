@@ -11,6 +11,7 @@ import OnboardingScreen from './src/screens/onboarding';
 import HealthDataService from './src/services/healthDataService';
 import {AppProvider} from './src/utils/appContext';
 import {ThemeProvider} from './src/utils/themeContext';
+import {HealthDataProvider, useHealthData} from './src/contexts/HealthDataContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Load test utils only in development
@@ -29,75 +30,23 @@ const defaultFontFamily = Platform.select({
 
 const Tab = createBottomTabNavigator();
 
-// Wrapper components for screens with health data
+// Optimized wrapper components using shared health data context
 function DashboardWrapper() {
-  const [stats, setStats] = useState({
-    steps: 0,
-    calories: 0,
-    distance: 0,
-    activeMinutes: 0,
-    heartRate: 0,
-    isTracking: false,
-  });
-
-  const loadRealHealthData = async () => {
-    try {
-      const realStats = await HealthDataService.getHealthStats();
-      setStats({
-        steps: realStats.daily?.steps || 0,
-        calories: realStats.daily?.calories || 0,
-        distance: realStats.daily?.distance || 0,
-        activeMinutes: realStats.daily?.activeMinutes || 0,
-        heartRate: realStats.daily?.heartRate || 0,
-        isTracking: true
-      });
-    } catch (error) {
-      console.log('Error loading health stats:', error);
-      // Keep default zero stats on error
-    }
-  };
+  const { healthStats, fetchHealthStats } = useHealthData();
 
   useEffect(() => {
-    loadRealHealthData();
-  }, []);
+    fetchHealthStats();
+  }, [fetchHealthStats]);
 
   return (
-    <DashboardScreen healthDataService={HealthDataService} stats={stats} />
+    <DashboardScreen healthDataService={HealthDataService} stats={healthStats} />
   );
 }
 
 function StatsWrapper() {
-  const [stats, setStats] = useState({
-    steps: 0,
-    calories: 0,
-    distance: 0,
-    activeMinutes: 0,
-    heartRate: 0,
-    isTracking: false,
-  });
+  const { healthStats } = useHealthData();
 
-  const loadRealHealthData = async () => {
-    try {
-      const realStats = await HealthDataService.getHealthStats();
-      setStats({
-        steps: realStats.daily?.steps || 0,
-        calories: realStats.daily?.calories || 0,
-        distance: realStats.daily?.distance || 0,
-        activeMinutes: realStats.daily?.activeMinutes || 0,
-        heartRate: realStats.daily?.heartRate || 0,
-        isTracking: true
-      });
-    } catch (error) {
-      console.log('Error loading health stats:', error);
-      // Keep default zero stats on error
-    }
-  };
-
-  useEffect(() => {
-    loadRealHealthData();
-  }, []);
-
-  return <StatsScreen stats={stats} />;
+  return <StatsScreen stats={healthStats} />;
 }
 
 function AppContent() {
@@ -213,10 +162,12 @@ function App() {
   return (
     <AppProvider>
       <ThemeProvider>
-        <NavigationContainer>
-          <StatusBar barStyle="light-content" backgroundColor="#4a90e2" />
-          <AppContent />
-        </NavigationContainer>
+        <HealthDataProvider>
+          <NavigationContainer>
+            <StatusBar barStyle="light-content" backgroundColor="#4a90e2" />
+            <AppContent />
+          </NavigationContainer>
+        </HealthDataProvider>
       </ThemeProvider>
     </AppProvider>
   );
