@@ -1,6 +1,6 @@
 // src/services/callLogService.js
 // Assume Android mobile app
-import databaseService from './databaseSelector';
+import databaseService from './database';
 
 // Production ready call log with graceful fallback
 let CallLog = null;

@@ -4,7 +4,7 @@
 
 import { Platform, NativeModules } from 'react-native';
 import BaseService from './BaseService';
-import databaseService from './databaseSelector';
+import databaseService from './database';
 
 // Health Connect Native Module - Use RealHealthConnectModule for production
 const { HealthConnectModule, RealHealthConnectModule } = NativeModules;
