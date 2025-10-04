@@ -1,7 +1,10 @@
 package com.minakamiappfinal
 
 import android.app.Activity
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
@@ -12,36 +15,45 @@ import androidx.health.connect.client.permission.HealthPermission
 import androidx.health.connect.client.records.*
 
 /**
- * ✅ REAL Health Connect Permission Request Activity
+ * ✅ REAL Health Connect Permission Request Activity with Result Broadcasting
  *
  * This Activity handles the actual Health Connect permission request flow
- * using ActivityResultLauncher - the CORRECT way to request permissions
+ * using ActivityResultLauncher and broadcasts results back to React Native Module
  */
 class HealthConnectPermissionActivity : AppCompatActivity() {
 
     companion object {
         const val TAG = "HealthConnectPermission"
         const val EXTRA_PERMISSIONS = "permissions"
-        const val RESULT_PERMISSIONS_GRANTED = "granted_permissions"
+        const val ACTION_PERMISSION_RESULT = "com.minakamiappfinal.PERMISSION_RESULT"
+        const val EXTRA_GRANTED_PERMISSIONS = "granted_permissions"
+        const val EXTRA_DENIED_PERMISSIONS = "denied_permissions"
     }
 
     private val healthConnectClient by lazy {
         HealthConnectClient.getOrCreate(this)
     }
 
-    // ✅ THIS IS THE MISSING PIECE - ActivityResultLauncher for permission requests
+    // ✅ ActivityResultLauncher for permission requests
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
         Log.d(TAG, "Permission request completed: $permissions")
 
-        // Return granted permissions to React Native
+        // Split into granted and denied
         val grantedPermissions = permissions.filter { it.value }.keys.toList()
-        val resultIntent = Intent().apply {
-            putStringArrayListExtra(RESULT_PERMISSIONS_GRANTED, ArrayList(grantedPermissions))
-        }
+        val deniedPermissions = permissions.filter { !it.value }.keys.toList()
 
-        setResult(Activity.RESULT_OK, resultIntent)
+        Log.d(TAG, "Granted: ${grantedPermissions.size}, Denied: ${deniedPermissions.size}")
+
+        // ✅ BROADCAST RESULT TO REACT NATIVE MODULE
+        val resultIntent = Intent(ACTION_PERMISSION_RESULT).apply {
+            putStringArrayListExtra(EXTRA_GRANTED_PERMISSIONS, ArrayList(grantedPermissions))
+            putStringArrayListExtra(EXTRA_DENIED_PERMISSIONS, ArrayList(deniedPermissions))
+        }
+        sendBroadcast(resultIntent)
+
+        Log.d(TAG, "Broadcasted permission result to React Native")
         finish()
     }
 
@@ -51,20 +63,21 @@ class HealthConnectPermissionActivity : AppCompatActivity() {
         // Get requested permissions from intent
         val requestedPermissions = intent.getStringArrayListExtra(EXTRA_PERMISSIONS) ?: run {
             Log.e(TAG, "No permissions provided")
-            setResult(Activity.RESULT_CANCELED)
+
+            // Broadcast failure
+            val failureIntent = Intent(ACTION_PERMISSION_RESULT).apply {
+                putStringArrayListExtra(EXTRA_GRANTED_PERMISSIONS, ArrayList())
+                putStringArrayListExtra(EXTRA_DENIED_PERMISSIONS, ArrayList())
+            }
+            sendBroadcast(failureIntent)
+
             finish()
             return
         }
 
-        Log.d(TAG, "Requesting permissions: $requestedPermissions")
+        Log.d(TAG, "Requesting ${requestedPermissions.size} permissions: $requestedPermissions")
 
         // ✅ LAUNCH THE REAL HEALTH CONNECT PERMISSION UI
         requestPermissionLauncher.launch(requestedPermissions.toTypedArray())
     }
-
-    /**
-     * Helper function to create permission contract (for reference)
-     */
-    private fun createPermissionContract() =
-        PermissionController.createRequestPermissionResultContract()
 }

@@ -1,8 +1,10 @@
 package com.minakamiappfinal
 
+import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.pm.PackageManager
 import android.content.Intent
+import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
@@ -56,6 +58,76 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
 
     private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private val grantedPermissions = mutableSetOf<String>()
+
+    // ✅ Store promise for permission result callback
+    private var permissionPromise: Promise? = null
+
+    // ✅ BroadcastReceiver to receive permission results from Activity
+    private val permissionResultReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == HealthConnectPermissionActivity.ACTION_PERMISSION_RESULT) {
+                Log.d(TAG, "Received permission result broadcast")
+
+                val grantedPermissions = intent.getStringArrayListExtra(
+                    HealthConnectPermissionActivity.EXTRA_GRANTED_PERMISSIONS
+                ) ?: arrayListOf()
+
+                val deniedPermissions = intent.getStringArrayListExtra(
+                    HealthConnectPermissionActivity.EXTRA_DENIED_PERMISSIONS
+                ) ?: arrayListOf()
+
+                Log.d(TAG, "Granted: ${grantedPermissions.size}, Denied: ${deniedPermissions.size}")
+
+                // Build result for React Native
+                val grantedArray = Arguments.createArray()
+                val deniedArray = Arguments.createArray()
+
+                grantedPermissions.forEach { permission ->
+                    val recordType = getRecordTypeFromPermission(permission)
+                    if (recordType != null) {
+                        val permissionMap = Arguments.createMap().apply {
+                            putString("permission", permission)
+                            putString("recordType", recordType)
+                        }
+                        grantedArray.pushMap(permissionMap)
+                    }
+                }
+
+                deniedPermissions.forEach { permission ->
+                    val recordType = getRecordTypeFromPermission(permission)
+                    if (recordType != null) {
+                        val permissionMap = Arguments.createMap().apply {
+                            putString("permission", permission)
+                            putString("recordType", recordType)
+                        }
+                        deniedArray.pushMap(permissionMap)
+                    }
+                }
+
+                val result = Arguments.createMap().apply {
+                    putBoolean("success", grantedPermissions.isNotEmpty())
+                    putString("message", when {
+                        deniedPermissions.isEmpty() -> "All permissions granted"
+                        grantedPermissions.isEmpty() -> "All permissions denied"
+                        else -> "Some permissions granted"
+                    })
+                    putArray("granted", grantedArray)
+                    putArray("denied", deniedArray)
+                }
+
+                // ✅ Resolve the promise with result
+                permissionPromise?.resolve(result)
+                permissionPromise = null
+            }
+        }
+    }
+
+    init {
+        // ✅ Register broadcast receiver
+        val filter = IntentFilter(HealthConnectPermissionActivity.ACTION_PERMISSION_RESULT)
+        reactApplicationContext.registerReceiver(permissionResultReceiver, filter)
+        Log.d(TAG, "Permission result receiver registered")
+    }
 
     override fun getName(): String = "RealHealthConnectModule"
 
@@ -285,6 +357,9 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
                 return
             }
 
+            // ✅ SAVE THE PROMISE - will be resolved by BroadcastReceiver
+            permissionPromise = promise
+
             // ✅ LAUNCH THE PERMISSION REQUEST ACTIVITY
             val intent = Intent(reactApplicationContext, HealthConnectPermissionActivity::class.java).apply {
                 putStringArrayListExtra(HealthConnectPermissionActivity.EXTRA_PERMISSIONS, ArrayList(permissions))
@@ -292,16 +367,7 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
             }
 
             reactApplicationContext.startActivity(intent)
-            Log.d(TAG, "Launched Health Connect permission request UI for ${permissions.size} permissions")
-
-            // Note: The result will be handled via the Activity callback
-            // For now, we return a pending status
-            val result = Arguments.createMap().apply {
-                putBoolean("success", true)
-                putString("message", "Permission request launched - check Health Connect app")
-                putBoolean("pending", true)
-            }
-            promise.resolve(result)
+            Log.d(TAG, "✅ Launched Health Connect permission request UI for ${permissions.size} permissions - awaiting result...")
 
         } catch (e: Exception) {
             Log.e(TAG, "Error launching permission request", e)
@@ -484,6 +550,228 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
         }
     }
 
+    /**
+     * ✅ Read Exercise Session Records
+     */
+    @ReactMethod
+    fun readExerciseRecords(timeRangeFilter: ReadableMap, promise: Promise) {
+        coroutineScope.launch {
+            try {
+                val client = healthConnectClient
+                if (client == null) {
+                    withContext(Dispatchers.Main) {
+                        promise.reject("CLIENT_ERROR", "Health Connect client not initialized")
+                    }
+                    return@launch
+                }
+
+                val startTime = Instant.ofEpochMilli(timeRangeFilter.getDouble("startTime").toLong())
+                val endTime = Instant.ofEpochMilli(timeRangeFilter.getDouble("endTime").toLong())
+                val filter = TimeRangeFilter.between(startTime, endTime)
+
+                val readRequest = ReadRecordsRequest(
+                    recordType = ExerciseSessionRecord::class,
+                    timeRangeFilter = filter
+                )
+
+                val response = client.readRecords(readRequest)
+                val records = response.records
+
+                Log.d(TAG, "Retrieved ${records.size} exercise records from Health Connect")
+
+                val result = Arguments.createArray()
+
+                for (record in records) {
+                    val recordMap = Arguments.createMap().apply {
+                        putString("recordId", record.metadata.id)
+                        putString("startTime", record.startTime.toString())
+                        putString("endTime", record.endTime.toString())
+                        putString("exerciseType", record.exerciseType.toString())
+                        putString("title", record.title ?: "Exercise")
+                        putString("notes", record.notes ?: "")
+                        putString("source", "Health Connect")
+                    }
+                    result.pushMap(recordMap)
+                }
+
+                withContext(Dispatchers.Main) {
+                    promise.resolve(result)
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error reading exercise records", e)
+                withContext(Dispatchers.Main) {
+                    promise.reject("READ_ERROR", e.message)
+                }
+            }
+        }
+    }
+
+    /**
+     * ✅ Read Distance Records
+     */
+    @ReactMethod
+    fun readDistanceRecords(timeRangeFilter: ReadableMap, promise: Promise) {
+        coroutineScope.launch {
+            try {
+                val client = healthConnectClient
+                if (client == null) {
+                    withContext(Dispatchers.Main) {
+                        promise.reject("CLIENT_ERROR", "Health Connect client not initialized")
+                    }
+                    return@launch
+                }
+
+                val startTime = Instant.ofEpochMilli(timeRangeFilter.getDouble("startTime").toLong())
+                val endTime = Instant.ofEpochMilli(timeRangeFilter.getDouble("endTime").toLong())
+                val filter = TimeRangeFilter.between(startTime, endTime)
+
+                val readRequest = ReadRecordsRequest(
+                    recordType = DistanceRecord::class,
+                    timeRangeFilter = filter
+                )
+
+                val response = client.readRecords(readRequest)
+                val records = response.records
+
+                Log.d(TAG, "Retrieved ${records.size} distance records from Health Connect")
+
+                val result = Arguments.createArray()
+
+                for (record in records) {
+                    val recordMap = Arguments.createMap().apply {
+                        putString("recordId", record.metadata.id)
+                        putString("startTime", record.startTime.toString())
+                        putString("endTime", record.endTime.toString())
+                        putDouble("distanceMeters", record.distance.inMeters)
+                        putString("source", "Health Connect")
+                    }
+                    result.pushMap(recordMap)
+                }
+
+                withContext(Dispatchers.Main) {
+                    promise.resolve(result)
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error reading distance records", e)
+                withContext(Dispatchers.Main) {
+                    promise.reject("READ_ERROR", e.message)
+                }
+            }
+        }
+    }
+
+    /**
+     * ✅ Read Calories Burned Records
+     */
+    @ReactMethod
+    fun readCaloriesRecords(timeRangeFilter: ReadableMap, promise: Promise) {
+        coroutineScope.launch {
+            try {
+                val client = healthConnectClient
+                if (client == null) {
+                    withContext(Dispatchers.Main) {
+                        promise.reject("CLIENT_ERROR", "Health Connect client not initialized")
+                    }
+                    return@launch
+                }
+
+                val startTime = Instant.ofEpochMilli(timeRangeFilter.getDouble("startTime").toLong())
+                val endTime = Instant.ofEpochMilli(timeRangeFilter.getDouble("endTime").toLong())
+                val filter = TimeRangeFilter.between(startTime, endTime)
+
+                val readRequest = ReadRecordsRequest(
+                    recordType = ActiveCaloriesBurnedRecord::class,
+                    timeRangeFilter = filter
+                )
+
+                val response = client.readRecords(readRequest)
+                val records = response.records
+
+                Log.d(TAG, "Retrieved ${records.size} calories records from Health Connect")
+
+                val result = Arguments.createArray()
+
+                for (record in records) {
+                    val recordMap = Arguments.createMap().apply {
+                        putString("recordId", record.metadata.id)
+                        putString("startTime", record.startTime.toString())
+                        putString("endTime", record.endTime.toString())
+                        putDouble("calories", record.energy.inKilocalories)
+                        putString("source", "Health Connect")
+                    }
+                    result.pushMap(recordMap)
+                }
+
+                withContext(Dispatchers.Main) {
+                    promise.resolve(result)
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error reading calories records", e)
+                withContext(Dispatchers.Main) {
+                    promise.reject("READ_ERROR", e.message)
+                }
+            }
+        }
+    }
+
+    /**
+     * ✅ Read Sleep Session Records
+     */
+    @ReactMethod
+    fun readSleepRecords(timeRangeFilter: ReadableMap, promise: Promise) {
+        coroutineScope.launch {
+            try {
+                val client = healthConnectClient
+                if (client == null) {
+                    withContext(Dispatchers.Main) {
+                        promise.reject("CLIENT_ERROR", "Health Connect client not initialized")
+                    }
+                    return@launch
+                }
+
+                val startTime = Instant.ofEpochMilli(timeRangeFilter.getDouble("startTime").toLong())
+                val endTime = Instant.ofEpochMilli(timeRangeFilter.getDouble("endTime").toLong())
+                val filter = TimeRangeFilter.between(startTime, endTime)
+
+                val readRequest = ReadRecordsRequest(
+                    recordType = SleepSessionRecord::class,
+                    timeRangeFilter = filter
+                )
+
+                val response = client.readRecords(readRequest)
+                val records = response.records
+
+                Log.d(TAG, "Retrieved ${records.size} sleep records from Health Connect")
+
+                val result = Arguments.createArray()
+
+                for (record in records) {
+                    val durationMinutes = java.time.Duration.between(record.startTime, record.endTime).toMinutes()
+
+                    val recordMap = Arguments.createMap().apply {
+                        putString("recordId", record.metadata.id)
+                        putString("startTime", record.startTime.toString())
+                        putString("endTime", record.endTime.toString())
+                        putInt("durationMinutes", durationMinutes.toInt())
+                        putString("title", record.title ?: "Sleep")
+                        putString("notes", record.notes ?: "")
+                        putString("source", "Health Connect")
+                    }
+                    result.pushMap(recordMap)
+                }
+
+                withContext(Dispatchers.Main) {
+                    promise.resolve(result)
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error reading sleep records", e)
+                withContext(Dispatchers.Main) {
+                    promise.reject("READ_ERROR", e.message)
+                }
+            }
+        }
+    }
+
     // ✅ COMPLETE Helper methods with ALL record types
     private fun getPermissionsForRecordType(recordType: String): Set<String> {
         return when (recordType) {
@@ -528,5 +816,13 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
     override fun onCatalystInstanceDestroy() {
         super.onCatalystInstanceDestroy()
         coroutineScope.cancel()
+
+        // ✅ Unregister broadcast receiver
+        try {
+            reactApplicationContext.unregisterReceiver(permissionResultReceiver)
+            Log.d(TAG, "Permission result receiver unregistered")
+        } catch (e: Exception) {
+            Log.w(TAG, "Error unregistering receiver", e)
+        }
     }
 }
