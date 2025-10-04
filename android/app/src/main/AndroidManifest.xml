@@ -72,6 +72,12 @@
         </intent-filter>
       </activity>
       
+      <!-- ✅ Health Connect Permission Request Activity (NEW - REAL PERMISSION FLOW) -->
+      <activity
+        android:name=".HealthConnectPermissionActivity"
+        android:exported="false"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
       <!-- Health Connect Privacy Policy Activity -->
       <activity
         android:name=".HealthConnectPrivacyActivity"
