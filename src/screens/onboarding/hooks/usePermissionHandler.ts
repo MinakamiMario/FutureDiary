@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Platform, Linking } from 'react-native';
+import { Platform, Linking, NativeModules } from 'react-native';
 import {
   requestActivityRecognitionPermission,
   requestLocationPermissionsSafe,
@@ -10,6 +10,8 @@ import {
   RESULTS,
 } from '../../../utils/permissions';
 import { PermissionConfig } from '../types/onboarding.types';
+
+const { RealHealthConnectModule } = NativeModules;
 
 /**
  * Normalize Android permission strings to simplified keys
@@ -70,7 +72,44 @@ export const usePermissionHandler = () => {
         case 'notifications':
           const notificationResult = await requestNotificationPermission();
           return isPermissionGranted(notificationResult);
-        
+
+        // ✅ HEALTH CONNECT PERMISSIONS
+        case 'health_steps':
+        case 'health_distance':
+        case 'health_calories':
+          console.log(`[ONBOARDING] Requesting Health Connect permission: ${permissionType}`);
+
+          if (!RealHealthConnectModule) {
+            console.error('[ONBOARDING] RealHealthConnectModule not available');
+            return false;
+          }
+
+          try {
+            // Map permission type to record type
+            const recordTypeMap: { [key: string]: string } = {
+              'health_steps': 'Steps',
+              'health_distance': 'Distance',
+              'health_calories': 'Calories'
+            };
+
+            const recordType = recordTypeMap[permissionType];
+            const result = await RealHealthConnectModule.requestPermissions([{ recordType }]);
+
+            console.log('[ONBOARDING] Health Connect result:', result);
+
+            // Check if this specific permission was granted
+            if (result.granted && result.granted.length > 0) {
+              const granted = result.granted.some((p: any) => p.recordType === recordType);
+              console.log(`[ONBOARDING] ${recordType} permission granted:`, granted);
+              return granted;
+            }
+
+            return false;
+          } catch (error) {
+            console.error(`[ONBOARDING] Health Connect permission error:`, error);
+            return false;
+          }
+
         default:
           console.warn(`Unknown permission type: ${permissionType}`);
           return false;

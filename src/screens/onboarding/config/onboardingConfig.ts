@@ -134,47 +134,55 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
   {
     id: 'permissions',
     type: 'permission',
-    title: 'Toestemmingen',
-    subtitle: 'Geef de app toegang tot belangrijke functies',
-    description: 'Deze toestemmingen helpen ons je activiteiten nauwkeurig bij te houden en persoonlijke inzichten te geven.',
-    icon: 'shield-checkmark-outline',
-    iconColor: '#4CAF50',
+    title: 'Basis Toestemmingen',
+    subtitle: 'Essentieel voor dagboek functionaliteit',
+    description: '⚠️ Andere toestemmingen (Locatie, Health Connect) kun je later activeren in Instellingen.',
+    icon: 'checkmark-circle-outline',
+    iconColor: '#2196F3',
     key: 'permissions',
     required: false,
     permissions: [
       {
-        permission: 'android.permission.ACTIVITY_RECOGNITION',
-        title: 'Activiteit Herkenning',
-        subtitle: 'Detecteer beweging en activiteit',
-        description: 'Herkent automatisch lopen, fietsen en andere activiteiten',
-        icon: 'walk-outline',
-        required: false,
-        androidOnly: true
-      },
-      {
-        permission: 'android.permission.ACCESS_FINE_LOCATION',
-        title: 'Locatie',
-        subtitle: 'Bezochte plaatsen bijhouden',
-        description: 'Houd bezochte locaties bij voor je dagboek',
-        icon: 'location-outline',
-        required: false
-      },
-      {
-        permission: 'android.permission.READ_CALL_LOG',
-        title: 'Telefoongeschiedenis',
-        subtitle: 'Optioneel voor dagboek context',
-        description: 'Voeg telefoonactiviteit toe aan je dagelijkse verhaal',
-        icon: 'call-outline',
-        required: false
-      },
-      {
         permission: 'android.permission.POST_NOTIFICATIONS',
         title: 'Notificaties',
-        subtitle: 'Dagelijkse herinneringen',
-        description: 'Ontvang herinneringen voor je dagboek',
+        subtitle: 'Dagelijkse herinneringen (Aanbevolen)',
+        description: 'Ontvang herinneringen om je dagboek bij te houden',
         icon: 'notifications-outline',
         required: false
       },
+      {
+        permission: 'android.permission.ACTIVITY_RECOGNITION',
+        title: 'Activiteit Herkenning',
+        subtitle: 'Stappen en beweging (Optioneel)',
+        description: 'Automatische detectie van lopen, fietsen en beweging - geen locatie tracking',
+        icon: 'walk-outline',
+        required: false,
+        androidOnly: true
+      }
+    ]
+  },
+  {
+    id: 'advanced_permissions_info',
+    type: 'info',
+    title: 'Meer Toestemmingen Later',
+    subtitle: 'Je bent klaar om te starten!',
+    description: '📍 **Locatie Tracking**: Activeer later in Instellingen\n\n💊 **Health Connect**: Koppel Samsung Health later in Instellingen\n\n📞 **Telefoon Data**: Niet beschikbaar (privacy)',
+    icon: 'information-circle-outline',
+    iconColor: '#9C27B0',
+    key: 'advanced_info',
+    continueLabel: 'Start Minakami'
+  },
+  {
+    id: 'hidden_health_connect_placeholder',
+    type: 'permission',
+    title: 'DEPRECATED - NOT SHOWN IN ONBOARDING',
+    subtitle: 'These permissions moved to Settings',
+    description: 'This step is skipped',
+    icon: 'close-outline',
+    iconColor: '#F44336',
+    key: 'health_connect_deprecated',
+    required: false,
+    permissions: [
       {
         permission: 'android.permission.health.READ_STEPS',
         title: 'Health Connect - Stappen',
@@ -214,4 +222,4 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     iconColor: '#4CAF50',
     key: 'onboarding_completed'
   }
-];
+].filter(step => step.id !== 'hidden_health_connect_placeholder'); // ✅ Filter deprecated permissions
