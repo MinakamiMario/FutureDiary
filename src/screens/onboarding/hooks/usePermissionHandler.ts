@@ -11,6 +11,25 @@ import {
 } from '../../../utils/permissions';
 import { PermissionConfig } from '../types/onboarding.types';
 
+/**
+ * Normalize Android permission strings to simplified keys
+ * Maps: android.permission.ACCESS_FINE_LOCATION → 'location'
+ */
+const normalizePermissionKey = (permissionString: string): string => {
+  const mapping: { [key: string]: string } = {
+    'android.permission.ACCESS_FINE_LOCATION': 'location',
+    'android.permission.ACCESS_COARSE_LOCATION': 'location',
+    'android.permission.ACTIVITY_RECOGNITION': 'activity',
+    'android.permission.READ_CALL_LOG': 'calls',
+    'android.permission.POST_NOTIFICATIONS': 'notifications',
+    'android.permission.health.READ_STEPS': 'health_steps',
+    'android.permission.health.READ_DISTANCE': 'health_distance',
+    'android.permission.health.READ_ACTIVE_CALORIES_BURNED': 'health_calories',
+  };
+
+  return mapping[permissionString] || permissionString;
+};
+
 export const usePermissionHandler = () => {
   const [permissionStatus, setPermissionStatus] = useState<{[key: string]: boolean}>({});
   const [permissionLoading, setPermissionLoading] = useState<{[key: string]: boolean}>({});
@@ -115,31 +134,25 @@ export const usePermissionHandler = () => {
 
   const handlePermissionToggle = useCallback(async (permissionKey: string): Promise<void> => {
     console.log(`[ONBOARDING] Permission toggle started: ${permissionKey}`);
-    
-    let functionCompleted = false;
-    const crashDetectionTimeout = setTimeout(() => {
-      if (!functionCompleted) {
-        console.error(`[ONBOARDING] CRASH DETECTED: Function did not complete for ${permissionKey}`);
-      }
-    }, 15000);
-    
+
     try {
       setPermissionLoading(prev => ({ ...prev, [permissionKey]: true }));
-      
+
       const currentValue = permissionStatus[permissionKey] || false;
-      
+
       if (!currentValue) {
         console.log(`[ONBOARDING] Requesting permission: ${permissionKey}`);
-        
+
         if (permissionKey === 'location') {
           console.log('[ONBOARDING] Using SYSTEM SETTINGS approach for location permission');
           await openSystemLocationSettings();
-          setPermissionStatus(prev => ({ ...prev, [permissionKey]: true }));
-          console.log(`[ONBOARDING] System settings opened for ${permissionKey}`);
+          // ✅ FIX: Don't automatically assume permission granted
+          // User must manually re-check or app will verify on next launch
+          console.log(`[ONBOARDING] System settings opened for ${permissionKey} - user must grant manually`);
         } else {
           const granted = await requestPermission(permissionKey);
           console.log(`[ONBOARDING] Permission result for ${permissionKey}: ${granted}`);
-          
+
           if (granted) {
             console.log(`[ONBOARDING] Updating state for ${permissionKey} to true`);
             setPermissionStatus(prev => ({ ...prev, [permissionKey]: true }));
@@ -155,13 +168,10 @@ export const usePermissionHandler = () => {
       console.error(`[ONBOARDING] ERROR in permission toggle:`, error);
       throw error;
     } finally {
-      functionCompleted = true;
-      clearTimeout(crashDetectionTimeout);
-      
       setTimeout(() => {
         setPermissionLoading(prev => ({ ...prev, [permissionKey]: false }));
       }, 300);
-      
+
       console.log(`[ONBOARDING] Permission toggle completed: ${permissionKey}`);
     }
   }, [permissionStatus, requestPermission, openSystemLocationSettings]);
@@ -173,5 +183,9 @@ export const usePermissionHandler = () => {
     openSystemSettings: openSystemLocationSettings,
     checkAllPermissions,
     handlePermissionToggle,
+    normalizePermissionKey, // Export normalization function
   };
 };
+
+// Also export as standalone for external use
+export { normalizePermissionKey };

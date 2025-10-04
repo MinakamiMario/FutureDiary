@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useCallback, useMemo, useRef, useState } from 'react';
 import { View, StyleSheet, ScrollView, SafeAreaView, StatusBar, Platform, Alert, useColorScheme } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Colors, Spacing } from '../../styles/designSystem';
 import { useOnboardingState } from './hooks/useOnboardingState';
 import { usePermissionHandler } from './hooks/usePermissionHandler';
@@ -22,10 +23,10 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
   // Centralized state management
   const {
     currentStep,
-    userData,
+    settings,
     isLoading,
     setCurrentStep,
-    setUserData,
+    setSettings,
     setIsLoading,
     resetOnboarding
   } = useOnboardingState();
@@ -36,7 +37,8 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
     permissionLoading,
     handlePermissionToggle,
     checkAllPermissions,
-    openSystemSettings
+    openSystemSettings,
+    normalizePermissionKey
   } = usePermissionHandler();
 
   // Emergency mode detection and recovery (ONLY for critical crashes)
@@ -94,28 +96,26 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
 
       if (isLastStep) {
         // Complete onboarding - SAVE settings to AsyncStorage!
-        console.log('Onboarding completed:', userData);
+        console.log('Onboarding completed:', settings);
 
         // Save all onboarding settings to AsyncStorage
         try {
-          const AsyncStorage = require('@react-native-async-storage/async-storage').default;
-
           // Save AI model preference
-          if (userData.preferredAIModel) {
-            await AsyncStorage.setItem('preferredAIModel', userData.preferredAIModel);
-            console.log('✅ Saved AI Model:', userData.preferredAIModel);
+          if (settings.preferredAIModel) {
+            await AsyncStorage.setItem('preferredAIModel', settings.preferredAIModel);
+            console.log('✅ Saved AI Model:', settings.preferredAIModel);
           }
 
           // Save narrative style preference
-          if (userData.narrativeStyle) {
-            await AsyncStorage.setItem('narrativeStyle', userData.narrativeStyle);
-            console.log('✅ Saved Narrative Style:', userData.narrativeStyle);
+          if (settings.narrativeStyle) {
+            await AsyncStorage.setItem('narrativeStyle', settings.narrativeStyle);
+            console.log('✅ Saved Narrative Style:', settings.narrativeStyle);
           }
 
           // Save tracking goals if selected
-          if (userData.tracking_goals) {
-            await AsyncStorage.setItem('tracking_goals', userData.tracking_goals);
-            console.log('✅ Saved Tracking Goals:', userData.tracking_goals);
+          if (settings.tracking_goals) {
+            await AsyncStorage.setItem('tracking_goals', settings.tracking_goals);
+            console.log('✅ Saved Tracking Goals:', settings.tracking_goals);
           }
 
           console.log('✅ All onboarding settings saved successfully');
@@ -149,7 +149,7 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
         setIsLoading(false);
       }
     }
-  }, [currentStep, isLastStep, currentStepData, isLoading, userData, setCurrentStep, setIsLoading, checkAllPermissions, onComplete, openSystemSettings]);
+  }, [currentStep, isLastStep, currentStepData, isLoading, settings, setCurrentStep, setIsLoading, checkAllPermissions, onComplete, openSystemSettings]);
 
   const handlePrevious = useCallback(() => {
     if (currentStep > 0) {
@@ -160,10 +160,10 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
   // Handle option selection with proper typing (NO 'any' casts!)
   const handleOptionSelect = useCallback((value: string) => {
     if (currentStepData.key) {
-      // setUserData accepts both key-value and object format
-      setUserData(currentStepData.key, value);
+      // setSettings accepts both key-value and object format
+      setSettings(currentStepData.key, value);
     }
-  }, [currentStepData.key, setUserData]);
+  }, [currentStepData.key, setSettings]);
 
   // Handle permission toggle with per-permission loading state
   const handlePermissionToggleLocal = useCallback(async (permissionKey: string) => {
@@ -200,9 +200,9 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
   const renderStepContent = useMemo(() => {
     switch (currentStepData.type) {
       case 'selection':
-        // Get current value without type casting (userData has index signature)
-        const selectionValue = currentStepData.key && currentStepData.key in userData
-          ? String(userData[currentStepData.key])
+        // Get current value without type casting (settings has index signature)
+        const selectionValue = currentStepData.key && currentStepData.key in settings
+          ? String(settings[currentStepData.key])
           : '';
 
         return (
@@ -216,15 +216,19 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
       case 'permission':
         return (
           <View style={styles.permissionsContainer}>
-            {currentStepData.permissions?.map((permission) => (
-              <PermissionToggle
-                key={permission.permission}
-                permission={permission}
-                isEnabled={permissionStatus[permission.permission] || false}
-                isLoading={permissionLoading[permission.permission] || false}
-                onToggle={() => handlePermissionToggleLocal(permission.permission)}
-              />
-            ))}
+            {currentStepData.permissions?.map((permission) => {
+              // ✅ FIX: Normalize permission keys
+              const normalizedKey = normalizePermissionKey(permission.permission);
+              return (
+                <PermissionToggle
+                  key={permission.permission}
+                  permission={permission}
+                  isEnabled={permissionStatus[normalizedKey] || false}
+                  isLoading={permissionLoading[normalizedKey] || false}
+                  onToggle={() => handlePermissionToggleLocal(normalizedKey)}
+                />
+              );
+            })}
           </View>
         );
 
@@ -238,7 +242,7 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
           />
         );
     }
-  }, [currentStepData, userData, permissionStatus, handleOptionSelect, handlePermissionToggleLocal, permissionLoading, currentStep, totalSteps]);
+  }, [currentStepData, settings, permissionStatus, handleOptionSelect, handlePermissionToggleLocal, permissionLoading, currentStep, totalSteps]);
 
   // Emergency mode rendering (ONLY for critical crashes, not normal errors)
   if (isEmergencyMode) {

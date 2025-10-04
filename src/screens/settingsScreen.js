@@ -92,35 +92,110 @@ const SettingsScreen = ({ navigation }) => {
         case 'healthConnect':
           if (value) {
             try {
-              // Initialize Health Connect service
-              await healthDataService.initialize();
+              // STEP 1: ALWAYS perform fresh Health Connect availability check!
+              console.log('[Settings] Performing fresh Health Connect availability check...');
+              
               const isAvailable = await healthDataService.isAvailable();
-              if (isAvailable) {
+              console.log(`[Settings] Health Connect availability result: ${isAvailable}`);
+              
+              if (!isAvailable) {
+                // Health Connect is NOT available - offer installation options
+                console.log('[Settings] Health Connect not available - offering installation options');
+                
+                Alert.alert(
+                  '❌ Health Connect Niet Beschikbaar',
+                  'Health Connect is niet geïnstalleerd of moet worden bijgewerkt.\n\nWilt u Health Connect installeren of de instellingen openen?',
+                  [
+                    { 
+                      text: 'Installeer Health Connect', 
+                      onPress: async () => {
+                        try {
+                          await healthDataService.openHealthConnectInPlayStore();
+                        } catch (error) {
+                          Alert.alert('Fout', 'Kon Play Store niet openen');
+                        }
+                      }
+                    },
+                    { 
+                      text: 'Open Instellingen', 
+                      onPress: async () => {
+                        try {
+                          await healthDataService.openHealthConnectSettings();
+                        } catch (error) {
+                          Alert.alert('Fout', 'Kon instellingen niet openen');
+                        }
+                      }
+                    },
+                    { text: 'Annuleren', style: 'cancel' }
+                  ]
+                );
+                return;
+              }
+
+              // STEP 2: Health Connect is available, now check permissions
+              console.log('[Settings] Health Connect is available, checking permissions...');
+              
+              // Request basic permissions
+              const permissionRequests = [
+                { accessType: 'read', recordType: 'Steps' },
+                { accessType: 'read', recordType: 'HeartRate' },
+                { accessType: 'read', recordType: 'Exercise' }
+              ];
+              
+              const permissionResult = await healthDataService.requestPermissions(['steps', 'heart_rate', 'exercise']);
+              console.log(`[Settings] Permission check result:`, permissionResult);
+              
+              if (permissionResult.success && permissionResult.denied.length === 0) {
+                // All permissions granted!
                 await updateSettings({ 
-                  healthConnectEnabled: value,
+                  healthConnectEnabled: true,
                   preferredHealthSource: 'health_connect'
                 });
                 Alert.alert(
                   '✅ Health Connect Ingeschakeld!',
-                  'Health Connect is nu je primaire bron voor health data.',
+                  'Alle benodigde permissies zijn verleend. Health Connect is nu je primaire bron voor health data.',
                   [{ text: 'Perfect!', style: 'default' }]
                 );
               } else {
+                // Some permissions denied - user needs to grant them in Health Connect
+                const deniedTypes = permissionResult.denied.map(p => p.recordType).join(', ');
+                
                 Alert.alert(
-                  '❌ Health Connect Error',
-                  'Kan Health Connect niet initialiseren. Controleer of de Health Connect app is geïnstalleerd.',
-                  [{ text: 'OK', style: 'default' }]
+                  '⚠️ Health Connect Permissies Vereist',
+                  `De volgende permissies zijn nog niet verleend: ${deniedTypes}\n\nJe moet deze permissies verlenen in de Health Connect app voordat we data kunnen lezen.\n\nWil je nu naar de Health Connect permissies gaan?`,
+                  [
+                    { 
+                      text: 'Ga naar Health Connect Permissies', 
+                      onPress: async () => {
+                        try {
+                          await healthDataService.openHealthConnectPermissions();
+                          // After user grants permissions, they need to come back and try again
+                          Alert.alert(
+                            '📱 Ga terug naar MinakamiApp',
+                            'Na het verlenen van permissies in Health Connect, keer terug naar deze app en probeer opnieuw.',
+                            [{ text: 'OK', style: 'default' }]
+                          );
+                        } catch (error) {
+                          Alert.alert('Fout', 'Kon Health Connect permissies niet openen');
+                        }
+                      }
+                    },
+                    { text: 'Later', style: 'cancel' }
+                  ]
                 );
               }
             } catch (error) {
+              console.error('[Settings] Health Connect check error:', error);
               Alert.alert(
                 '❌ Health Connect Error',
-                `Error: ${error.message}`,
+                `Fout bij controleren: ${error.message}`,
                 [{ text: 'OK', style: 'default' }]
               );
             }
           } else {
-            await updateSettings({ healthConnectEnabled: value });
+            // User wants to disable Health Connect
+            console.log('[Settings] Disabling Health Connect');
+            await updateSettings({ healthConnectEnabled: false });
           }
           break;
           
@@ -295,6 +370,44 @@ const SettingsScreen = ({ navigation }) => {
 
   const syncHealthConnectData = async () => {
     try {
+      console.log('[Settings] Starting Health Connect data sync...');
+      
+      // First check permissions
+      console.log('[Settings] Checking permissions before sync...');
+      const permissionResult = await healthDataService.requestPermissions(['steps', 'heart_rate', 'exercise']);
+      
+      if (!permissionResult.success || permissionResult.denied.length > 0) {
+        // Permissions not granted
+        const deniedTypes = permissionResult.denied.map(p => p.recordType).join(', ');
+        console.log(`[Settings] Permissions denied for: ${deniedTypes}`);
+        
+        Alert.alert(
+          '⚠️ Permissies Vereist',
+          `De volgende permissies zijn nog niet verleend: ${deniedTypes}\n\nJe moet deze permissies verlenen in Health Connect voordat we data kunnen synchroniseren.\n\nWil je nu naar de Health Connect permissies gaan?`,
+          [
+            { 
+              text: 'Ga naar Health Connect Permissies', 
+              onPress: async () => {
+                try {
+                  await healthDataService.openHealthConnectPermissions();
+                  Alert.alert(
+                    '📱 Ga terug naar MinakamiApp',
+                    'Na het verlenen van permissies in Health Connect, keer terug en probeer opnieuw te synchroniseren.',
+                    [{ text: 'OK', style: 'default' }]
+                  );
+                } catch (error) {
+                  Alert.alert('Fout', 'Kon Health Connect permissies niet openen');
+                }
+              }
+            },
+            { text: 'Annuleren', style: 'cancel' }
+          ]
+        );
+        return;
+      }
+      
+      console.log('[Settings] All permissions granted, proceeding with sync...');
+      
       Alert.alert(
         '🔄 Synchroniseren...',
         'Health Connect data wordt geïmporteerd. Dit kan even duren.',
@@ -320,6 +433,7 @@ const SettingsScreen = ({ navigation }) => {
         );
       }
     } catch (error) {
+      console.error('[Settings] Sync error:', error);
       Alert.alert(
         '❌ Sync Error',
         `Fout bij synchroniseren: ${error.message}`,

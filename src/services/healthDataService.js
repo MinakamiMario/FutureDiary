@@ -6,8 +6,25 @@ import { Platform, NativeModules } from 'react-native';
 import BaseService from './BaseService';
 import databaseService from './databaseSelector';
 
-// Health Connect Native Module
-const { HealthConnectModule } = NativeModules;
+// Health Connect Native Module - Use RealHealthConnectModule for production
+const { HealthConnectModule, RealHealthConnectModule } = NativeModules;
+
+// In development: use mock module
+// In production: use real module (RealHealthConnectModule should be available)
+let HealthConnect;
+if (__DEV__) {
+  HealthConnect = HealthConnectModule;
+} else {
+  HealthConnect = RealHealthConnectModule;
+}
+
+// Debug logging to verify which module is being used
+console.log(`[HealthDataService] Environment: ${__DEV__ ? 'DEV' : 'PROD'}`);
+console.log(`[HealthDataService] Available modules:`, {
+  HealthConnectModule: !!HealthConnectModule,
+  RealHealthConnectModule: !!RealHealthConnectModule
+});
+console.log(`[HealthDataService] Using module:`, HealthConnect ? HealthConnect.constructor.name : 'NONE');
 
 // Health Connect Record Types
 const RECORD_TYPES = {
@@ -63,8 +80,11 @@ class HealthDataService extends BaseService {
     }
 
     // Validate native module
-    if (!HealthConnectModule) {
-      throw new Error('Health Connect native module not available');
+    if (!HealthConnect) {
+      const availableModules = Object.keys(NativeModules).filter(name => 
+        name.toLowerCase().includes('health')
+      );
+      throw new Error(`Health Connect native module not available. Available modules: ${availableModules.join(', ')}`);
     }
 
     this.isInitialized = true;
@@ -73,21 +93,100 @@ class HealthDataService extends BaseService {
 
   /**
    * Check if Health Connect is available on device
+   * This performs a REAL-TIME check - not cached!
    * @returns {Promise<boolean>} true if available, false otherwise
    */
   async isAvailable() {
     try {
-      if (!this.isInitialized) {
-        await this.initialize();
+      // Always check platform first
+      if (Platform.OS !== 'android') {
+        await this.warn('Health Connect is only available on Android');
+        return false;
       }
 
-      const isAvailable = await HealthConnectModule.isHealthConnectAvailable();
-      await this.info(`Health Connect availability: ${isAvailable}`);
+      // Validate native module availability
+      if (!HealthConnect) {
+        await this.error('Health Connect native module not available', {
+          availableModules: Object.keys(NativeModules).filter(name => 
+            name.toLowerCase().includes('health')
+          )
+        });
+        return false;
+      }
+
+      // Perform REAL-TIME availability check (not cached!)
+      const isAvailable = await HealthConnect.isHealthConnectAvailable();
+      
+      await this.info(`Health Connect real-time availability check: ${isAvailable}`);
+      
+      // Store the result for this session
+      this._lastAvailabilityCheck = { 
+        result: isAvailable, 
+        timestamp: Date.now(),
+        cached: false 
+      };
       
       return isAvailable;
     } catch (error) {
       await this.error('Failed to check Health Connect availability', error);
       return false;
+    }
+  }
+
+  /**
+   * Open Health Connect in Play Store for installation
+   * @returns {Promise<boolean>} success status
+   */
+  async openHealthConnectInPlayStore() {
+    try {
+      if (!this.isInitialized) {
+        await this.initialize();
+      }
+      
+      const result = await HealthConnect.openHealthConnectInPlayStore();
+      await this.info('Opened Health Connect in Play Store');
+      return result;
+    } catch (error) {
+      await this.error('Failed to open Health Connect in Play Store', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Open Health Connect settings
+   * @returns {Promise<boolean>} success status
+   */
+  async openHealthConnectSettings() {
+    try {
+      if (!this.isInitialized) {
+        await this.initialize();
+      }
+      
+      const result = await HealthConnect.openHealthConnectSettings();
+      await this.info('Opened Health Connect settings');
+      return result;
+    } catch (error) {
+      await this.error('Failed to open Health Connect settings', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Open Health Connect permissions screen where user can grant/revoke permissions
+   * @returns {Promise<boolean>} success status
+   */
+  async openHealthConnectPermissions() {
+    try {
+      if (!this.isInitialized) {
+        await this.initialize();
+      }
+      
+      const result = await HealthConnect.openHealthConnectPermissions();
+      await this.info('Opened Health Connect permissions screen');
+      return result;
+    } catch (error) {
+      await this.error('Failed to open Health Connect permissions', error);
+      throw error;
     }
   }
 
@@ -373,6 +472,92 @@ class HealthDataService extends BaseService {
   }
 
   /**
+   * Map data type to permission object
+   * @param {string} dataType - Data type to map
+   * @returns {object} Permission object
+   */
+  mapDataTypeToPermission(dataType) {
+    switch (dataType.toLowerCase()) {
+      case 'steps':
+        return PERMISSIONS.READ_STEPS;
+      case 'heart_rate':
+      case 'heartrate':
+        return PERMISSIONS.READ_HEART_RATE;
+      case 'distance':
+        return PERMISSIONS.READ_DISTANCE;
+      case 'calories':
+      case 'active_calories':
+        return PERMISSIONS.READ_ACTIVE_CALORIES;
+      case 'total_calories':
+        return PERMISSIONS.READ_TOTAL_CALORIES;
+      case 'exercise':
+      case 'workout':
+        return PERMISSIONS.READ_EXERCISE;
+      case 'sleep':
+        return PERMISSIONS.READ_SLEEP;
+      case 'weight':
+        return PERMISSIONS.READ_WEIGHT;
+      case 'height':
+        return PERMISSIONS.READ_HEIGHT;
+      case 'body_fat':
+        return PERMISSIONS.READ_BODY_FAT;
+      default:
+        throw new Error(`Unknown data type: ${dataType}`);
+    }
+  }
+
+  /**
+   * Check if Samsung Health is connected to Health Connect
+   * @returns {Promise<boolean>} true if connected, false otherwise
+   */
+  async isSamsungHealthConnected() {
+    try {
+      // This is a simplified check - Samsung Health should be visible in Health Connect app permissions
+      // For now, check if we have any permissions and Health Connect is available
+      const hasAnyPermissions = this.grantedPermissions.size > 0;
+      
+      if (!hasAnyPermissions) {
+        await this.warn('No Health Connect permissions granted - Samsung Health may not be connected');
+        return false;
+      }
+      
+      await this.info('Samsung Health appears to be connected to Health Connect');
+      return true;
+    } catch (error) {
+      await this.error('Failed to check Samsung Health connection', error);
+      return false;
+    }
+  }
+
+  /**
+   * Check current permissions for specified data types
+   * @param {object[]} permissions - Array of permission objects to check
+   * @returns {Promise<{success: boolean, granted: object[], denied: object[]}>}
+   */
+  async checkPermissions(permissions) {
+    try {
+      if (!await this.isAvailable()) {
+        throw new Error('Health Connect not available');
+      }
+
+      const result = await HealthConnect.checkPermissions(permissions);
+      
+      // Update local granted permissions
+      this.grantedPermissions.clear();
+      if (result.granted && Array.isArray(result.granted)) {
+        result.granted.forEach(permission => {
+          this.grantedPermissions.add(permission.recordType);
+        });
+      }
+
+      return result;
+    } catch (error) {
+      await this.error('Failed to check permissions', error);
+      throw error;
+    }
+  }
+
+  /**
    * Import all health data to local database
    * @param {Date|number} startDate - Start date
    * @param {Date|number} endDate - End date
@@ -383,12 +568,55 @@ class HealthDataService extends BaseService {
     try {
       await this.info(`Starting health data import for ${dataTypes.join(', ')}`);
       
+      // Step 1: Check if Health Connect is available
+      if (!await this.isAvailable()) {
+        return {
+          success: false,
+          imported: 0,
+          errors: ['Health Connect is niet beschikbaar op dit apparaat. Installeer Health Connect via Google Play Store.']
+        };
+      }
+
+      // Step 2: Check current permissions
+      const permissionRequests = dataTypes.map(dataType => this.mapDataTypeToPermission(dataType));
+      const permissionsResult = await this.checkPermissions(permissionRequests);
+
+      await this.info(`Current permissions: ${permissionsResult.granted.length} granted, ${permissionsResult.denied.length} denied`);
+
+      // Step 3: Request missing permissions if needed
+      if (permissionsResult.denied.length > 0) {
+        await this.info(`Requesting permissions for: ${permissionsResult.denied.map(p => p.recordType).join(', ')}`);
+        
+        const requestResult = await this.requestPermissions(dataTypes);
+        
+        if (!requestResult.success || requestResult.denied.length > 0) {
+          const deniedTypes = requestResult.denied.map(p => p.recordType).join(', ');
+          return {
+            success: false,
+            imported: 0,
+            errors: [`Geen toestemming voor: ${deniedTypes}. Ga naar Instellingen > Health Connect > App-machtigingen > Samsung Health om toestemming te verlenen.`]
+          };
+        }
+      }
+
+      // Step 4: Check if Samsung Health is connected to Health Connect
+      const samsungHealthConnected = await this.isSamsungHealthConnected();
+      if (!samsungHealthConnected) {
+        return {
+          success: false,
+          imported: 0,
+          errors: ['Samsung Health is niet gekoppeld aan Health Connect. Open Samsung Health > Instellingen > Health Connect en schakel data synchronisatie in.']
+        };
+      }
+      
       let totalImported = 0;
       const errors = [];
 
-      // Import each data type
+      // Step 5: Import each data type
       for (const dataType of dataTypes) {
         try {
+          await this.info(`Importing ${dataType} data...`);
+          
           let records = [];
           
           switch (dataType.toLowerCase()) {
@@ -420,9 +648,16 @@ class HealthDataService extends BaseService {
               throw new Error(`Unknown data type: ${dataType}`);
           }
 
+          // Check if we actually got data
+          if (records.length === 0) {
+            await this.warn(`No ${dataType} data found in Health Connect for the specified period`);
+            continue;
+          }
+
           // Save to database
           const imported = await this.saveRecordsToDatabase(records, dataType);
           totalImported += imported;
+          await this.info(`Successfully imported ${imported} ${dataType} records`);
           
         } catch (error) {
           await this.error(`Failed to import ${dataType}`, error);
@@ -430,18 +665,28 @@ class HealthDataService extends BaseService {
         }
       }
 
+      // Step 6: Final result
       const result = {
-        success: errors.length === 0,
+        success: errors.length === 0 && totalImported > 0,
         imported: totalImported,
         errors: errors
       };
+
+      if (totalImported === 0 && errors.length === 0) {
+        result.errors = ['Geen health data gevonden in Health Connect voor de opgegeven periode. Controleer of Samsung Health data heeft gesynchroniseerd.'];
+        result.success = false;
+      }
 
       await this.info(`Health data import completed: ${totalImported} records imported, ${errors.length} errors`);
       
       return result;
     } catch (error) {
       await this.error('Health data import failed', error);
-      throw error;
+      return {
+        success: false,
+        imported: 0,
+        errors: [error.message]
+      };
     }
   }
 

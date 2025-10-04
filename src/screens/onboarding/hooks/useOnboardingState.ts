@@ -13,6 +13,7 @@ export const useOnboardingState = () => {
       allowNotifications: false,
       preferredAIModel: AI_MODEL_TYPES.TEMPLATE,
       narrativeStyle: NARRATIVE_STYLES.STANDAARD,
+      tracking_goals: '', // ← ADDED: tracking_goals state
     },
     permissions: {},
     isLoading: false,
@@ -110,14 +111,14 @@ export const useOnboardingState = () => {
 
   return {
     currentStep: state.currentStep,
-    userData: state.settings,
+    settings: state.settings, // ✅ Consistent naming: settings instead of userData
     isLoading: state.isLoading,
     permissions: state.permissions,
     uiError: state.uiError,
     emergencyMode: state.emergencyMode,
     permissionLoading: state.permissionLoading,
     setCurrentStep,
-    setUserData, // Export the flexible setUserData(key, value) or setUserData(object) function
+    setSettings: setUserData, // ✅ Consistent naming: setSettings instead of setUserData
     setIsLoading: setLoading,
     updatePermission,
     setPermissionLoading,
