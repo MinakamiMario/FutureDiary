@@ -199,7 +199,7 @@ class ActivityTrackingService extends BaseService {
       return { success: true };
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorLogger.error('Failed to stop tracking session', error);
+      errorLogger.logError('Failed to stop tracking session', error);
       throw error;
     }
   }
@@ -240,7 +240,7 @@ class ActivityTrackingService extends BaseService {
       return unifiedData;
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorLogger.error('Failed to get daily tracking data', error);
+      errorLogger.logError('Failed to get daily tracking data', error);
       throw error;
     }
   }
@@ -460,7 +460,7 @@ class ActivityModule {
       
       errorLogger.info('Activity monitoring started');
     } catch (error) {
-      errorLogger.error('Failed to start activity monitoring', error);
+      errorLogger.logError('Failed to start activity monitoring', error);
       throw error;
     }
   }
@@ -486,7 +486,7 @@ class ActivityModule {
       this.isMonitoring = false;
       errorLogger.info('Activity monitoring stopped');
     } catch (error) {
-      errorLogger.error('Failed to stop activity monitoring', error);
+      errorLogger.logError('Failed to stop activity monitoring', error);
       throw error;
     }
   }
@@ -499,7 +499,7 @@ class ActivityModule {
       });
       errorLogger.info('Accelerometer initialized successfully');
     } catch (error) {
-      errorLogger.error('Failed to initialize accelerometer', error);
+      errorLogger.logError('Failed to initialize accelerometer', error);
       throw error;
     }
   }
@@ -716,7 +716,7 @@ class ActivityModule {
       errorLogger.info('Activity monitoring started successfully');
       return { success: true };
     } catch (error) {
-      errorLogger.error('Failed to start monitoring', error);
+      errorLogger.logError('Failed to start monitoring', error);
       throw error;
     }
   }
@@ -727,7 +727,7 @@ class ActivityModule {
       errorLogger.info('Activity monitoring stopped successfully');
       return { success: true };
     } catch (error) {
-      errorLogger.error('Failed to stop monitoring', error);
+      errorLogger.logError('Failed to stop monitoring', error);
       throw error;
     }
   }
@@ -750,7 +750,7 @@ class ActivityModule {
       
       return totalSteps;
     } catch (error) {
-      errorLogger.error('Failed to get steps count', error);
+      errorLogger.logError('Failed to get steps count', error);
       return 0;
     }
   }
@@ -775,7 +775,7 @@ class ActivityModule {
       
       return summary;
     } catch (error) {
-      errorLogger.error('Failed to get activity summary', error);
+      errorLogger.logError('Failed to get activity summary', error);
       throw error;
     }
   }
@@ -866,7 +866,7 @@ class LocationModule {
       this.startPeriodicLocationUpdates(options);
       
     } catch (error) {
-      errorLogger.error('Failed to start location tracking', error);
+      errorLogger.logError('Failed to start location tracking', error);
       throw error;
     }
   }
@@ -883,7 +883,7 @@ class LocationModule {
       }
       
     } catch (error) {
-      errorLogger.error('Failed to stop location tracking', error);
+      errorLogger.logError('Failed to stop location tracking', error);
       throw error;
     }
   }
@@ -898,7 +898,7 @@ class LocationModule {
         const location = await this.getCurrentPositionAsync(options);
         await this.handleLocationUpdate(location);
       } catch (error) {
-        errorLogger.error('Location update failed', error);
+        errorLogger.logError('Location update failed', error);
       }
     }, interval);
   }
@@ -1127,7 +1127,7 @@ class LocationModule {
       await this.startLocationTracking(options);
       return { success: true };
     } catch (error) {
-      errorLogger.error('Failed to start location updates', error);
+      errorLogger.logError('Failed to start location updates', error);
       throw error;
     }
   }
@@ -1137,7 +1137,7 @@ class LocationModule {
       await this.stopLocationTracking();
       return { success: true };
     } catch (error) {
-      errorLogger.error('Failed to stop location updates', error);
+      errorLogger.logError('Failed to stop location updates', error);
       throw error;
     }
   }
@@ -1202,7 +1202,7 @@ class HealthModule {
       }
       
     } catch (error) {
-      errorLogger.error('Failed to start health sync', error);
+      errorLogger.logError('Failed to start health sync', error);
       throw error;
     }
   }
@@ -1223,7 +1223,7 @@ class HealthModule {
       await this.requestHealthPermissions();
       
     } catch (error) {
-      errorLogger.error('Health Connect initialization failed', error);
+      errorLogger.logError('Health Connect initialization failed', error);
       throw error;
     }
   }
@@ -1259,7 +1259,7 @@ class HealthModule {
     try {
       return await this.healthConnect.requestPermissions(permissions);
     } catch (error) {
-      errorLogger.error('Health permissions request failed', error);
+      errorLogger.logError('Health permissions request failed', error);
       throw error;
     }
   }
@@ -1304,7 +1304,7 @@ class HealthModule {
       
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorLogger.error('Health data sync failed', error);
+      errorLogger.logError('Health data sync failed', error);
       
       // Fallback to aggregated activity data
       return this.aggregateHealthFromActivities(date);
@@ -1453,7 +1453,7 @@ class HealthModule {
       errorLogger.info('Opened Health Connect in Play Store');
       return result;
     } catch (error) {
-      errorLogger.error('Failed to open Health Connect in Play Store', error);
+      errorLogger.logError('Failed to open Health Connect in Play Store', error);
       throw error;
     }
   }
@@ -1468,7 +1468,7 @@ class HealthModule {
       errorLogger.info('Opened Health Connect settings');
       return result;
     } catch (error) {
-      errorLogger.error('Failed to open Health Connect settings', error);
+      errorLogger.logError('Failed to open Health Connect settings', error);
       throw error;
     }
   }
@@ -1483,7 +1483,7 @@ class HealthModule {
       errorLogger.info('Opened Health Connect permissions screen');
       return result;
     } catch (error) {
-      errorLogger.error('Failed to open Health Connect permissions', error);
+      errorLogger.logError('Failed to open Health Connect permissions', error);
       throw error;
     }
   }
@@ -1502,7 +1502,7 @@ class HealthModule {
       errorLogger.info('Samsung Health appears to be connected to Health Connect');
       return true;
     } catch (error) {
-      errorLogger.error('Failed to check Samsung Health connection', error);
+      errorLogger.logError('Failed to check Samsung Health connection', error);
       return false;
     }
   }
@@ -1527,7 +1527,7 @@ class HealthModule {
 
       return result;
     } catch (error) {
-      errorLogger.error('Failed to check permissions', error);
+      errorLogger.logError('Failed to check permissions', error);
       throw error;
     }
   }
@@ -1628,7 +1628,7 @@ class HealthModule {
           errorLogger.info(`Successfully imported ${imported} ${dataType} records`);
           
         } catch (error) {
-          errorLogger.error(`Failed to import ${dataType}`, error);
+          errorLogger.logError(`Failed to import ${dataType}`, error);
           errors.push(`${dataType}: ${error.message}`);
         }
       }
@@ -1649,7 +1649,7 @@ class HealthModule {
       
       return result;
     } catch (error) {
-      errorLogger.error('Health data import failed', error);
+      errorLogger.logError('Health data import failed', error);
       return {
         success: false,
         imported: 0,
@@ -1838,7 +1838,7 @@ class HealthModule {
         await database.saveActivity(activityData);
         imported++;
       } catch (error) {
-        errorLogger.error(`Error saving ${dataType} record`, error);
+        errorLogger.logError(`Error saving ${dataType} record`, error);
       }
     }
     
@@ -1885,7 +1885,7 @@ class HealthModule {
       const result = await database.safeGetAllAsync(query, params);
       return result[0]?.total || 0;
     } catch (error) {
-      errorLogger.error('Error querying health data', error);
+      errorLogger.logError('Error querying health data', error);
       return 0;
     }
   }
@@ -1901,7 +1901,7 @@ class HealthModule {
         duration: result[0]?.total_duration || 0
       };
     } catch (error) {
-      errorLogger.error('Error querying workout data', error);
+      errorLogger.logError('Error querying workout data', error);
       return { count: 0, duration: 0 };
     }
   }
