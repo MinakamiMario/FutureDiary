@@ -1,0 +1,133 @@
+{
+  "timestamp": "2025-10-05T00:24:34.576Z",
+  "summary": {
+    "total": 12,
+    "keep": 6,
+    "wire": 0,
+    "quarantine": 0,
+    "drop": 0,
+    "internal": 6
+  },
+  "classifications": {
+    "extractFeatures": {
+      "classification": "INTERNAL",
+      "reason": "Only used internally within ActivityTrackingService",
+      "usage": 0,
+      "internalUsage": 1
+    },
+    "classifyActivity": {
+      "classification": "INTERNAL",
+      "reason": "Only used internally within ActivityTrackingService",
+      "usage": 0,
+      "internalUsage": 2
+    },
+    "calculateMovementPattern": {
+      "classification": "INTERNAL",
+      "reason": "Only used internally within ActivityTrackingService",
+      "usage": 0,
+      "internalUsage": 1
+    },
+    "detectSteps": {
+      "classification": "INTERNAL",
+      "reason": "Only used internally within ActivityTrackingService",
+      "usage": 0,
+      "internalUsage": 2
+    },
+    "formatStepsRecords": {
+      "classification": "KEEP",
+      "reason": "Used in 2 external files",
+      "usage": 2,
+      "internalUsage": 1
+    },
+    "formatHeartRateRecords": {
+      "classification": "KEEP",
+      "reason": "Used in 2 external files",
+      "usage": 2,
+      "internalUsage": 1
+    },
+    "formatExerciseRecords": {
+      "classification": "KEEP",
+      "reason": "Used in 2 external files",
+      "usage": 2,
+      "internalUsage": 1
+    },
+    "formatSleepRecords": {
+      "classification": "KEEP",
+      "reason": "Used in 2 external files",
+      "usage": 2,
+      "internalUsage": 1
+    },
+    "formatDistanceRecords": {
+      "classification": "KEEP",
+      "reason": "Used in 2 external files",
+      "usage": 2,
+      "internalUsage": 1
+    },
+    "formatCaloriesRecords": {
+      "classification": "KEEP",
+      "reason": "Used in 2 external files",
+      "usage": 2,
+      "internalUsage": 1
+    },
+    "calculateHealthScore": {
+      "classification": "INTERNAL",
+      "reason": "Only used internally within ActivityTrackingService",
+      "usage": 0,
+      "internalUsage": 1
+    },
+    "getMockLocation": {
+      "classification": "INTERNAL",
+      "reason": "Only used internally within ActivityTrackingService",
+      "usage": 0,
+      "internalUsage": 2
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "action": "KEEP",
+      "description": "Keep 6 functions that are actively used",
+      "items": [
+        "formatStepsRecords",
+        "formatHeartRateRecords",
+        "formatExerciseRecords",
+        "formatSleepRecords",
+        "formatDistanceRecords",
+        "formatCaloriesRecords"
+      ],
+      "nextSteps": [
+        "Ensure these functions have proper test coverage",
+        "Document their usage patterns",
+        "Monitor for performance issues"
+      ]
+    },
+    {
+      "priority": "LOW",
+      "action": "INTERNAL",
+      "description": "Keep 6 functions internal to ActivityTrackingService",
+      "items": [
+        "extractFeatures",
+        "classifyActivity",
+        "calculateMovementPattern",
+        "detectSteps",
+        "calculateHealthScore",
+        "getMockLocation"
+      ],
+      "nextSteps": [
+        "Do not export these functions from barrel",
+        "Keep them as private implementation details",
+        "Consider making them truly private in future refactor"
+      ]
+    }
+  ],
+  "metadata": {
+    "basedOn": "Static analysis + Kimi K2 findings",
+    "confidence": "HIGH",
+    "nextSteps": [
+      "Run telemetry to verify runtime usage",
+      "Implement quarantine phase",
+      "Test thoroughly after changes",
+      "Monitor for regressions"
+    ]
+  }
+}

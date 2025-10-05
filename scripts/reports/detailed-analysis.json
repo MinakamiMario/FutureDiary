@@ -1,0 +1,93 @@
+{
+  "timestamp": "2025-10-04T23:55:06.349Z",
+  "totalModules": 4,
+  "totalExports": 3,
+  "totalUsed": 3,
+  "totalUnused": 0,
+  "modules": [
+    {
+      "module": "services/data/ActivityTrackingService.js",
+      "exports": [],
+      "used": [],
+      "unused": [],
+      "details": {}
+    },
+    {
+      "module": "services/healthDataService.js",
+      "exports": [
+        "default"
+      ],
+      "used": [
+        "default"
+      ],
+      "unused": [],
+      "details": {
+        "default": {
+          "used": true,
+          "imports": 5,
+          "usages": 191,
+          "importLines": [
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/contexts/HealthDataContext.js:import HealthDataService from '../services/healthDataService';",
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/utils/appContext.js:import healthDataService from '../services/healthDataService';",
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/screens/dataImportScreen.js:import healthDataService from '../services/healthDataService';"
+          ],
+          "usageLines": [
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/database/core/DatabaseMigrations.js:export default databaseMigrations;",
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/database/core/DatabaseConnection.js:export default databaseConnection;",
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/database/index.js:  databaseService as default,"
+          ]
+        }
+      }
+    },
+    {
+      "module": "services/locationService.js",
+      "exports": [
+        "default"
+      ],
+      "used": [
+        "default"
+      ],
+      "unused": [],
+      "details": {
+        "default": {
+          "used": true,
+          "imports": 1,
+          "usages": 191,
+          "importLines": [
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/utils/appContext.js:import locationService from '../services/locationService';"
+          ],
+          "usageLines": [
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/database/core/DatabaseMigrations.js:export default databaseMigrations;",
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/database/core/DatabaseConnection.js:export default databaseConnection;",
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/database/index.js:  databaseService as default,"
+          ]
+        }
+      }
+    },
+    {
+      "module": "services/activityService.js",
+      "exports": [
+        "default"
+      ],
+      "used": [
+        "default"
+      ],
+      "unused": [],
+      "details": {
+        "default": {
+          "used": true,
+          "imports": 1,
+          "usages": 191,
+          "importLines": [
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/utils/appContext.js:import activityService from '../services/activityService';"
+          ],
+          "usageLines": [
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/database/core/DatabaseMigrations.js:export default databaseMigrations;",
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/database/core/DatabaseConnection.js:export default databaseConnection;",
+            "/Users/oussama/MinakamiApp/MinakamiAppFinal/src/database/index.js:  databaseService as default,"
+          ]
+        }
+      }
+    }
+  ]
+}

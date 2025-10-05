@@ -1,0 +1,241 @@
+{
+  "timestamp": "2025-10-04T23:57:42.293Z",
+  "summary": {
+    "totalFiles": 4,
+    "totalLines": 2233,
+    "totalFunctions": 0,
+    "totalUtilityFunctions": 0,
+    "totalClasses": 6,
+    "totalExports": 4
+  },
+  "files": [
+    {
+      "file": "services/data/ActivityTrackingService.js",
+      "totalLines": 1908,
+      "exports": [],
+      "functions": [],
+      "classes": [
+        "RealAccelerometer",
+        "ActivityTrackingService",
+        "ActivityModule",
+        "for",
+        "LocationModule",
+        "HealthModule"
+      ],
+      "constants": [
+        "LOCATION_INTERVAL",
+        "SIGNIFICANT_DISTANCE",
+        "ACCELEROMETER_INTERVAL",
+        "SAMPLE_RATE",
+        "DETECTION_INTERVAL",
+        "STEP_THRESHOLD",
+        "ACTIVITY_DETECTION",
+        "eventEmitter",
+        "mockData",
+        "start",
+        "start",
+        "start",
+        "startOfDay",
+        "endOfDay",
+        "unifiedData",
+        "hasActivities",
+        "hasLocations",
+        "hasHealthData",
+        "minutes",
+        "places",
+        "key",
+        "hourCounts",
+        "hour",
+        "mostActiveHour",
+        "startTime",
+        "endTime",
+        "totalDuration",
+        "dayDuration",
+        "steps",
+        "stepScore",
+        "healthScore",
+        "activeMinutes",
+        "activeScore",
+        "mockInterval",
+        "mockData",
+        "durationMinutes",
+        "features",
+        "activityType",
+        "oneHourAgo",
+        "magnitude",
+        "variance",
+        "dominantAxis",
+        "pattern",
+        "absX",
+        "absY",
+        "absZ",
+        "magnitude",
+        "now",
+        "result",
+        "hasPermission",
+        "features",
+        "activities",
+        "totalSteps",
+        "activities",
+        "summary",
+        "minutes",
+        "group",
+        "activityData",
+        "startOfDay",
+        "endOfDay",
+        "results",
+        "result",
+        "interval",
+        "location",
+        "location",
+        "placeInfo",
+        "locationData",
+        "distance",
+        "R",
+        "a",
+        "c",
+        "mockPlaces",
+        "placeIndex",
+        "locations",
+        "places",
+        "key",
+        "place",
+        "results",
+        "result",
+        "hasPermission",
+        "hasPermission",
+        "foreground",
+        "background",
+        "isAvailable",
+        "permissions",
+        "start",
+        "startOfDay",
+        "endOfDay",
+        "healthData",
+        "records",
+        "records",
+        "records",
+        "records",
+        "values",
+        "sessions",
+        "totalMinutes",
+        "results",
+        "currentDate",
+        "healthData",
+        "results",
+        "healthData",
+        "result",
+        "result",
+        "result",
+        "hasAnyPermissions",
+        "result",
+        "permissionRequests",
+        "permissionsResult",
+        "requestResult",
+        "deniedTypes",
+        "samsungHealthConnected",
+        "errors",
+        "imported",
+        "result",
+        "activityData",
+        "result",
+        "result",
+        "result"
+      ],
+      "imports": [
+        "../database",
+        "../errorLogger",
+        "../performanceService",
+        "../BaseService",
+        "../../utils/platformDetector",
+        "react-native-get-location",
+        "react-native"
+      ],
+      "patterns": {
+        "formatFunctions": [],
+        "calculateFunctions": [],
+        "detectFunctions": [],
+        "extractFunctions": [],
+        "mockFunctions": [],
+        "utilityFunctions": []
+      }
+    },
+    {
+      "file": "services/healthDataService.js",
+      "totalLines": 136,
+      "exports": [
+        "methods",
+        "healthDataServiceProxy"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        "healthDataServiceProxy"
+      ],
+      "imports": [
+        "./data/ActivityTrackingService"
+      ],
+      "patterns": {
+        "formatFunctions": [],
+        "calculateFunctions": [],
+        "detectFunctions": [],
+        "extractFunctions": [],
+        "mockFunctions": [],
+        "utilityFunctions": []
+      }
+    },
+    {
+      "file": "services/locationService.js",
+      "totalLines": 103,
+      "exports": [
+        "locationServiceProxy"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        "locationServiceProxy"
+      ],
+      "imports": [
+        "./data/ActivityTrackingService"
+      ],
+      "patterns": {
+        "formatFunctions": [],
+        "calculateFunctions": [],
+        "detectFunctions": [],
+        "extractFunctions": [],
+        "mockFunctions": [],
+        "utilityFunctions": []
+      }
+    },
+    {
+      "file": "services/activityService.js",
+      "totalLines": 86,
+      "exports": [
+        "activityServiceProxy"
+      ],
+      "functions": [],
+      "classes": [],
+      "constants": [
+        "activityServiceProxy"
+      ],
+      "imports": [
+        "./data/ActivityTrackingService"
+      ],
+      "patterns": {
+        "formatFunctions": [],
+        "calculateFunctions": [],
+        "detectFunctions": [],
+        "extractFunctions": [],
+        "mockFunctions": [],
+        "utilityFunctions": []
+      }
+    }
+  ],
+  "suspiciousPatterns": {
+    "formatFunctions": [],
+    "calculateFunctions": [],
+    "detectFunctions": [],
+    "extractFunctions": [],
+    "mockFunctions": []
+  }
+}
