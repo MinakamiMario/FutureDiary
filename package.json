@@ -11,7 +11,16 @@
     "postinstall": "patch-package && npm run fix-icons",
     "fix-icons": "node scripts/fix-icons.js",
     "android:clean": "cd android && ./gradlew clean && cd ..",
-    "android:build": "npm run fix-icons && npm run android"
+    "android:build": "npm run fix-icons && npm run android",
+    "analyze:unused": "node scripts/find-unused-exports.js",
+    "analyze:classify": "node scripts/classify-exports.js",
+    "analyze:comprehensive": "npm run analyze:unused && npm run analyze:classify",
+    "telemetry:integrate": "node scripts/integrate-telemetry.js",
+    "cleanup:quarantine": "echo 'Implement quarantine migration based on classification report'",
+    "cleanup:verify": "echo 'Run full test suite and manual verification'",
+    "cleanup:remove": "echo 'Remove confirmed unused functions'",
+    "ci:unused-check": "node scripts/ci-unused-check.js",
+    "unused:full-analysis": "npm run analyze:comprehensive && npm run ci:unused-check"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.24.0",
@@ -48,6 +57,9 @@
     "@tsconfig/react-native": "^3.0.0",
     "@types/react": "^18.0.24",
     "@types/react-test-renderer": "^18.0.0",
+    "fast-glob": "^3.3.2",
+    "@babel/parser": "^7.23.0",
+    "@babel/traverse": "^7.23.0",
     "babel-jest": "^29.2.1",
     "eslint": "^8.19.0",
     "jest": "^29.2.1",

@@ -61,6 +61,7 @@ export { default as EventCorrelationEngine } from './ai/DataAnalysisService';
 export { default as StravaIntegration } from './integrations/StravaIntegration';
 
 // FASE 4: Activity Tracking Consolidation - Legacy proxies
+// These exports are controlled to prevent direct access to utility functions
 export { default as activityService } from './activityService'; // → ActivityTrackingService
 export { default as locationService } from './locationService'; // → ActivityTrackingService  
 export { default as healthDataService } from './healthDataService'; // → ActivityTrackingService
