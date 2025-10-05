@@ -1,0 +1,124 @@
+{
+  "timestamp": "2025-10-04T23:59:55.619Z",
+  "file": "services/data/ActivityTrackingService.js",
+  "classes": [
+    {
+      "name": "RealAccelerometer",
+      "methods": [],
+      "formatMethods": [],
+      "calculateMethods": [],
+      "detectMethods": [],
+      "extractMethods": [],
+      "classifyMethods": [],
+      "mockMethods": []
+    },
+    {
+      "name": "ActivityTrackingService",
+      "methods": [],
+      "formatMethods": [],
+      "calculateMethods": [],
+      "detectMethods": [],
+      "extractMethods": [],
+      "classifyMethods": [],
+      "mockMethods": []
+    },
+    {
+      "name": "ActivityModule",
+      "methods": [],
+      "formatMethods": [],
+      "calculateMethods": [],
+      "detectMethods": [],
+      "extractMethods": [],
+      "classifyMethods": [],
+      "mockMethods": []
+    },
+    {
+      "name": "LocationModule",
+      "methods": [],
+      "formatMethods": [],
+      "calculateMethods": [],
+      "detectMethods": [],
+      "extractMethods": [],
+      "classifyMethods": [],
+      "mockMethods": []
+    },
+    {
+      "name": "HealthModule",
+      "methods": [],
+      "formatMethods": [],
+      "calculateMethods": [],
+      "detectMethods": [],
+      "extractMethods": [],
+      "classifyMethods": [],
+      "mockMethods": []
+    }
+  ],
+  "standaloneFunctions": [],
+  "suspiciousPatterns": [
+    {
+      "name": "extractFeatures",
+      "found": true,
+      "references": 3
+    },
+    {
+      "name": "classifyActivity",
+      "found": true,
+      "references": 3
+    },
+    {
+      "name": "calculateMovementPattern",
+      "found": true,
+      "references": 2
+    },
+    {
+      "name": "detectSteps",
+      "found": true,
+      "references": 2
+    },
+    {
+      "name": "formatStepsRecords",
+      "found": true,
+      "references": 1
+    },
+    {
+      "name": "formatHeartRateRecords",
+      "found": true,
+      "references": 1
+    },
+    {
+      "name": "formatExerciseRecords",
+      "found": true,
+      "references": 1
+    },
+    {
+      "name": "formatSleepRecords",
+      "found": true,
+      "references": 1
+    },
+    {
+      "name": "formatDistanceRecords",
+      "found": true,
+      "references": 1
+    },
+    {
+      "name": "formatCaloriesRecords",
+      "found": true,
+      "references": 1
+    },
+    {
+      "name": "calculateHealthScore",
+      "found": true,
+      "references": 2
+    },
+    {
+      "name": "getMockLocation",
+      "found": true,
+      "references": 2
+    }
+  ],
+  "summary": {
+    "totalClasses": 5,
+    "totalMethods": 0,
+    "totalUtilityMethods": 0
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "timestamp": "2025-10-05T00:24:34.543Z",
+  "results": {
+    "extractFeatures": {
+      "defined": true,
+      "definitionLine": 576,
+      "totalReferences": 3,
+      "realUsages": 1,
+      "usageLines": [
+        604
+      ],
+      "externalUsage": 0
+    },
+    "classifyActivity": {
+      "defined": true,
+      "definitionLine": 579,
+      "totalReferences": 3,
+      "realUsages": 2,
+      "usageLines": [
+        645,
+        738
+      ],
+      "externalUsage": 0
+    },
+    "calculateMovementPattern": {
+      "defined": true,
+      "definitionLine": 618,
+      "totalReferences": 2,
+      "realUsages": 1,
+      "usageLines": [
+        629
+      ],
+      "externalUsage": 0
+    },
+    "detectSteps": {
+      "defined": true,
+      "definitionLine": 589,
+      "totalReferences": 2,
+      "realUsages": 2,
+      "usageLines": [
+        589,
+        676
+      ],
+      "externalUsage": 0
+    },
+    "formatStepsRecords": {
+      "defined": true,
+      "definitionLine": 1696,
+      "totalReferences": 1,
+      "realUsages": 1,
+      "usageLines": [
+        1696
+      ],
+      "externalUsage": 2
+    },
+    "formatHeartRateRecords": {
+      "defined": true,
+      "definitionLine": 1712,
+      "totalReferences": 1,
+      "realUsages": 1,
+      "usageLines": [
+        1712
+      ],
+      "externalUsage": 2
+    },
+    "formatExerciseRecords": {
+      "defined": true,
+      "definitionLine": 1726,
+      "totalReferences": 1,
+      "realUsages": 1,
+      "usageLines": [
+        1726
+      ],
+      "externalUsage": 2
+    },
+    "formatSleepRecords": {
+      "defined": true,
+      "definitionLine": 1745,
+      "totalReferences": 1,
+      "realUsages": 1,
+      "usageLines": [
+        1745
+      ],
+      "externalUsage": 2
+    },
+    "formatDistanceRecords": {
+      "defined": true,
+      "definitionLine": 1761,
+      "totalReferences": 1,
+      "realUsages": 1,
+      "usageLines": [
+        1761
+      ],
+      "externalUsage": 2
+    },
+    "formatCaloriesRecords": {
+      "defined": true,
+      "definitionLine": 1777,
+      "totalReferences": 1,
+      "realUsages": 1,
+      "usageLines": [
+        1777
+      ],
+      "externalUsage": 2
+    },
+    "calculateHealthScore": {
+      "defined": true,
+      "definitionLine": 331,
+      "totalReferences": 2,
+      "realUsages": 1,
+      "usageLines": [
+        409
+      ],
+      "externalUsage": 0
+    },
+    "getMockLocation": {
+      "defined": true,
+      "definitionLine": 913,
+      "totalReferences": 2,
+      "realUsages": 2,
+      "usageLines": [
+        913,
+        935
+      ],
+      "externalUsage": 0
+    }
+  },
+  "summary": {
+    "totalFunctions": 12,
+    "functionsWithNoUsage": 0,
+    "functionsWithExternalUsage": 6,
+    "functionsWithInternalUsage": 6,
+    "actionableItems": []
+  }
+}

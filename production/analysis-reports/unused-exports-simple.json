@@ -1,0 +1,25 @@
+{
+  "summary": {
+    "totalUnused": 0,
+    "totalExports": 3,
+    "percentageUnused": 0
+  },
+  "unusedByModule": [
+    {
+      "module": "services/data/ActivityTrackingService.js",
+      "unused": []
+    },
+    {
+      "module": "services/healthDataService.js",
+      "unused": []
+    },
+    {
+      "module": "services/locationService.js",
+      "unused": []
+    },
+    {
+      "module": "services/activityService.js",
+      "unused": []
+    }
+  ]
+}
