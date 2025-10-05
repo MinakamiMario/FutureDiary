@@ -64,7 +64,7 @@ export const StepSelection = memo(({ options, currentValue, onSelect }: StepSele
               </Typography>
             </View>
             {currentValue === option.id && (
-              <Icon name="checkmark-circle" size={24} color={Colors.primary[500]} />
+              <Icon key="checkmark-icon" name="checkmark-circle" size={24} color={Colors.primary[500]} />
             )}
           </View>
         </TouchableOpacity>
