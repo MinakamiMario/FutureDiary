@@ -42,14 +42,14 @@ export const StepSelection = memo(({ options, currentValue, onSelect }: StepSele
                   {option.title}
                 </Typography>
                 {option.recommended && (
-                  <View style={styles.recommendedBadge}>
+                  <View key="recommended-badge" style={styles.recommendedBadge}>
                     <Typography variant="caption" color="white" weight="normal" style={{}}>
                       Aanbevolen
                     </Typography>
                   </View>
                 )}
                 {option.badge && (
-                  <View style={styles.premiumBadge}>
+                  <View key="custom-badge" style={styles.premiumBadge}>
                     <Typography variant="caption" color="white" weight="normal" style={{}}>
                       {option.badge}
                     </Typography>
