@@ -8,7 +8,7 @@ import callLogService from '../services/callLogService';
 // import samsungHealthService from '../services/samsungHealthService'; // REMOVED - Only using Health Connect
 import healthDataService from '../services/healthDataService';
 import { generateDailySummary } from '../services/summaryService';
-import errorHandler from '../services/errorLogger';
+import errorLogger from '../services/errorLogger';
 import stravaService from '../services/stravaService';
 import eventCorrelationEngine from '../services/eventCorrelationEngine';
 // import appUsageService from '../services/appUsageService'; // TEMPORARILY DISABLED - causes import error
@@ -75,6 +75,11 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     async function loadAppSettings() {
       try {
+        // Initialize database first
+        console.log('Initializing database...');
+        await databaseService.initialize();
+        console.log('Database initialized successfully');
+        
         const savedSettings = await loadSettings();
         if (savedSettings) {
           setSettings(prev => ({ ...prev, ...savedSettings }));
@@ -110,7 +115,7 @@ export const AppProvider = ({ children }) => {
           // Samsung Health initialization removed - only using Health Connect
         }
       } catch (error) {
-        errorHandler.error('Fout bij laden instellingen', error, 'AppContext');
+        errorLogger.error('Fout bij laden instellingen', error, 'AppContext');
       }
     }
     
@@ -125,7 +130,7 @@ export const AppProvider = ({ children }) => {
       await saveSettings(updatedSettings);
       return { success: true };
     } catch (error) {
-      errorHandler.error('Fout bij updaten instellingen', error, 'AppContext');
+      errorLogger.error('Fout bij updaten instellingen', error, 'AppContext');
       return { success: false, error };
     }
   }, [settings]);

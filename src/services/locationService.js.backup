@@ -1,4 +1,3 @@
-import { trackExports } from '../utils/instrumentation/trackService';
 /**
  * LOCATION SERVICE PROXY
  * 
@@ -101,5 +100,4 @@ const locationServiceProxy = {
   }
 };
 
-const locationServiceProxyTracked = trackExports(locationServiceProxy, 'locationService');
-export default __DEV__ ? locationServiceProxyTracked : locationServiceProxy;
+export default locationServiceProxy;

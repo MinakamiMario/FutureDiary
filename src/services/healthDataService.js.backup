@@ -1,4 +1,3 @@
-import { trackExports } from '../utils/instrumentation/trackService';
 /**
  * HEALTH DATA SERVICE PROXY
  * 
@@ -134,5 +133,4 @@ const healthDataServiceProxy = {
   }
 };
 
-const healthDataServiceProxyTracked = trackExports(healthDataServiceProxy, 'healthDataService');
-export default __DEV__ ? healthDataServiceProxyTracked : healthDataServiceProxy;
+export default healthDataServiceProxy;

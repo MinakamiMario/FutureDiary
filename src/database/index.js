@@ -71,6 +71,12 @@ class DatabaseService {
     return this.activityRepository.getActivitiesForDateRange(startDate, endDate);
   }
 
+  // BACKWARDS COMPATIBILITY ALIAS
+  async getActivities(startTimestamp, endTimestamp) {
+    // Legacy method name - delegates to new method
+    return this.getActivitiesForDateRange(startTimestamp, endTimestamp);
+  }
+
   async getActivitiesForDate(date) {
     return this.activityRepository.getActivitiesForDate(date);
   }

@@ -10,7 +10,7 @@
  */
 
 import database from '../database';
-import errorHandler from '../errorLogger';
+import errorLogger from '../errorLogger';
 import performanceService from '../performanceService';
 import { BaseService } from '../BaseService';
 import platformDetector from '../../utils/platformDetector';
@@ -177,7 +177,7 @@ class ActivityTrackingService extends BaseService {
       return { success: true, sessionId: Date.now() };
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Failed to start tracking session', error);
+      errorLogger.logError('Failed to start tracking session', error);
       throw error;
     }
   }
@@ -199,7 +199,7 @@ class ActivityTrackingService extends BaseService {
       return { success: true };
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Failed to stop tracking session', error);
+      errorLogger.logError('Failed to stop tracking session', error);
       throw error;
     }
   }
@@ -240,7 +240,7 @@ class ActivityTrackingService extends BaseService {
       return unifiedData;
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Failed to get daily tracking data', error);
+      errorLogger.logError('Failed to get daily tracking data', error);
       throw error;
     }
   }
@@ -458,9 +458,9 @@ class ActivityModule {
       this.lastStepTime = 0;
       this.activityHistory = [];
       
-      errorHandler.logInfo('Activity monitoring started');
+      errorLogger.logInfo('Activity monitoring started');
     } catch (error) {
-      errorHandler.logError('Failed to start activity monitoring', error);
+      errorLogger.logError('Failed to start activity monitoring', error);
       throw error;
     }
   }
@@ -484,9 +484,9 @@ class ActivityModule {
       }
       
       this.isMonitoring = false;
-      errorHandler.logInfo('Activity monitoring stopped');
+      errorLogger.logInfo('Activity monitoring stopped');
     } catch (error) {
-      errorHandler.logError('Failed to stop activity monitoring', error);
+      errorLogger.logError('Failed to stop activity monitoring', error);
       throw error;
     }
   }
@@ -497,9 +497,9 @@ class ActivityModule {
       this.accelerometerSubscription = this.accelerometer.addListener((data) => {
         this.handleAccelerometerData(data);
       });
-      errorHandler.logInfo('Accelerometer initialized successfully');
+      errorLogger.logInfo('Accelerometer initialized successfully');
     } catch (error) {
-      errorHandler.logError('Failed to initialize accelerometer', error);
+      errorLogger.logError('Failed to initialize accelerometer', error);
       throw error;
     }
   }
@@ -697,7 +697,7 @@ class ActivityModule {
       const result = await request(PERMISSIONS.ANDROID.ACTIVITY_RECOGNITION);
       return result === RESULTS.GRANTED;
     } catch (error) {
-      errorHandler.logWarn('Activity recognition permission not available', error);
+      errorLogger.logWarn('Activity recognition permission not available', error);
       return true; // Assume granted if permission system not available
     }
   }
@@ -713,10 +713,10 @@ class ActivityModule {
       // Start activity monitoring
       await this.startActivityMonitoring();
       
-      errorHandler.logInfo('Activity monitoring started successfully');
+      errorLogger.logInfo('Activity monitoring started successfully');
       return { success: true };
     } catch (error) {
-      errorHandler.logError('Failed to start monitoring', error);
+      errorLogger.logError('Failed to start monitoring', error);
       throw error;
     }
   }
@@ -724,10 +724,10 @@ class ActivityModule {
   async stopMonitoring() {
     try {
       await this.stopActivityMonitoring();
-      errorHandler.logInfo('Activity monitoring stopped successfully');
+      errorLogger.logInfo('Activity monitoring stopped successfully');
       return { success: true };
     } catch (error) {
-      errorHandler.logError('Failed to stop monitoring', error);
+      errorLogger.logError('Failed to stop monitoring', error);
       throw error;
     }
   }
@@ -750,7 +750,7 @@ class ActivityModule {
       
       return totalSteps;
     } catch (error) {
-      errorHandler.logError('Failed to get steps count', error);
+      errorLogger.logError('Failed to get steps count', error);
       return 0;
     }
   }
@@ -775,7 +775,7 @@ class ActivityModule {
       
       return summary;
     } catch (error) {
-      errorHandler.logError('Failed to get activity summary', error);
+      errorLogger.logError('Failed to get activity summary', error);
       throw error;
     }
   }
@@ -866,7 +866,7 @@ class LocationModule {
       this.startPeriodicLocationUpdates(options);
       
     } catch (error) {
-      errorHandler.logError('Failed to start location tracking', error);
+      errorLogger.logError('Failed to start location tracking', error);
       throw error;
     }
   }
@@ -883,7 +883,7 @@ class LocationModule {
       }
       
     } catch (error) {
-      errorHandler.logError('Failed to stop location tracking', error);
+      errorLogger.logError('Failed to stop location tracking', error);
       throw error;
     }
   }
@@ -898,7 +898,7 @@ class LocationModule {
         const location = await this.getCurrentPositionAsync(options);
         await this.handleLocationUpdate(location);
       } catch (error) {
-        errorHandler.logError('Location update failed', error);
+        errorLogger.logError('Location update failed', error);
       }
     }, interval);
   }
@@ -1127,7 +1127,7 @@ class LocationModule {
       await this.startLocationTracking(options);
       return { success: true };
     } catch (error) {
-      errorHandler.logError('Failed to start location updates', error);
+      errorLogger.logError('Failed to start location updates', error);
       throw error;
     }
   }
@@ -1137,7 +1137,7 @@ class LocationModule {
       await this.stopLocationTracking();
       return { success: true };
     } catch (error) {
-      errorHandler.logError('Failed to stop location updates', error);
+      errorLogger.logError('Failed to stop location updates', error);
       throw error;
     }
   }
@@ -1202,7 +1202,7 @@ class HealthModule {
       }
       
     } catch (error) {
-      errorHandler.logError('Failed to start health sync', error);
+      errorLogger.logError('Failed to start health sync', error);
       throw error;
     }
   }
@@ -1223,7 +1223,7 @@ class HealthModule {
       await this.requestHealthPermissions();
       
     } catch (error) {
-      errorHandler.logError('Health Connect initialization failed', error);
+      errorLogger.logError('Health Connect initialization failed', error);
       throw error;
     }
   }
@@ -1259,7 +1259,7 @@ class HealthModule {
     try {
       return await this.healthConnect.requestPermissions(permissions);
     } catch (error) {
-      errorHandler.logError('Health permissions request failed', error);
+      errorLogger.logError('Health permissions request failed', error);
       throw error;
     }
   }
@@ -1304,7 +1304,7 @@ class HealthModule {
       
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Health data sync failed', error);
+      errorLogger.logError('Health data sync failed', error);
       
       // Fallback to aggregated activity data
       return this.aggregateHealthFromActivities(date);
@@ -1450,10 +1450,10 @@ class HealthModule {
       }
       
       const result = await this.healthConnect.openHealthConnectInPlayStore();
-      errorHandler.logInfo('Opened Health Connect in Play Store');
+      errorLogger.logInfo('Opened Health Connect in Play Store');
       return result;
     } catch (error) {
-      errorHandler.logError('Failed to open Health Connect in Play Store', error);
+      errorLogger.logError('Failed to open Health Connect in Play Store', error);
       throw error;
     }
   }
@@ -1465,10 +1465,10 @@ class HealthModule {
       }
       
       const result = await this.healthConnect.openHealthConnectSettings();
-      errorHandler.logInfo('Opened Health Connect settings');
+      errorLogger.logInfo('Opened Health Connect settings');
       return result;
     } catch (error) {
-      errorHandler.logError('Failed to open Health Connect settings', error);
+      errorLogger.logError('Failed to open Health Connect settings', error);
       throw error;
     }
   }
@@ -1480,10 +1480,10 @@ class HealthModule {
       }
       
       const result = await this.healthConnect.openHealthConnectPermissions();
-      errorHandler.logInfo('Opened Health Connect permissions screen');
+      errorLogger.logInfo('Opened Health Connect permissions screen');
       return result;
     } catch (error) {
-      errorHandler.logError('Failed to open Health Connect permissions', error);
+      errorLogger.logError('Failed to open Health Connect permissions', error);
       throw error;
     }
   }
@@ -1495,14 +1495,14 @@ class HealthModule {
       const hasAnyPermissions = this.grantedPermissions?.size > 0;
       
       if (!hasAnyPermissions) {
-        errorHandler.logWarn('No Health Connect permissions granted - Samsung Health may not be connected');
+        errorLogger.logWarn('No Health Connect permissions granted - Samsung Health may not be connected');
         return false;
       }
       
-      errorHandler.logInfo('Samsung Health appears to be connected to Health Connect');
+      errorLogger.logInfo('Samsung Health appears to be connected to Health Connect');
       return true;
     } catch (error) {
-      errorHandler.logError('Failed to check Samsung Health connection', error);
+      errorLogger.logError('Failed to check Samsung Health connection', error);
       return false;
     }
   }
@@ -1527,14 +1527,14 @@ class HealthModule {
 
       return result;
     } catch (error) {
-      errorHandler.logError('Failed to check permissions', error);
+      errorLogger.logError('Failed to check permissions', error);
       throw error;
     }
   }
 
   async importHealthData(startDate, endDate, dataTypes = ['steps', 'heart_rate', 'exercise', 'sleep']) {
     try {
-      errorHandler.logInfo(`Starting health data import for ${dataTypes.join(', ')}`);
+      errorLogger.logInfo(`Starting health data import for ${dataTypes.join(', ')}`);
       
       // Step 1: Check if Health Connect is available
       if (!await this.isHealthConnectAvailable()) {
@@ -1549,11 +1549,11 @@ class HealthModule {
       const permissionRequests = dataTypes.map(dataType => this.mapDataTypeToPermission(dataType));
       const permissionsResult = await this.checkPermissions(permissionRequests);
 
-      errorHandler.logInfo(`Current permissions: ${permissionsResult.granted.length} granted, ${permissionsResult.denied.length} denied`);
+      errorLogger.logInfo(`Current permissions: ${permissionsResult.granted.length} granted, ${permissionsResult.denied.length} denied`);
 
       // Step 3: Request missing permissions if needed
       if (permissionsResult.denied.length > 0) {
-        errorHandler.logInfo(`Requesting permissions for: ${permissionsResult.denied.map(p => p.recordType).join(', ')}`);
+        errorLogger.logInfo(`Requesting permissions for: ${permissionsResult.denied.map(p => p.recordType).join(', ')}`);
         
         const requestResult = await this.requestPermissions(dataTypes);
         
@@ -1583,7 +1583,7 @@ class HealthModule {
       // Step 5: Import each data type
       for (const dataType of dataTypes) {
         try {
-          errorHandler.logInfo(`Importing ${dataType} data...`);
+          errorLogger.logInfo(`Importing ${dataType} data...`);
           
           let records = [];
           
@@ -1618,17 +1618,17 @@ class HealthModule {
 
           // Check if we actually got data
           if (records.length === 0) {
-            errorHandler.logWarn(`No ${dataType} data found in Health Connect for the specified period`);
+            errorLogger.logWarn(`No ${dataType} data found in Health Connect for the specified period`);
             continue;
           }
 
           // Save to database
           const imported = await this.saveRecordsToDatabase(records, dataType);
           totalImported += imported;
-          errorHandler.logInfo(`Successfully imported ${imported} ${dataType} records`);
+          errorLogger.logInfo(`Successfully imported ${imported} ${dataType} records`);
           
         } catch (error) {
-          errorHandler.logError(`Failed to import ${dataType}`, error);
+          errorLogger.logError(`Failed to import ${dataType}`, error);
           errors.push(`${dataType}: ${error.message}`);
         }
       }
@@ -1645,11 +1645,11 @@ class HealthModule {
         result.success = false;
       }
 
-      errorHandler.logInfo(`Health data import completed: ${totalImported} records imported, ${errors.length} errors`);
+      errorLogger.logInfo(`Health data import completed: ${totalImported} records imported, ${errors.length} errors`);
       
       return result;
     } catch (error) {
-      errorHandler.logError('Health data import failed', error);
+      errorLogger.logError('Health data import failed', error);
       return {
         success: false,
         imported: 0,
@@ -1838,7 +1838,7 @@ class HealthModule {
         await database.saveActivity(activityData);
         imported++;
       } catch (error) {
-        errorHandler.logError(`Error saving ${dataType} record`, error);
+        errorLogger.logError(`Error saving ${dataType} record`, error);
       }
     }
     
@@ -1885,7 +1885,7 @@ class HealthModule {
       const result = await database.safeGetAllAsync(query, params);
       return result[0]?.total || 0;
     } catch (error) {
-      errorHandler.logError('Error querying health data', error);
+      errorLogger.logError('Error querying health data', error);
       return 0;
     }
   }
@@ -1901,8 +1901,23 @@ class HealthModule {
         duration: result[0]?.total_duration || 0
       };
     } catch (error) {
-      errorHandler.logError('Error querying workout data', error);
+      errorLogger.logError('Error querying workout data', error);
       return { count: 0, duration: 0 };
     }
   }
 }
+
+// ============================================
+// EXPORT SINGLETON INSTANCE
+// ============================================
+
+/**
+ * Create and export singleton instance
+ * This ensures single shared state across the application
+ */
+const activityTrackingService = new ActivityTrackingService();
+
+// Initialize immediately
+activityTrackingService.initializePlatform();
+
+export default activityTrackingService;
