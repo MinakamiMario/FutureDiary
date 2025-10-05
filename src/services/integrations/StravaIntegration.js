@@ -39,7 +39,7 @@ class StravaIntegration {
         this.clientSecret = config.clientSecret;
       }
     } catch (error) {
-      errorHandler.logError('Failed to initialize Strava integration', error);
+      errorHandler.error('Failed to initialize Strava integration', error);
     }
   }
 
@@ -53,7 +53,7 @@ class StravaIntegration {
         clientSecret
       }));
     } catch (error) {
-      errorHandler.logError('Failed to save Strava credentials', error);
+      errorHandler.error('Failed to save Strava credentials', error);
       throw error;
     }
   }
@@ -90,7 +90,7 @@ class StravaIntegration {
         athlete: data.athlete
       };
     } catch (error) {
-      errorHandler.logError('Strava authentication failed', error);
+      errorHandler.error('Strava authentication failed', error);
       throw error;
     }
   }
@@ -128,7 +128,7 @@ class StravaIntegration {
       
       return true;
     } catch (error) {
-      errorHandler.logError('Token refresh failed', error);
+      errorHandler.error('Token refresh failed', error);
       throw error;
     }
   }
@@ -141,7 +141,7 @@ class StravaIntegration {
         tokenExpiry: this.tokenExpiry
       }));
     } catch (error) {
-      errorHandler.logError('Failed to save Strava tokens', error);
+      errorHandler.error('Failed to save Strava tokens', error);
     }
   }
 
@@ -192,7 +192,7 @@ class StravaIntegration {
       return activities;
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Failed to get Strava activities', error);
+      errorHandler.error('Failed to get Strava activities', error);
       throw error;
     }
   }
@@ -207,7 +207,7 @@ class StravaIntegration {
       return activity;
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Failed to get Strava activity', error);
+      errorHandler.error('Failed to get Strava activity', error);
       throw error;
     }
   }
@@ -239,7 +239,7 @@ class StravaIntegration {
       };
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Failed to sync Strava activities', error);
+      errorHandler.error('Failed to sync Strava activities', error);
       throw error;
     }
   }
@@ -273,7 +273,7 @@ class StravaIntegration {
     try {
       return await this.makeApiRequest('/athlete');
     } catch (error) {
-      errorHandler.logError('Failed to get athlete profile', error);
+      errorHandler.error('Failed to get athlete profile', error);
       throw error;
     }
   }
@@ -284,7 +284,7 @@ class StravaIntegration {
       const stats = await this.makeApiRequest(`/athletes/${profile.id}/stats`);
       return stats;
     } catch (error) {
-      errorHandler.logError('Failed to get Strava stats', error);
+      errorHandler.error('Failed to get Strava stats', error);
       throw error;
     }
   }
@@ -315,7 +315,7 @@ class StravaIntegration {
       
       return true;
     } catch (error) {
-      errorHandler.logError('Failed to disconnect from Strava', error);
+      errorHandler.error('Failed to disconnect from Strava', error);
       throw error;
     }
   }

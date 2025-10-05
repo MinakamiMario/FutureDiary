@@ -95,7 +95,7 @@ class ConfigService {
 
       this.isInitialized = true;
     } catch (error) {
-      errorHandler.logError('Failed to initialize config service', error);
+      errorHandler.error('Failed to initialize config service', error);
       this.config = { ...this.defaultConfig };
       this.isInitialized = true;
     }
@@ -158,7 +158,7 @@ class ConfigService {
     try {
       await AsyncStorage.setItem('app_config', JSON.stringify(this.config));
     } catch (error) {
-      errorHandler.logError('Failed to save configuration', error);
+      errorHandler.error('Failed to save configuration', error);
       throw error;
     }
   }

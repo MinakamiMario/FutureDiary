@@ -74,7 +74,7 @@ class UnifiedNotificationService {
       this.isInitialized = true;
       return { success: true, message: 'Notification service initialized successfully' };
     } catch (error) {
-      errorHandler.logError('Failed to initialize notification service', error);
+      errorHandler.error('Failed to initialize notification service', error);
       return { success: false, error: error.message };
     }
   }
@@ -89,7 +89,7 @@ class UnifiedNotificationService {
       }
       return MockNotifications.requestPermissionsAsync();
     } catch (error) {
-      errorHandler.logError('Failed to request notification permissions', error);
+      errorHandler.error('Failed to request notification permissions', error);
       return { status: 'denied', error: error.message };
     }
   }
@@ -104,7 +104,7 @@ class UnifiedNotificationService {
       }
       return MockNotifications.getPermissionsAsync();
     } catch (error) {
-      errorHandler.logError('Failed to get notification permissions', error);
+      errorHandler.error('Failed to get notification permissions', error);
       return { status: 'undetermined', error: error.message };
     }
   }
@@ -131,7 +131,7 @@ class UnifiedNotificationService {
       }
       return MockNotifications.scheduleNotificationAsync(notificationPayload);
     } catch (error) {
-      errorHandler.logError('Failed to schedule notification', error);
+      errorHandler.error('Failed to schedule notification', error);
       throw error;
     }
   }
@@ -157,7 +157,7 @@ class UnifiedNotificationService {
       }
       return MockNotifications.cancelScheduledNotificationAsync(notificationId);
     } catch (error) {
-      errorHandler.logError('Failed to cancel notification', error);
+      errorHandler.error('Failed to cancel notification', error);
       throw error;
     }
   }
@@ -172,7 +172,7 @@ class UnifiedNotificationService {
       }
       return MockNotifications.cancelAllScheduledNotificationsAsync();
     } catch (error) {
-      errorHandler.logError('Failed to cancel all notifications', error);
+      errorHandler.error('Failed to cancel all notifications', error);
       throw error;
     }
   }

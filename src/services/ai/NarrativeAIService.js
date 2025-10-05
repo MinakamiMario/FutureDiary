@@ -39,7 +39,7 @@ class NarrativeAIService {
         this.preferredModel = savedModel;
       }
     } catch (error) {
-      errorHandler.logError('Failed to initialize AI service', error);
+      errorHandler.error('Failed to initialize AI service', error);
     }
   }
 
@@ -48,7 +48,7 @@ class NarrativeAIService {
       this.apiKeys[model] = apiKey;
       await AsyncStorage.setItem('ai_api_keys', JSON.stringify(this.apiKeys));
     } catch (error) {
-      errorHandler.logError('Failed to save API key', error);
+      errorHandler.error('Failed to save API key', error);
       throw error;
     }
   }
@@ -58,7 +58,7 @@ class NarrativeAIService {
       this.preferredModel = model;
       await AsyncStorage.setItem('preferred_ai_model', model);
     } catch (error) {
-      errorHandler.logError('Failed to save preferred model', error);
+      errorHandler.error('Failed to save preferred model', error);
       throw error;
     }
   }
@@ -101,7 +101,7 @@ class NarrativeAIService {
       return narrative;
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Failed to generate narrative', error);
+      errorHandler.error('Failed to generate narrative', error);
       throw error;
     }
   }

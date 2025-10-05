@@ -96,7 +96,7 @@ class DataAnalysisService {
       return dailyData;
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Failed to get daily data', error);
+      errorHandler.error('Failed to get daily data', error);
       throw error;
     }
   }
@@ -200,7 +200,7 @@ class DataAnalysisService {
       return correlations;
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Failed to analyze data correlations', error);
+      errorHandler.error('Failed to analyze data correlations', error);
       return {};
     }
   }
@@ -363,7 +363,7 @@ class DataAnalysisService {
       return summary;
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Failed to generate daily summary', error);
+      errorHandler.error('Failed to generate daily summary', error);
       throw error;
     }
   }
@@ -410,7 +410,7 @@ class DataAnalysisService {
         context_summary: context
       };
     } catch (error) {
-      errorHandler.logError('Failed to generate narrative summary', error);
+      errorHandler.error('Failed to generate narrative summary', error);
       return null;
     }
   }
@@ -783,7 +783,7 @@ class DataAnalysisService {
       return result;
       
     } catch (error) {
-      errorHandler.logError('Unified analysis failed', error);
+      errorHandler.error('Unified analysis failed', error);
       throw error;
     }
   }
@@ -975,7 +975,7 @@ class DataFusionModule {
       return mergedData;
       
     } catch (error) {
-      errorHandler.logError('Health data fusion failed', error);
+      errorHandler.error('Health data fusion failed', error);
       throw error;
     }
   }
@@ -990,7 +990,7 @@ class DataFusionModule {
         sources.healthConnect = { data: healthConnectData, priority: 1 };
       }
     } catch (error) {
-      errorHandler.logError('Health Connect data collection failed', error);
+      errorHandler.error('Health Connect data collection failed', error);
     }
     
     // Collect from Strava (if available)
@@ -1000,7 +1000,7 @@ class DataFusionModule {
         sources.strava = { data: stravaData, priority: 2 };
       }
     } catch (error) {
-      errorHandler.logError('Strava data collection failed', error);
+      errorHandler.error('Strava data collection failed', error);
     }
     
     // Collect from manual entries
@@ -1010,7 +1010,7 @@ class DataFusionModule {
         sources.manual = { data: manualData, priority: 3 };
       }
     } catch (error) {
-      errorHandler.logError('Manual health data collection failed', error);
+      errorHandler.error('Manual health data collection failed', error);
     }
     
     return sources;
@@ -1386,7 +1386,7 @@ class SummaryModule {
       
     } catch (error) {
       performanceService?.endTracking?.(start, error);
-      errorHandler.logError('Daily summary generation failed', error);
+      errorHandler.error('Daily summary generation failed', error);
       throw error;
     }
   }
@@ -1441,7 +1441,7 @@ class SummaryModule {
       return weeklySummary;
       
     } catch (error) {
-      errorHandler.logError('Weekly summary generation failed', error);
+      errorHandler.error('Weekly summary generation failed', error);
       throw error;
     }
   }

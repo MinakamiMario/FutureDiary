@@ -93,7 +93,11 @@ export const AppProvider = ({ children }) => {
           // Start location tracking if enabled
           if (savedSettings.trackLocation) {
             console.log('Starting location tracking...');
-            await locationService.startTracking();
+            await locationService.startLocationUpdatesAsync('appContext', {
+              accuracy: 'high',
+              timeInterval: 60000,
+              distanceInterval: 100
+            });
           }
           
           // Initialize Health Connect if enabled (default voor Android)
