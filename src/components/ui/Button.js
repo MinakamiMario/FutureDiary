@@ -1,6 +1,6 @@
 // src/components/ui/Button.js
 import React from 'react';
-import { TouchableOpacity, Text, ActivityIndicator, StyleSheet, Platform, View } from 'react-native';
+import { TouchableOpacity, Text, ActivityIndicator, StyleSheet, Platform } from 'react-native';
 import { Typography, BorderRadius, Spacing } from '../../styles/designSystem';
 import { useTheme } from '../../utils/themeContext';
 
@@ -82,11 +82,11 @@ const Button = ({
         <ActivityIndicator size="small" color={variant === 'primary' || variant === 'danger' || variant === 'secondary' ? theme.onPrimary : theme.primary} />
       ) : (
         <>
-          {leftIcon && <View key="left-icon">{leftIcon}</View>}
+          {leftIcon}
           <Text style={[styles.text, getTextVariantStyle(), textStyle, { fontFamily: Typography.fontFamily.primary }]}>
             {title}
           </Text>
-          {rightIcon && <View key="right-icon">{rightIcon}</View>}
+          {rightIcon}
         </>
       )}
     </TouchableOpacity>
