@@ -1188,6 +1188,64 @@ class HealthModule {
       HEIGHT: 'Height',
       BODY_FAT: 'BodyFat'
     };
+    
+    // ✅ NEW: Setup permission result listener
+    this.setupPermissionListener();
+  }
+  
+  // ✅ NEW: Permission event listener
+  setupPermissionListener() {
+    const { DeviceEventEmitter } = require('react-native');
+    
+    this.permissionEventListener = DeviceEventEmitter.addListener(
+      'healthConnectPermissionResult',
+      (result) => {
+        errorLogger.info('Received Health Connect permission result:', result);
+        
+        // Update granted permissions
+        if (result.granted && Array.isArray(result.granted)) {
+          result.granted.forEach(permission => {
+            if (permission.recordType) {
+              this.grantedPermissions.add(permission.recordType);
+            }
+          });
+        }
+        
+        // Store result for retrieval
+        this.lastPermissionResult = result;
+        this.lastPermissionResultTime = Date.now();
+      }
+    );
+    
+    errorLogger.info('Health Connect permission listener setup complete');
+  }
+
+  // ✅ NEW: Wait for permission result
+  async waitForPermissionResult(timeoutMs = 30000) {
+    return new Promise((resolve, reject) => {
+      const startTime = Date.now();
+      
+      const checkResult = () => {
+        // Check if we have a recent result
+        if (this.lastPermissionResult && 
+            this.lastPermissionResultTime && 
+            (Date.now() - this.lastPermissionResultTime) < 5000) {
+          resolve(this.lastPermissionResult);
+          return;
+        }
+        
+        // Check timeout
+        if (Date.now() - startTime > timeoutMs) {
+          reject(new Error('Permission result timeout - user may have dismissed the dialog'));
+          return;
+        }
+        
+        // Check again in 500ms
+        setTimeout(checkResult, 500);
+      };
+      
+      checkResult();
+    });
   }
 
   async startHealthSync(options = {}) {
@@ -1257,7 +1315,18 @@ class HealthModule {
     });
 
     try {
-      return await this.healthConnect.requestPermissions(permissions);
+      // Clear previous result
+      this.lastPermissionResult = null;
+      this.lastPermissionResultTime = null;
+      
+      // Launch permission UI
+      await this.healthConnect.requestPermissions(permissions);
+      
+      // Wait for result via event
+      const result = await this.waitForPermissionResult();
+      
+      errorLogger.info('Health permissions result:', result);
+      return result;
     } catch (error) {
       errorLogger.error('Health permissions request failed', error);
       throw error;
@@ -1903,6 +1972,50 @@ class HealthModule {
     } catch (error) {
       errorLogger.error('Error querying workout data', error);
       return { count: 0, duration: 0 };
+    }
+  }
+
+  // ✅ NEW: Verify Samsung Health connection
+  async verifySamsungHealthConnection() {
+    try {
+      if (Platform.OS !== 'android' || !this.healthConnect) {
+        return {
+          connected: false,
+          status: 'unsupported_platform',
+          message: 'Health Connect is alleen beschikbaar op Android'
+        };
+      }
+      
+      const result = await this.healthConnect.verifySamsungHealthConnection();
+      errorLogger.info('Samsung Health verification:', result);
+      return result;
+    } catch (error) {
+      errorLogger.error('Samsung Health verification failed', error);
+      return {
+        connected: false,
+        status: 'error',
+        message: error.message
+      };
+    }
+  }
+  
+  // ✅ NEW: Get diagnostics
+  async getHealthConnectDiagnostics() {
+    try {
+      if (Platform.OS !== 'android' || !this.healthConnect) {
+        return {
+          error: 'Health Connect is alleen beschikbaar op Android'
+        };
+      }
+      
+      const diagnostics = await this.healthConnect.getHealthConnectDiagnostics();
+      errorLogger.info('Health Connect diagnostics:', diagnostics);
+      return diagnostics;
+    } catch (error) {
+      errorLogger.error('Failed to get diagnostics', error);
+      return {
+        error: error.message
+      };
     }
   }
 }

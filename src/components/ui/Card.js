@@ -13,6 +13,17 @@ const Card = ({
   ...props 
 }) => {
   const theme = useTheme();
+  
+  // Debug logging for gray screen issue
+  if (__DEV__) {
+    if (!theme) {
+      console.error('🚨 Card: theme is null/undefined');
+    }
+    if (!theme?.colors?.background?.card) {
+      console.error('🚨 Card: theme.colors.background.card is missing');
+    }
+  }
+  
   const getVariantStyle = () => {
     switch (variant) {
       case 'elevated':
@@ -67,7 +78,7 @@ const Card = ({
         getVariantStyle(),
         getPaddingStyle(),
         getShadowStyle(),
-        { backgroundColor: theme.colors.background.card },
+        { backgroundColor: theme?.colors?.background?.card || '#FFFFFF' },
         style,
       ]}
       {...props}

@@ -143,6 +143,16 @@ const healthDataServiceProxy = {
 
   formatCaloriesRecords(records, type) {
     return ActivityTrackingService.health.formatCaloriesRecords(records, type);
+  },
+
+  // ✅ NEW: Samsung Health verification
+  async verifySamsungHealthConnection() {
+    return ActivityTrackingService.health.verifySamsungHealthConnection();
+  },
+  
+  // ✅ NEW: Health Connect diagnostics
+  async getHealthConnectDiagnostics() {
+    return ActivityTrackingService.health.getHealthConnectDiagnostics();
   }
 };
 

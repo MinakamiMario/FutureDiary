@@ -198,6 +198,25 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
 
   // Memoize step content rendering for performance
   const renderStepContent = useMemo(() => {
+    // Debug logging for gray screen issue
+    if (__DEV__) {
+      console.log('🔍 OnboardingScreen renderStepContent:', {
+        currentStep,
+        currentStepData: {
+          id: currentStepData?.id,
+          type: currentStepData?.type,
+          title: currentStepData?.title
+        },
+        totalSteps,
+        settings
+      });
+    }
+    
+    if (!currentStepData) {
+      console.error('🚨 OnboardingScreen: currentStepData is null/undefined');
+      return null;
+    }
+    
     switch (currentStepData.type) {
       case 'selection':
         // Get current value without type casting (settings has index signature)

@@ -14,6 +14,17 @@ interface OnboardingStepProps {
 }
 
 export const OnboardingStep = memo(({ step, currentStep, totalSteps }: OnboardingStepProps) => {
+  // Debug logging for gray screen issue
+  if (__DEV__) {
+    console.log('🔍 OnboardingStep rendering:', {
+      stepId: step.id,
+      stepTitle: step.title,
+      stepType: step.type,
+      currentStep,
+      totalSteps
+    });
+  }
+  
   return (
     <Card style={styles.stepCard}>
       <View style={styles.stepIconContainer}>
@@ -22,6 +33,11 @@ export const OnboardingStep = memo(({ step, currentStep, totalSteps }: Onboardin
             name={step.icon} 
             size={48} 
             color={step.iconColor || Colors.primary[500]} 
+            onError={(error) => {
+              if (__DEV__) {
+                console.error('🚨 Icon failed to load:', step.icon, error);
+              }
+            }}
           />
         </View>
       </View>

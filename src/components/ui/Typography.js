@@ -14,6 +14,16 @@ const Typography = ({
   ...props 
 }) => {
   const theme = useTheme();
+  
+  // Debug logging for gray screen issue
+  if (__DEV__) {
+    if (!theme) {
+      console.error('🚨 Typography: theme is null/undefined');
+    }
+    if (!theme?.text) {
+      console.error('🚨 Typography: theme.text is missing');
+    }
+  }
   const getVariantStyle = () => {
     switch (variant) {
       case 'h1':
@@ -48,29 +58,49 @@ const Typography = ({
   };
 
   const getColorStyle = () => {
+    // Fallback colors if theme is not available
+    const fallbackColors = {
+      'text.primary': '#1A1A1A',
+      'text.secondary': '#757575',
+      'text.tertiary': '#A3A3A3',
+      'text.disabled': '#BABABA',
+      'text.inverse': '#FFFFFF',
+      'primary': '#0087FF',
+      'secondary': '#FF8C8C',
+      'error': '#FF0000',
+      'success': '#008C00',
+      'warning': '#FFB400',
+      'info': '#2196F3'
+    };
+    
+    if (!theme) {
+      console.warn('🟡 Typography: Using fallback colors due to missing theme');
+      return fallbackColors[color] || color || '#1A1A1A';
+    }
+    
     switch (color) {
       case 'text.primary':
-        return theme.text.primary;
+        return theme.text?.primary || fallbackColors['text.primary'];
       case 'text.secondary':
-        return theme.text.secondary;
+        return theme.text?.secondary || fallbackColors['text.secondary'];
       case 'text.tertiary':
-        return theme.text.tertiary;
+        return theme.text?.tertiary || fallbackColors['text.tertiary'];
       case 'text.disabled':
-        return theme.text.disabled;
+        return theme.text?.disabled || fallbackColors['text.disabled'];
       case 'text.inverse':
-        return theme.text.inverse;
+        return theme.text?.inverse || fallbackColors['text.inverse'];
       case 'primary':
-        return theme.primary;
+        return theme.primary || fallbackColors['primary'];
       case 'secondary':
-        return theme.secondary;
+        return theme.secondary || fallbackColors['secondary'];
       case 'error':
-        return theme.error;
+        return theme.error || fallbackColors['error'];
       case 'success':
-        return theme.success;
+        return theme.success || fallbackColors['success'];
       case 'warning':
-        return theme.warning;
+        return theme.warning || fallbackColors['warning'];
       case 'info':
-        return theme.info;
+        return theme.info || fallbackColors['info'];
       default:
         return color;
     }
