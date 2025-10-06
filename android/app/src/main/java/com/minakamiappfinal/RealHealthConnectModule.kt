@@ -1,14 +1,10 @@
 package com.minakamiappfinal
 
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.util.Log
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.health.connect.client.HealthConnectClient
 import androidx.health.connect.client.permission.HealthPermission
 import androidx.health.connect.client.records.*
@@ -17,8 +13,10 @@ import androidx.health.connect.client.units.Energy
 import androidx.health.connect.client.units.Length
 import androidx.health.connect.client.time.TimeRangeFilter
 import com.facebook.react.bridge.*
+import com.facebook.react.modules.core.DeviceEventManagerModule
 import kotlinx.coroutines.*
 import java.time.Instant
+import java.time.temporal.ChronoUnit
 
 /**
  * Real Health Connect Module - Kotlin implementation with actual Health Connect API calls
@@ -59,75 +57,6 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
     private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private val grantedPermissions = mutableSetOf<String>()
 
-    // ✅ Store promise for permission result callback
-    private var permissionPromise: Promise? = null
-
-    // ✅ BroadcastReceiver to receive permission results from Activity
-    private val permissionResultReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            if (intent?.action == HealthConnectPermissionActivity.ACTION_PERMISSION_RESULT) {
-                Log.d(TAG, "Received permission result broadcast")
-
-                val grantedPermissions = intent.getStringArrayListExtra(
-                    HealthConnectPermissionActivity.EXTRA_GRANTED_PERMISSIONS
-                ) ?: arrayListOf()
-
-                val deniedPermissions = intent.getStringArrayListExtra(
-                    HealthConnectPermissionActivity.EXTRA_DENIED_PERMISSIONS
-                ) ?: arrayListOf()
-
-                Log.d(TAG, "Granted: ${grantedPermissions.size}, Denied: ${deniedPermissions.size}")
-
-                // Build result for React Native
-                val grantedArray = Arguments.createArray()
-                val deniedArray = Arguments.createArray()
-
-                grantedPermissions.forEach { permission ->
-                    val recordType = getRecordTypeFromPermission(permission)
-                    if (recordType != null) {
-                        val permissionMap = Arguments.createMap().apply {
-                            putString("permission", permission)
-                            putString("recordType", recordType)
-                        }
-                        grantedArray.pushMap(permissionMap)
-                    }
-                }
-
-                deniedPermissions.forEach { permission ->
-                    val recordType = getRecordTypeFromPermission(permission)
-                    if (recordType != null) {
-                        val permissionMap = Arguments.createMap().apply {
-                            putString("permission", permission)
-                            putString("recordType", recordType)
-                        }
-                        deniedArray.pushMap(permissionMap)
-                    }
-                }
-
-                val result = Arguments.createMap().apply {
-                    putBoolean("success", grantedPermissions.isNotEmpty())
-                    putString("message", when {
-                        deniedPermissions.isEmpty() -> "All permissions granted"
-                        grantedPermissions.isEmpty() -> "All permissions denied"
-                        else -> "Some permissions granted"
-                    })
-                    putArray("granted", grantedArray)
-                    putArray("denied", deniedArray)
-                }
-
-                // ✅ Resolve the promise with result
-                permissionPromise?.resolve(result)
-                permissionPromise = null
-            }
-        }
-    }
-
-    init {
-        // ✅ Register broadcast receiver
-        val filter = IntentFilter(HealthConnectPermissionActivity.ACTION_PERMISSION_RESULT)
-        reactApplicationContext.registerReceiver(permissionResultReceiver, filter)
-        Log.d(TAG, "Permission result receiver registered")
-    }
 
     override fun getName(): String = "RealHealthConnectModule"
 
@@ -316,13 +245,10 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     /**
-     * ✅ FIXED: Real Permission Request Flow
+     * ✅ FIXED: Real Permission Request Flow with Event Emission
      *
-     * This now launches the HealthConnectPermissionActivity which properly shows
-     * the Health Connect permission UI using ActivityResultLauncher
-     *
-     * Before: Only checked permissions (misleading)
-     * After: Actually requests permissions via Health Connect UI
+     * Now uses MainActivity.onActivityResult + DeviceEventEmitter
+     * No more unreliable BroadcastReceiver pattern
      */
     @ReactMethod
     fun requestPermissions(permissionRequests: ReadableArray, promise: Promise) {
@@ -357,8 +283,13 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
                 return
             }
 
-            // ✅ SAVE THE PROMISE - will be resolved by BroadcastReceiver
-            permissionPromise = promise
+            // ✅ Store permissions list for result processing
+            val permissionsJson = permissions.joinToString(",")
+            val prefs = reactApplicationContext.getSharedPreferences("health_connect", Context.MODE_PRIVATE)
+            prefs.edit()
+                .putString("pending_permissions", permissionsJson)
+                .putLong("permission_request_time", System.currentTimeMillis())
+                .apply()
 
             // ✅ LAUNCH THE PERMISSION REQUEST ACTIVITY
             val intent = Intent(reactApplicationContext, HealthConnectPermissionActivity::class.java).apply {
@@ -367,7 +298,13 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
             }
 
             reactApplicationContext.startActivity(intent)
-            Log.d(TAG, "✅ Launched Health Connect permission request UI for ${permissions.size} permissions - awaiting result...")
+            Log.d(TAG, "✅ Launched Health Connect permission request UI for ${permissions.size} permissions")
+            
+            // Immediately resolve - result will come via event
+            promise.resolve(Arguments.createMap().apply {
+                putBoolean("launched", true)
+                putString("message", "Permission UI launched - result will be sent via event")
+            })
 
         } catch (e: Exception) {
             Log.e(TAG, "Error launching permission request", e)
@@ -408,6 +345,208 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
         } catch (e: Exception) {
             Log.e(TAG, "Failed to open Health Connect permissions", e)
             promise.reject("PERMISSIONS_ERROR", "Failed to open Health Connect permissions: ${e.message}")
+        }
+    }
+
+    /**
+     * ✅ NEW: Verify Samsung Health Connection
+     * 
+     * Checks if Samsung Health is installed and actively syncing data to Health Connect
+     * Returns detailed status for troubleshooting
+     */
+    @ReactMethod
+    fun verifySamsungHealthConnection(promise: Promise) {
+        coroutineScope.launch {
+            try {
+                Log.d(TAG, "Verifying Samsung Health connection...")
+                
+                // 1. Check if Samsung Health app is installed
+                val samsungHealthPackage = "com.sec.android.app.shealth"
+                val samsungHealthInstalled = isPackageInstalled(samsungHealthPackage)
+                
+                if (!samsungHealthInstalled) {
+                    val result = Arguments.createMap().apply {
+                        putBoolean("connected", false)
+                        putString("status", "samsung_health_not_installed")
+                        putString("message", "Samsung Health is niet geïnstalleerd")
+                        putBoolean("samsungHealthInstalled", false)
+                        putBoolean("hasRecentData", false)
+                        putInt("recordCount", 0)
+                    }
+                    
+                    withContext(Dispatchers.Main) {
+                        promise.resolve(result)
+                    }
+                    return@launch
+                }
+                
+                // 2. Check if Health Connect client is available
+                val client = healthConnectClient
+                if (client == null) {
+                    val result = Arguments.createMap().apply {
+                        putBoolean("connected", false)
+                        putString("status", "health_connect_unavailable")
+                        putString("message", "Health Connect is niet beschikbaar")
+                        putBoolean("samsungHealthInstalled", true)
+                        putBoolean("hasRecentData", false)
+                        putInt("recordCount", 0)
+                    }
+                    
+                    withContext(Dispatchers.Main) {
+                        promise.resolve(result)
+                    }
+                    return@launch
+                }
+                
+                // 3. Check for recent data (last 7 days) from ANY source
+                val now = Instant.now()
+                val weekAgo = now.minus(7, ChronoUnit.DAYS)
+                val filter = TimeRangeFilter.between(weekAgo, now)
+                
+                var totalRecords = 0
+                var hasRecentSteps = false
+                var hasRecentHeartRate = false
+                
+                try {
+                    // Check Steps
+                    val stepsRequest = ReadRecordsRequest(
+                        recordType = StepsRecord::class,
+                        timeRangeFilter = filter
+                    )
+                    val stepsRecords = client.readRecords(stepsRequest).records
+                    totalRecords += stepsRecords.size
+                    hasRecentSteps = stepsRecords.isNotEmpty()
+                    
+                    // Check Heart Rate
+                    val hrRequest = ReadRecordsRequest(
+                        recordType = HeartRateRecord::class,
+                        timeRangeFilter = filter
+                    )
+                    val hrRecords = client.readRecords(hrRequest).records
+                    totalRecords += hrRecords.size
+                    hasRecentHeartRate = hrRecords.isNotEmpty()
+                    
+                    Log.d(TAG, "Found $totalRecords records from last 7 days (Steps: ${stepsRecords.size}, HR: ${hrRecords.size})")
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error reading recent data", e)
+                }
+                
+                val hasRecentData = totalRecords > 0
+                
+                // 4. Determine connection status
+                val status = when {
+                    !samsungHealthInstalled -> "samsung_health_not_installed"
+                    !hasRecentData -> "no_recent_data"
+                    else -> "connected"
+                }
+                
+                val message = when (status) {
+                    "samsung_health_not_installed" -> "Samsung Health is niet geïnstalleerd. Installeer Samsung Health via de Play Store."
+                    "no_recent_data" -> "Samsung Health is geïnstalleerd maar synchroniseert geen data. Open Samsung Health > Instellingen > Health Connect en schakel data synchronisatie in."
+                    else -> "Samsung Health is verbonden en synchroniseert data"
+                }
+                
+                val result = Arguments.createMap().apply {
+                    putBoolean("connected", status == "connected")
+                    putString("status", status)
+                    putString("message", message)
+                    putBoolean("samsungHealthInstalled", samsungHealthInstalled)
+                    putBoolean("hasRecentData", hasRecentData)
+                    putInt("recordCount", totalRecords)
+                    putBoolean("hasRecentSteps", hasRecentSteps)
+                    putBoolean("hasRecentHeartRate", hasRecentHeartRate)
+                }
+                
+                Log.i(TAG, "Samsung Health verification completed: $status ($totalRecords records)")
+                
+                withContext(Dispatchers.Main) {
+                    promise.resolve(result)
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error verifying Samsung Health connection", e)
+                withContext(Dispatchers.Main) {
+                    promise.reject("VERIFICATION_ERROR", "Failed to verify Samsung Health connection: ${e.message}")
+                }
+            }
+        }
+    }
+
+    /**
+     * ✅ NEW: Get comprehensive Health Connect diagnostics
+     * 
+     * For debugging and support - returns complete Health Connect status
+     */
+    @ReactMethod
+    fun getHealthConnectDiagnostics(promise: Promise) {
+        coroutineScope.launch {
+            try {
+                Log.d(TAG, "Gathering Health Connect diagnostics...")
+                
+                val client = healthConnectClient
+                val diagnostics = Arguments.createMap()
+                
+                // SDK Status
+                val sdkStatus = HealthConnectClient.getSdkStatus(reactApplicationContext, HEALTH_CONNECT_PACKAGE)
+                diagnostics.putString("sdkStatus", when (sdkStatus) {
+                    HealthConnectClient.SDK_AVAILABLE -> "AVAILABLE"
+                    HealthConnectClient.SDK_UNAVAILABLE -> "UNAVAILABLE"
+                    HealthConnectClient.SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED -> "UPDATE_REQUIRED"
+                    else -> "UNKNOWN"
+                })
+                
+                // Package Installation
+                diagnostics.putBoolean("healthConnectInstalled", isPackageInstalled(HEALTH_CONNECT_PACKAGE))
+                diagnostics.putBoolean("samsungHealthInstalled", isPackageInstalled("com.sec.android.app.shealth"))
+                
+                // Versions
+                diagnostics.putString("healthConnectVersion", getPackageVersion(HEALTH_CONNECT_PACKAGE))
+                diagnostics.putString("samsungHealthVersion", getPackageVersion("com.sec.android.app.shealth"))
+                
+                // Permissions
+                if (client != null) {
+                    val grantedPerms = try {
+                        client.permissionController.getGrantedPermissions()
+                    } catch (e: Exception) {
+                        emptySet()
+                    }
+                    
+                    diagnostics.putInt("grantedPermissionsCount", grantedPerms.size)
+                    
+                    val permsArray = Arguments.createArray()
+                    grantedPerms.forEach { perm ->
+                        permsArray.pushString(perm.toString())
+                    }
+                    diagnostics.putArray("grantedPermissions", permsArray)
+                    
+                    // Data Availability (last 7 days)
+                    diagnostics.putBoolean("hasRecentStepsData", checkRecentData(StepsRecord::class))
+                    diagnostics.putBoolean("hasRecentHeartRateData", checkRecentData(HeartRateRecord::class))
+                    diagnostics.putBoolean("hasRecentExerciseData", checkRecentData(ExerciseSessionRecord::class))
+                } else {
+                    diagnostics.putInt("grantedPermissionsCount", 0)
+                    diagnostics.putArray("grantedPermissions", Arguments.createArray())
+                    diagnostics.putBoolean("hasRecentStepsData", false)
+                    diagnostics.putBoolean("hasRecentHeartRateData", false)
+                    diagnostics.putBoolean("hasRecentExerciseData", false)
+                }
+                
+                // System Info
+                diagnostics.putString("androidVersion", android.os.Build.VERSION.RELEASE)
+                diagnostics.putInt("androidSdkInt", android.os.Build.VERSION.SDK_INT)
+                diagnostics.putString("deviceManufacturer", android.os.Build.MANUFACTURER)
+                diagnostics.putString("deviceModel", android.os.Build.MODEL)
+                
+                Log.i(TAG, "Diagnostics gathered successfully")
+                
+                withContext(Dispatchers.Main) {
+                    promise.resolve(diagnostics)
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error gathering diagnostics", e)
+                withContext(Dispatchers.Main) {
+                    promise.reject("DIAGNOSTICS_ERROR", "Failed to gather diagnostics: ${e.message}")
+                }
+            }
         }
     }
 
@@ -772,6 +911,72 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
         }
     }
 
+    // ============================================
+    // HELPER METHODS - Package & Diagnostics
+    // ============================================
+
+    /**
+     * Check if a package is installed on the device
+     */
+    private fun isPackageInstalled(packageName: String): Boolean {
+        return try {
+            reactApplicationContext.packageManager.getPackageInfo(packageName, 0)
+            true
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
+        }
+    }
+
+    /**
+     * Get package version
+     */
+    private fun getPackageVersion(packageName: String): String {
+        return try {
+            val packageInfo = reactApplicationContext.packageManager.getPackageInfo(packageName, 0)
+            packageInfo.versionName ?: "unknown"
+        } catch (e: Exception) {
+            "not_installed"
+        }
+    }
+
+    /**
+     * Check if there's recent data for a specific record type
+     */
+    private suspend fun checkRecentData(recordType: kotlin.reflect.KClass<out Record>): Boolean {
+        return try {
+            val client = healthConnectClient ?: return false
+            
+            val now = Instant.now()
+            val weekAgo = now.minus(7, ChronoUnit.DAYS)
+            val filter = TimeRangeFilter.between(weekAgo, now)
+            
+            val readRequest = ReadRecordsRequest(
+                recordType = recordType,
+                timeRangeFilter = filter
+            )
+            
+            val response = client.readRecords(readRequest)
+            response.records.isNotEmpty()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error checking recent data for ${recordType.simpleName}", e)
+            false
+        }
+    }
+
+    /**
+     * Send event to React Native JavaScript
+     */
+    private fun sendEvent(eventName: String, params: WritableMap?) {
+        try {
+            reactApplicationContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
+                .emit(eventName, params)
+            Log.d(TAG, "Sent event: $eventName")
+        } catch (e: Exception) {
+            Log.e(TAG, "Error sending event $eventName", e)
+        }
+    }
+
     // ✅ COMPLETE Helper methods with ALL record types
     private fun getPermissionsForRecordType(recordType: String): Set<String> {
         return when (recordType) {
@@ -817,12 +1022,5 @@ class RealHealthConnectModule(reactContext: ReactApplicationContext) : ReactCont
         super.onCatalystInstanceDestroy()
         coroutineScope.cancel()
 
-        // ✅ Unregister broadcast receiver
-        try {
-            reactApplicationContext.unregisterReceiver(permissionResultReceiver)
-            Log.d(TAG, "Permission result receiver unregistered")
-        } catch (e: Exception) {
-            Log.w(TAG, "Error unregistering receiver", e)
-        }
     }
 }
