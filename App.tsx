@@ -8,6 +8,7 @@ import JournalScreen from './src/screens/journalScreen.js';
 import StatsScreen from './src/screens/statsScreen.js';
 import SettingsNavigator from './src/screens/settingsScreen.js';
 import OnboardingScreen from './src/screens/onboarding';
+import { OnboardingErrorBoundary } from './src/screens/onboarding/components/OnboardingErrorBoundary';
 import HealthDataService from './src/services/healthDataService';
 import {AppProvider} from './src/utils/appContext';
 import {ThemeProvider} from './src/utils/themeContext';
@@ -127,7 +128,11 @@ function AppContent() {
 
   // Show onboarding if not completed
   if (!isOnboarded) {
-    return <OnboardingScreen onComplete={handleOnboardingComplete} />;
+    return (
+      <OnboardingErrorBoundary onReset={() => setIsOnboarded(false)}>
+        <OnboardingScreen onComplete={handleOnboardingComplete} />
+      </OnboardingErrorBoundary>
+    );
   }
 
   return (

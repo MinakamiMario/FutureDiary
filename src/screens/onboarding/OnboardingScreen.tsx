@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useCallback, useMemo, useRef, useState } from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, StatusBar, Platform, Alert, useColorScheme } from 'react-native';
+import { View, StyleSheet, ScrollView, SafeAreaView, StatusBar, Platform, Alert, useColorScheme, AppState } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Colors, Spacing } from '../../styles/designSystem';
 import { useOnboardingState } from './hooks/useOnboardingState';
@@ -50,6 +50,9 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
     skipOnboarding
   } = useEmergencyMode();
 
+  // AppState tracking for settings return
+  const appState = useRef(AppState.currentState);
+
   const currentStepData = ONBOARDING_STEPS[currentStep];
   const totalSteps = ONBOARDING_STEPS.length;
   const isLastStep = currentStep === totalSteps - 1;
@@ -64,6 +67,38 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
       isMounted.current = false;
     };
   }, []);
+
+  // AppState listener for handling return from System Settings
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (__DEV__) {
+        console.log('🔄 AppState change:', appState.current, '→', nextAppState);
+      }
+      
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
+        // App has come to foreground (e.g. after returning from Settings)
+        console.log('[ONBOARDING] 🏠 App returned to foreground - checking permissions');
+        
+        // Re-check permissions after return from settings
+        setTimeout(() => {
+          if (isMounted.current) {
+            checkAllPermissions().catch(err => {
+              console.error('[ONBOARDING] ❌ Error re-checking permissions:', err);
+            });
+          }
+        }, 1000); // Wait 1 sec so system UI is gone
+      }
+
+      appState.current = nextAppState;
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, [checkAllPermissions]);
 
   // Handle step completion and navigation
   const handleNext = useCallback(async () => {

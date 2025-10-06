@@ -8,7 +8,29 @@ const ThemeContext = createContext();
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    console.warn('⚠️ useTheme: No ThemeContext available, using fallback theme');
+    // Return fallback theme instead of throwing
+    return {
+      ...Theme.light,
+      isDark: false,
+      colors: {
+        text: {
+          primary: '#1A1A1A',
+          secondary: '#757575',
+        },
+        background: {
+          primary: '#FAFAFA',
+          secondary: '#FFFFFF',
+          card: '#FFFFFF',
+        },
+        border: {
+          primary: '#E8E8E8',
+          secondary: '#D1D1D1',
+        }
+      },
+      getColor: (colorPath, fallback = '#A3A3A3') => fallback,
+      toggleTheme: () => console.warn('Toggle theme not available outside ThemeProvider')
+    };
   }
   return context;
 };

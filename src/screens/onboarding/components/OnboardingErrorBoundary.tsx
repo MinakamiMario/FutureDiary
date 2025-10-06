@@ -36,7 +36,7 @@ export class OnboardingErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Onboarding Error Boundary caught an error:', error, errorInfo);
+    console.error('[ONBOARDING] 🚨 Error Boundary caught an error:', error, errorInfo);
     
     this.setState({
       error,
@@ -45,15 +45,18 @@ export class OnboardingErrorBoundary extends Component<Props, State> {
 
     // Log to crash reporting service in production
     if (__DEV__) {
-      console.log('Development mode - Error details:', {
+      console.log('[ONBOARDING] 🔍 Development mode - Error details:', {
         error: error.toString(),
         componentStack: errorInfo.componentStack,
-        stack: error.stack
+        stack: error.stack,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent
       });
     }
   }
 
   handleReset = () => {
+    console.log('[ONBOARDING] 🔄 Error Boundary reset triggered - attempting recovery');
     this.setState({
       hasError: false,
       error: null,
