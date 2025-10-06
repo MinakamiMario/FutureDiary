@@ -168,9 +168,9 @@ const FloatingNoteButton = ({ date, onNoteAdded }) => {
               <View style={styles.suggestionsContainer}>
                 <Text style={styles.suggestionsTitle}>Snelle voorbeelden:</Text>
                 <View style={styles.suggestionChips}>
-                  {quickSuggestions.map((suggestion, index) => (
+                  {quickSuggestions.map((suggestion) => (
                     <TouchableOpacity
-                      key={index}
+                      key={suggestion}
                       style={styles.suggestionChip}
                       onPress={() => setNoteText(suggestion)}
                     >

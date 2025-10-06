@@ -82,11 +82,11 @@ const Button = ({
         <ActivityIndicator size="small" color={variant === 'primary' || variant === 'danger' || variant === 'secondary' ? theme.onPrimary : theme.primary} />
       ) : (
         <>
-          {leftIcon}
-          <Text style={[styles.text, getTextVariantStyle(), textStyle, { fontFamily: Typography.fontFamily.primary }]}>
+          {leftIcon && <React.Fragment key="left-icon">{leftIcon}</React.Fragment>}
+          <Text key="button-text" style={[styles.text, getTextVariantStyle(), textStyle, { fontFamily: Typography.fontFamily.primary }]}>
             {title}
           </Text>
-          {rightIcon}
+          {rightIcon && <React.Fragment key="right-icon">{rightIcon}</React.Fragment>}
         </>
       )}
     </TouchableOpacity>

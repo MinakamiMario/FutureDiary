@@ -46,6 +46,7 @@ export const OnboardingNavigation = memo(({
       <View style={styles.navigationButtons}>
         {canGoBack ? (
           <Button
+            key="back-button"
             title="Vorige"
             variant="outline"
             size="medium"
@@ -56,9 +57,10 @@ export const OnboardingNavigation = memo(({
             accessibilityLabel="Vorige stap"
             accessibilityHint="Ga terug naar de vorige stap in de onboarding"
           />
-        ) : <View style={styles.backButton} />}
+        ) : <View key="back-placeholder" style={styles.backButton} />}
 
         <Button
+          key="next-button"
           title={isLastStep ? (isLoading ? "Bezig..." : "Voltooien") : "Volgende"}
           variant="primary"
           size="large"

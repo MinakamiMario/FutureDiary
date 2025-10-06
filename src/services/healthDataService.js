@@ -108,6 +108,18 @@ const healthDataServiceProxy = {
     return ActivityTrackingService.health.grantedPermissions || new Set();
   },
 
+  // Initialize method for compatibility
+  async initialize() {
+    // Health Connect is initialized through ActivityTrackingService
+    // This method is for backwards compatibility
+    return ActivityTrackingService.health.isHealthConnectAvailable();
+  },
+
+  // Alias for isHealthConnectAvailable for backwards compatibility
+  async isAvailable() {
+    return ActivityTrackingService.health.isHealthConnectAvailable();
+  },
+
   // Legacy helper methods
   formatStepsRecords(records) {
     return ActivityTrackingService.health.formatStepsRecords(records);

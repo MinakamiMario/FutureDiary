@@ -17,6 +17,43 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Load test utils only in development
 if (__DEV__) {
   require('./src/utils/onboardingTestUtils');
+  
+  // Debug logging for React key warnings - TEMPORARY FOR DEBUGGING
+  const originalWarn = console.warn;
+  const originalError = console.error;
+  
+  console.warn = (...args) => {
+    const message = args[0];
+    if (typeof message === 'string' && message.includes('unique "key" prop')) {
+      console.error('🚨 REACT KEY WARNING DETECTED 🚨');
+      console.error('Full warning:', message);
+      console.error('Component stack trace:', new Error().stack);
+      
+      // Try to extract component info
+      const componentMatch = message.match(/Check the render method of (\w+)/);
+      if (componentMatch) {
+        console.error('🎯 Problem component:', componentMatch[1]);
+      }
+      
+      // Enhanced stack trace with component names
+      console.error('📍 JavaScript stack:');
+      const stack = new Error().stack?.split('\n') || [];
+      stack.forEach((line, index) => {
+        if (line.includes('src/') || line.includes('components/') || line.includes('screens/')) {
+          console.error(`  ${index}: ${line}`);
+        }
+      });
+    }
+    originalWarn(...args);
+  };
+  
+  console.error = (...args) => {
+    const message = args[0];
+    if (typeof message === 'string' && message.includes('key') && message.includes('prop')) {
+      console.error('🔍 Possible key-related error:', message);
+    }
+    originalError(...args);
+  };
 }
 
 // Font configuration for better text rendering

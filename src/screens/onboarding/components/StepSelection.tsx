@@ -38,7 +38,7 @@ export const StepSelection = memo(({ options, currentValue, onSelect }: StepSele
             </View>
             <View style={styles.optionContent}>
               <View style={styles.optionTitleRow}>
-                <Typography variant="h6" color={currentValue === option.id ? "primary" : "text.primary"} weight="normal" style={{}}>
+                <Typography key="option-title" variant="h6" color={currentValue === option.id ? "primary" : "text.primary"} weight="normal" style={{}}>
                   {option.title}
                 </Typography>
                 {option.recommended && (

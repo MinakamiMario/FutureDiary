@@ -12,7 +12,7 @@ const TabBar: React.FC<TabBarProps> = ({screens, activeTab, onTabPress}) => {
     <View style={styles.container}>
       {screens.map((screen, index) => (
         <TouchableOpacity
-          key={index}
+          key={`tab-${screen.name}-${index}`}
           style={[styles.tab, activeTab === index && styles.activeTab]}
           onPress={() => onTabPress(index)}>
           <Text style={[styles.icon, activeTab === index && styles.activeIcon]}>

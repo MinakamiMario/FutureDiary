@@ -216,12 +216,12 @@ const OnboardingScreen = memo(({ onComplete }: OnboardingScreenProps) => {
       case 'permission':
         return (
           <View style={styles.permissionsContainer}>
-            {currentStepData.permissions?.map((permission) => {
+            {currentStepData.permissions?.map((permission, index) => {
               // ✅ FIX: Normalize permission keys
               const normalizedKey = normalizePermissionKey(permission.permission);
               return (
                 <PermissionToggle
-                  key={permission.permission}
+                  key={`permission-${permission.permission}-${index}`}
                   permission={permission}
                   isEnabled={permissionStatus[normalizedKey] || false}
                   isLoading={permissionLoading[normalizedKey] || false}
